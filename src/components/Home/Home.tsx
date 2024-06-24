@@ -8,6 +8,7 @@ of user navigation and search on the platform.
 const Home = () => {
     return (
         <>
+            <h3>This is the landing page</h3>
         </>
     )
 }
