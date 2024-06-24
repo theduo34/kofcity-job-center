@@ -1,12 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import AuthRoutes from './components/routes/AuthRoutes/AuthRoutes'
-import { AUTH_ROUTE_PATH } from './components/routes/AuthRoutes/AuthRoutes.constants'
-import { USER_ROUTE_PATH } from './components/routes/UserRoutes/UserRoutes.constants'
-import  UserRoutes from './components/shared/user/SignUp'
+import AuthRoutes from './components/shared/auth/AuthRoutes.tsx'
+import { AUTH_ROUTE_PATH } from './components/shared/auth/AuthRoutes.constants.ts'
+import {USER_REGISTRATION_ROUTE_PATH} from "./components/shared/registration/RegistrationRoutes.constants.ts";
+import RegistrationRoutes from './components/shared/registration/RegistrationRoutes.tsx'
 
 
 
@@ -16,7 +13,7 @@ function App() {
     <>
      <Routes>
         <Route path={`${AUTH_ROUTE_PATH}/*`} element={<AuthRoutes />}/>
-        <Route path={`${USER_ROUTE_PATH}/*`} element={<UserRoutes /> }/>
+         <Route path={`${USER_REGISTRATION_ROUTE_PATH}/*`} element={<RegistrationRoutes />}/>
      </Routes>
     </>
   )

@@ -1,5 +1,7 @@
-
-const SignUp = () => {
+/*
+User Registration content goes here
+ */
+const UserRegistration = () => {
     return(
         <>
           <h3 className="text-3xl font-semibold m-5">SignUp Page</h3>
@@ -7,4 +9,4 @@ const SignUp = () => {
 
     )
 }
-export default SignUp;
+export default UserRegistration;
