@@ -5,16 +5,10 @@ It features a quiet and user-friendly interface designed to enhance ease and smo
 of user navigation and search on the platform.
  */
 
-import Navbar from "../../shared/commons/Navbar";
-
-const LandingPage = () => {
-
-    return(
+const Home = () => {
+    return (
         <>
-            <Navbar/>
-            <h2 className="text-xl m-4 font-bold">Landing Page Goes Here</h2>
         </>
-
     )
 }
-export default LandingPage
+export default Home;

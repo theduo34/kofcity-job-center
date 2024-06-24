@@ -8,12 +8,12 @@ const Navbar = () => {
                 <div className="container mx-auto flex items-center justify-between">
                {/* Logo */}
         <div className="text-white text-xl font-bold">
-            <a href="/">Logo</a>
+            <a href="/public">Logo</a>
         </div>
 
                {/* Menu List */}
         <div className="hidden md:flex space-x-6 text-white">
-            <a href="/" className="hover:text-gray-400">Home</a>
+            <a href="/public" className="hover:text-gray-400">Home</a>
             <a href="/jobs" className="hover:text-gray-400">Jobs</a>
             <a href="/trends" className="hover:text-gray-400">Trends</a>
             <a href="/employer" className="hover:text-gray-400">Employer</a>
