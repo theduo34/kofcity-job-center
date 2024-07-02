@@ -1,2 +1,2 @@
-export * from './Home.js';
-export {default} from './Home';
+export * from './Home.tsx';
+export { default } from './Home.tsx';
