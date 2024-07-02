@@ -1,2 +1,2 @@
-export * from './UserRegistration.tsx';
-export {default} from './UserRegistration';
+export * from "./UserRegistration.tsx";
+export {default} from "./UserRegistration.tsx";

@@ -1,7 +1,5 @@
-import {Card, theme} from "antd";
+import {Card} from "antd";
 import React from "react";
-import {useTheme} from "../../theme/ThemeContext.tsx";
-import {MINE_SHAFT_800} from "../../theme/darkTheme.ts";
 
 export interface JybekCardProps {
   children: React.ReactNode,
@@ -26,10 +24,6 @@ export interface JybekCardProps {
  * @return {React.ReactNode} The rendered Jybek card component.
  */
 const KjcCard = (props: JybekCardProps): React.ReactNode => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-  const { theme: customTheme } = useTheme();
   return(
     <>
       <Card
@@ -40,7 +34,6 @@ const KjcCard = (props: JybekCardProps): React.ReactNode => {
         bordered={props.bordered}
         style={{
         ...props.style,
-          background: customTheme === 'dark' ? MINE_SHAFT_800 : colorBgContainer
       }}
         type={props.type}
         cover={props.cover}

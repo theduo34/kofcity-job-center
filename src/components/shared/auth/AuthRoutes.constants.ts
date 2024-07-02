@@ -7,3 +7,4 @@ across the application.
 export const AUTH_ROUTE_PATH = '/auth';
 export const LOGIN_PATH = '/login';
 export const RESET_PASSWORD_PATH = '/reset-password';
+export const FORGOT_PASSWORD_PATH = '/forgot-password';
