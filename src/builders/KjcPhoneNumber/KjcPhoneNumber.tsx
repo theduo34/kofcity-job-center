@@ -39,7 +39,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange, labels, 
     <Option value="">{labels.ZZ}</Option>
     {getCountries().map((country) => (
       <Option key={country} value={country}>
-        <div className="flex flex-row gap-1">
+        <div className="flex flex-row gap-1 hover:cursor-pointer">
           <Flag country={country} size={16} style={{ marginRight: 0 }} />
           +{getCountryCallingCode(country)}
         </div>
