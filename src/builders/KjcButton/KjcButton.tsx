@@ -11,7 +11,7 @@ export interface KcjButtonProps {
     disabled?: boolean
     size?: "large" | "middle" | "small"
     style?: React.CSSProperties
-    type?: "primary" | "dashed" | "link" | "text" | "default" | undefined | " "
+    type?: "primary" | "dashed" | "link" | "text" | "default"
     className?: string
     key?: string
     shape?: "default" | "circle" | "round"

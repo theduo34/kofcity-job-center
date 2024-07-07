@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Form, FormInstance, Input } from "antd";
 
 type KjcPasswordInputProps = {
@@ -13,10 +13,19 @@ type KjcPasswordInputProps = {
     variant?: "outlined" | "filled" | "borderless";
     style?: React.CSSProperties;
     onChange?: (value: string) => void;
+    hasFeedback?: boolean;
+    // eslint-disable-next-line
+    dependencies?: string[] ;
 };
 
 const KjcPasswordInput: React.FC<KjcPasswordInputProps> = (props) => {
     const [value, setValue] = useState<string>("");
+
+    useEffect(() => {
+        if (props.valuePropsName) {
+            setValue(props.valuePropsName);
+        }
+    }, [props.valuePropsName]);
 
     const handleInputChange = (value: string) => {
         setValue(value);
@@ -30,6 +39,8 @@ const KjcPasswordInput: React.FC<KjcPasswordInputProps> = (props) => {
             label={props.label}
             name={props.name}
             className={props.className}
+            hasFeedback={props.hasFeedback}
+            dependencies={props.dependencies}
             rules={[
                 ...(props.rules || []),
             ]}
