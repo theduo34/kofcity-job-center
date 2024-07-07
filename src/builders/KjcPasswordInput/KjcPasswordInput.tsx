@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormInstance, Input } from "antd";
 
-type KjcInputProps = {
+type KjcPasswordInputProps = {
     className?: string;
     name?: string;
     label?: string;
@@ -15,7 +15,7 @@ type KjcInputProps = {
     onChange?: (value: string) => void;
 };
 
-const KjcInput: React.FC<KjcInputProps> = (props) => {
+const KjcPasswordInput: React.FC<KjcPasswordInputProps> = (props) => {
     const [value, setValue] = useState<string>("");
 
     const handleInputChange = (value: string) => {
@@ -34,7 +34,7 @@ const KjcInput: React.FC<KjcInputProps> = (props) => {
                 ...(props.rules || []),
             ]}
         >
-            <Input
+            <Input.Password
                 placeholder={props.placeholder}
                 style={props.style}
                 className={props.className}
@@ -46,4 +46,4 @@ const KjcInput: React.FC<KjcInputProps> = (props) => {
     );
 };
 
-export default KjcInput;
+export default KjcPasswordInput;
