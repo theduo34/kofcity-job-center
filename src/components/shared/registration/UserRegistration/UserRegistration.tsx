@@ -225,9 +225,8 @@ const UserRegistration = () => {
                                                 <div className="mb-4">
                                                     <Form.Item>
                                                         <KjcButton
-                                                            type="primary"
                                                             htmlType="submit"
-                                                            className="inline-block w-full items-center border-0 rounded bg-kjcBtn-400 px-7 font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-kjcBtn-500 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-kjcBtn-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                                                            className="inline-block w-full items-center border-0 rounded bg-kjcBtn-400 px-7 font-medium uppercase leading-normal text-white hover:bg-kjcBtn-500 transition duration-150 ease-in-out"
                                                         >
                                                             Continue
                                                         </KjcButton>

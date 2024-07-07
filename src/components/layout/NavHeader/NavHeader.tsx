@@ -14,7 +14,7 @@ const NavHeader = () => {
     }
     return (
         <>
-            <nav className="w-full text-center bg-white fixed-top">
+            <nav className="fixed top-0 w-full text-center bg-white">
                 <div className="flex items-center">
                     <div className="flex items-center">
                         <KjcImage

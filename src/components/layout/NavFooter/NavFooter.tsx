@@ -18,7 +18,7 @@ const NavFooter = () => {
     };
     return (
         <>
-            <nav className="mx-auto bg-white bottom-0  w-full pt-1 shadow-lg overflow-x-hidden">
+            <nav className="fixed bottom-0 w-full bg-white pt-1 shadow-lg overflow-x-hidden">
                 <div className="items-center justify-evenly">
                     <Row
                         gutter={{xs: 20, sm: 16}}

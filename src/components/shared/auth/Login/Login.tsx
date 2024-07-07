@@ -1,16 +1,18 @@
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import KjcImage from "../../../../builders/KjcImage";
-import {Checkbox, Form, FormProps, Input} from "antd";
+import { Checkbox, Col, Form, FormProps, Row } from "antd";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcCard from "../../../../builders/KjcCard";
-import {REGISTRATION_ROUTE_PATH, USER_REGISTRATION_PATH} from "../../registration/RegistrationRoutes.constants.ts";
-import {withBaseLayout} from "../../../layout/hoc/withBaseLayout.tsx";
+import { REGISTRATION_ROUTE_PATH, USER_REGISTRATION_PATH } from "../../registration/RegistrationRoutes.constants.ts";
+import KjcNotification from "../../../../builders/KjcNotification";
+import KjcInput from "../../../../builders/KjcInput";
+import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 
 /**
-*This page handles user login. It enables existing users to access their accounts by entering
-*their credentials, including email and password. The login process incorporates security measures
-*like encryption and error handling to protect user data. The user interface is designed to be
-*simple and efficient, providing a seamless login experience for returning users.
+ * This page handles user login. It enables existing users to access their accounts by entering
+ * their credentials, including email and password. The login process incorporates security measures
+ * like encryption and error handling to protect user data. The user interface is designed to be
+ * simple and efficient, providing a seamless login experience for returning users.
  */
 
 type FieldType = {
@@ -18,16 +20,22 @@ type FieldType = {
     password?: string;
     remember?: boolean;
 };
+
 const Login = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
-    const onFinish: FormProps<FieldType>["onFinish"] = async () => {
-        /* */ };
+    const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
+        console.log(formData)
+        form.resetFields();
+    };
 
-    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-        /* */) => {
-       // console.log("Failed:", errorInfo);
+    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
+        KjcNotification.showKjcNotification({
+            type: 'error',
+            message: 'Error occurred!',
+            description: 'Failed to login',
+        })
     };
 
     const handleOnLogoClick = () => {
@@ -36,123 +44,142 @@ const Login = () => {
 
     return (
         <>
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="w-full max-w-md min-h-2/4 md:w-3/6 lg:w-2/6">
-                    <KjcCard
-                        className="shadow-2xl"
+            <Row
+                justify="center"
+                align="middle"
+                style={{ height: "100vh"}}
+                className="overflow-hidden"
+            >
+                <Col span={24} className="flex items-center justify-center min-h-screen">
+                    <Col
+                        sm={24}
+                        md={24}
+                        lg={18}
+                        className="flex justify-center"
                     >
-                        <div className="text-sm">
-                            <div className="flex flex-col justify-left">
-                                <KjcImage
-                                    onClick={handleOnLogoClick}
-                                    width={150}
-                                    src=""
-                                    className="img-fluid bg-center mb-6"
-                                    alt="Kjc Logo"
-                                />
-                                <div>
-                                    <h3 className="mb-3 mt-0 text-2xl font-medium leading-tight text-jybek-600">
-                                        Welcome to Kofcity Job Center
-                                    </h3>
-                                    <hr className="mb-3"/>
-                                    <p className="text-muted mt-3">
-                                        Your best online job search platform. Use your email address and
-                                        password to sign in to Kofcity Job Center
-                                    </p>
+                        <div className="w-full max-w-md">
+                            <KjcCard
+                                className="shadow-none md:shadow-lg"
+                            >
+                                <div className="text-sm items-center">
+                                    <div className="flex flex-col items-center">
+                                        <KjcImage
+                                            onClick={handleOnLogoClick}
+                                            width={150}
+                                            src=""
+                                            className="img-fluid bg-center mb-6"
+                                            alt="Kjc Logo"
+                                        />
+                                        <div className="text-center">
+                                            <h3 className="mb-3 mt-0 text-xl md:text-2xl font-medium leading-normal text-kjc-950">
+                                                Welcome to Kofcity Job Center
+                                            </h3>
+                                            <hr className="mb-3"/>
+                                            <p className="text-muted mt-3">
+                                                Your best online job search platform. Use your email address and
+                                                password to sign in to Kofcity Job Center
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start mt-2">
+                                        <Form
+                                            form={form}
+                                            name="basic"
+                                            className="w-full"
+                                            initialValues={{remember: false}}
+                                            onFinish={onFinish}
+                                            onFinishFailed={onFinishFailed}
+                                            autoComplete="off"
+                                        >
+                                            <div className="mb-0">
+                                                <label htmlFor="email">Email</label>
+                                               <KjcInput
+                                                   label=""
+                                                   name="email"
+                                                   className="mt-1 items-center"
+                                                   rules={[
+                                                       {
+                                                           required: true,
+                                                           message: "Please input your email!",
+                                                       },
+                                                       {
+                                                           type: "email",
+                                                           message: "Please input valid email"
+                                                       }
+                                                   ]}
+                                               />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="password">Password</label>
+                                                <KjcPasswordInput
+                                                    name="password"
+                                                    className="mt-1"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: "Please input your password!",
+                                                        },
+                                                        {
+                                                            min: 8,
+                                                            message: "Password must be at least 8 characters.",
+                                                        }
+                                                    ]}
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <Form.Item<FieldType>
+                                                    name="remember"
+                                                    valuePropName="checked"
+                                                    className="text-left"
+                                                >
+                                                    <Checkbox>Remember me</Checkbox>
+                                                    <span
+                                                        className="capitalize font-normal text-xs text-neutral-800 float-end">
+                                                        <Link
+                                                            to={'/auth/forgot-password'}
+                                                        >
+                                                            Forgot Password
+                                                        </Link>
+                                                    </span>
+                                                </Form.Item>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <Form.Item>
+                                                    <KjcButton
+                                                        type=" "
+                                                        htmlType="submit"
+                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0"
+                                                    >
+                                                        Continue
+                                                    </KjcButton>
+
+                                                </Form.Item>
+                                            </div>
+
+                                            <div className="text-neutral-800 text-center text-xs">
+                                                Don't have an account?
+                                                <span
+                                                    className="capitalize font-bold text-jybekBtn-600">
+                                                    <Link
+                                                        to={REGISTRATION_ROUTE_PATH + USER_REGISTRATION_PATH}
+                                                    >
+                                                        Sign Up
+                                                    </Link>
+                                                </span>
+                                            </div>
+                                        </Form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex items-start mt-2">
-                                <Form
-                                    form={form}
-                                    name="basic"
-                                    className="w-full"
-                                    initialValues={{remember: false}}
-                                    onFinish={onFinish}
-                                    onFinishFailed={onFinishFailed}
-                                    autoComplete="off"
-                                >
-                                    <div className="mb-0">
-                                        <label htmlFor="">Email</label>
-                                        <Form.Item<FieldType>
-                                            label=""
-                                            name="email"
-                                            className="mt-2"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Please input your email!",
-                                                },
-                                                {
-                                                    type: "email",
-                                                    message: "Please input valid email"
-                                                }
-
-                                            ]}
-                                        >
-                                            <Input/>
-                                        </Form.Item>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <label htmlFor="">Password</label>
-                                        <Form.Item<FieldType>
-                                            name="password"
-                                            className="mt-2"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Please input your password!",
-                                                },
-                                                {
-                                                    min: 8,
-                                                    message: "Password must be at least 8 characters.",
-                                                }
-                                            ]}
-                                        >
-                                            <Input.Password/>
-                                        </Form.Item>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <Form.Item<FieldType>
-                                            name="remember"
-                                            valuePropName="checked"
-                                            className="text-left"
-                                        >
-                                            <Checkbox>Remember me</Checkbox>
-                                            <span
-                                                className="capitalize font-normal text-xs text-neutral-800 float-end ">
-                                                <Link  to={'/auth/forgot-password'} className="CustomHover">Forgot Password</Link>
-                                            </span>
-                                        </Form.Item>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <Form.Item>
-                                            <KjcButton
-                                                type="primary"
-                                                htmlType="submit"
-                                                className="inline-block w-full border-0 rounded bg-kjcBtn-600 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-kjcBtn-400 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-kjcBtn-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong submitBtnsHover"
-                                            >
-                                                Continue
-                                            </KjcButton>
-                                        </Form.Item>
-                                    </div>
-
-                                    <div className="text-neutral-800 text-center text-xs">
-                                        Don't have an account? <span
-                                        className="capitalize font-bold text-jybekBtn-600"> <Link
-                                        to={REGISTRATION_ROUTE_PATH + USER_REGISTRATION_PATH} className="CustomHover">Sign Up</Link></span>
-                                    </div>
-                                </Form>
-                            </div>
+                            </KjcCard>
                         </div>
-                    </KjcCard>
-                </div>
-            </div>
+                    </Col>
+                </Col>
+            </Row>
         </>
     );
 };
 
-
-export default withBaseLayout(Login);
+export default Login;
