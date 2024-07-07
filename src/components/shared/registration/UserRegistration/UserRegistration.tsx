@@ -1,4 +1,4 @@
-import {Col, Form, FormProps, Input, Row} from "antd";
+import {Col, Form, FormProps, Row} from "antd";
 import {Link,} from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
@@ -10,6 +10,9 @@ import {useState} from "react";
 // @ts-expect-error
 import {CountryCode} from "libphonenumber-js/types";
 import {parsePhoneNumberWithError} from "libphonenumber-js";
+import KjcInput from "../../../../builders/KjcInput";
+import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
+import {Rule} from "postcss";
 
 type FieldType = {
     first_name?: string;
@@ -89,44 +92,43 @@ const UserRegistration = () => {
                                             >
                                                 <div className="">
                                                     <label htmlFor="first_name">First Name</label>
-                                                    <Form.Item<FieldType>
-                                                        label=""
-                                                        name="first_name"
-                                                        className="mt-1"
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "Please input your first name"
-                                                            },
-                                                        ]}
-                                                    >
-                                                        <Input placeholder="Doe"/>
-                                                    </Form.Item>
+                                                   <KjcInput
+                                                       label=""
+                                                       name="first_name"
+                                                       className="mt-1"
+                                                       placeholder="Doe"
+                                                       rules={[
+                                                           {
+                                                               required: true,
+                                                               message: "Please input your first name"
+                                                           },
+                                                       ]}
+                                                   />
                                                 </div>
 
                                                 <div className="">
                                                     <label htmlFor="last_name">Last Name</label>
-                                                    <Form.Item<FieldType>
+                                                    <KjcInput
                                                         label=""
                                                         name="last_name"
                                                         className="mt-1"
+                                                        placeholder="John"
                                                         rules={[
                                                             {
                                                                 required: true,
                                                                 message: "Please input last name"
                                                             },
                                                         ]}
-                                                    >
-                                                        <Input placeholder="John"/>
-                                                    </Form.Item>
+                                                    />
                                                 </div>
 
                                                 <div className="mb-0">
                                                     <label htmlFor="email">Email</label>
-                                                    <Form.Item<FieldType>
+                                                    <KjcInput
                                                         label=""
                                                         name="email"
                                                         className="mt-1"
+                                                        placeholder="example123@gmail.com"
                                                         rules={[
                                                             {
                                                                 required: true,
@@ -137,9 +139,7 @@ const UserRegistration = () => {
                                                                 message: "Please input valid email"
                                                             },
                                                         ]}
-                                                    >
-                                                        <Input placeholder="example@gmail.com"/>
-                                                    </Form.Item>
+                                                    />
                                                 </div>
 
                                                 <div className="mb-0">
@@ -160,33 +160,32 @@ const UserRegistration = () => {
 
                                                 <div className="mb-0">
                                                     <label htmlFor="password">Password</label>
-                                                    <Form.Item<FieldType>
-                                                        label=""
-                                                        name="password"
-                                                        className="mt-1"
-                                                        hasFeedback
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "Please input your Password !"
-                                                            },
-                                                            {
-                                                                min: 8,
-                                                                message: "Password has to be at least 8 characters long !"
-                                                            }
-                                                        ]}
-
-                                                    >
-                                                        <Input.Password placeholder="***********"/>
-                                                    </Form.Item>
+                                                   <KjcPasswordInput
+                                                       label=""
+                                                       name="password"
+                                                       className="mt-1"
+                                                       hasFeedback
+                                                       placeholder="****************"
+                                                       rules={[
+                                                           {
+                                                               required: true,
+                                                               message: "Please input your Password !"
+                                                           },
+                                                           {
+                                                               min: 8,
+                                                               message: "Password has to be at least 8 characters long !"
+                                                           }
+                                                       ]}
+                                                   />
                                                 </div>
 
                                                 <div className='mb-0'>
-                                                    <label htmlFor="confirmPassword">Confirm Password</label>
-                                                    <Form.Item<FieldType>
+                                                    <label htmlFor="confirm_password">Confirm Password</label>
+                                                    <KjcPasswordInput
                                                         label=""
                                                         name="confirm_password"
                                                         className="mt-1"
+                                                        placeholder="****************"
                                                         hasFeedback
                                                         dependencies={['password']}
                                                         rules={[
@@ -194,21 +193,19 @@ const UserRegistration = () => {
                                                                 required: true,
                                                                 message: "Please confirm your Password!"
                                                             },
-                                                            ({getFieldValue}) => ({
-                                                                validator(_, value) {
+                                                            ({ getFieldValue }: { getFieldValue: (name: string) => string }) => ({
+                                                                validator(_: Rule, value: string) {
                                                                     if (!value || getFieldValue('password') === value) {
                                                                         return Promise.resolve();
                                                                     }
-                                                                    return Promise.reject(new Error('The new password that you entered do not match !'));
+                                                                    return Promise.reject(new Error('The new password that you entered do not match!'));
                                                                 },
                                                             }),
                                                         ]}
-                                                    >
-                                                        <Input.Password placeholder="***********"/>
-                                                    </Form.Item>
+                                                    />
                                                 </div>
 
-                                                <div className="hidden mb-0">
+                                                <div className="hidden my-0">
                                                     <Form.Item
                                                         name="sms_notification"
                                                         label=""
@@ -220,13 +217,12 @@ const UserRegistration = () => {
                                                         </label>
                                                     </Form.Item>
                                                 </div>
-
-
                                                 <div className="mb-4">
                                                     <Form.Item>
                                                         <KjcButton
+                                                            type="primary"
                                                             htmlType="submit"
-                                                            className="inline-block w-full items-center border-0 rounded bg-kjcBtn-400 px-7 font-medium uppercase leading-normal text-white hover:bg-kjcBtn-500 transition duration-150 ease-in-out"
+                                                            className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0"
                                                         >
                                                             Continue
                                                         </KjcButton>
@@ -234,9 +230,15 @@ const UserRegistration = () => {
                                                 </div>
 
                                                 <div className="text-neutral-800 text-center text-sm">
-                                                    Already a user? <span
-                                                    className="capitalize font-bold text-jybekBtn-600"> <Link
-                                                    to={'/auth/login'} className="CustomHover">Login</Link></span>
+                                                    Already a user?
+                                                    <span
+                                                        className="capitalize font-bold text-jybekBtn-600">
+                                                        <Link
+                                                            to={'/auth/login'}
+                                                            className="CustomHover">
+                                                            Login
+                                                        </Link>
+                                                    </span>
                                                 </div>
                                             </Form>
                                         </div>
