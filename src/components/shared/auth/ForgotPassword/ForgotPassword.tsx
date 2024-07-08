@@ -1,4 +1,10 @@
 
+/**
+ * Renders forgot password component.
+ *
+ * @return {JSX.Element} The rendered forgot password component.
+ */
+
 const ForgotPassword = () => {
     return (
         <>

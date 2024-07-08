@@ -10,9 +10,9 @@ type MenuItem = {
 };
 
 /**
- * Renders the top header component.
+ * Renders the nav header component.
  *
- * @return {JSX.Element} The rendered top header component.
+ * @return {JSX.Element} The rendered nav header component.
  */
 const NavHeader = () => {
     const navigate = useNavigate();

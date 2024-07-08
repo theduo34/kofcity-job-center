@@ -9,10 +9,9 @@ import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 
 /**
- * This page handles user login. It enables existing users to access their accounts by entering
- * their credentials, including email and password. The login process incorporates security measures
- * like encryption and error handling to protect user data. The user interface is designed to be
- * simple and efficient, providing a seamless login experience for returning users.
+ * Renders the login component.
+ *
+ * @return {JSX.Element} The rendered login component.
  */
 
 type FieldType = {

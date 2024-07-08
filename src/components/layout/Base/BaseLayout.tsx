@@ -10,6 +10,11 @@ export interface BaseLayoutProps {
     children: React.ReactNode
 }
 
+/**
+ * Renders the base layout component.
+ *
+ * @return {JSX.Element} The rendered base layout component.
+ */
 const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
     return (
         <Layout

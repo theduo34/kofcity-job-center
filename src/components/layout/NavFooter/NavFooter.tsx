@@ -3,6 +3,11 @@ import { useState } from "react";
 import { NavFooterMenuItems } from "./NavFooter.constants.tsx";
 import { NavFooterMenuItemProps } from "./NavFooter.inteface.ts";
 
+/**
+ * Renders the nav footer component.
+ *
+ * @return {JSX.Element} The rendered nav footer component.
+ */
 const NavFooter = () => {
     const menuItems = NavFooterMenuItems();
     const [activeItem, setActiveItem] = useState<string | null>(null);
