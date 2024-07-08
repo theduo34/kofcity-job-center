@@ -14,6 +14,12 @@ import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import {Rule} from "postcss";
 
+/**
+ * Renders the user registration component.
+ *
+ * @return {JSX.Element} The rendered user registration component.
+ */
+
 type FieldType = {
     first_name?: string;
     last_name?: string;

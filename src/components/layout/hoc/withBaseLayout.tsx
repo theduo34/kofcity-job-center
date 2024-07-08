@@ -5,6 +5,11 @@ interface Props {
     // eslint-disable-next-line
     [key: string]: any;
 }
+/**
+ * Renders the with base layout component.
+ *
+ * @return {JSX.Element} The rendered with base layout component.
+ */
 
 export const withBaseLayout = <P extends Props>(WrappedComponent: ComponentType<P>) => {
     const WithBaseLayout: React.FC<P> = (props) => (
