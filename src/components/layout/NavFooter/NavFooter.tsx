@@ -1,7 +1,8 @@
 import { Col, Row } from "antd";
 import { useState } from "react";
-import { NavFooterMenuItems } from "./NavFooter.constants.tsx";
 import { NavFooterMenuItemProps } from "./NavFooter.inteface.ts";
+import {useNavigate} from "react-router-dom";
+import {getNavFooterMenuItems} from "./NavFooter.constants.tsx";
 
 /**
  * Renders the nav footer component.
@@ -9,11 +10,16 @@ import { NavFooterMenuItemProps } from "./NavFooter.inteface.ts";
  * @return {JSX.Element} The rendered nav footer component.
  */
 const NavFooter = () => {
-    const menuItems = NavFooterMenuItems();
-    const [activeItem, setActiveItem] = useState<string | null>(null);
+    const [activeItem, setActiveItem] = useState<string>("");
+    const navigate = useNavigate();
+
+    const menuItems = getNavFooterMenuItems(navigate);
+
 
     const handleMenuClick = (item: NavFooterMenuItemProps) => {
-        setActiveItem(item.key === activeItem ? null : item.key); // Toggle active item on click
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        setActiveItem(item.key === activeItem ? null : item.key); 
         switch (item.key) {
             case "Home":
                 break;

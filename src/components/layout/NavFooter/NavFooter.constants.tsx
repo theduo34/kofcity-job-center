@@ -5,7 +5,6 @@ import {
     TeamOutlined
 } from '@ant-design/icons';
 import {NavFooterMenuItemProps} from "./NavFooter.inteface.ts";
-import {useNavigate} from "react-router-dom";
 
 const NAV_FOOTER_MENU_ITEMS = {
     HOME: 'Home',
@@ -14,9 +13,8 @@ const NAV_FOOTER_MENU_ITEMS = {
     POST_JOBS: 'Post Jobs'
 }
 
-export const NavFooterMenuItems = (): NavFooterMenuItemProps[] => {
-    const navigate = useNavigate();
-    return[
+
+export const getNavFooterMenuItems = ( navigate: (path: string) => void): NavFooterMenuItemProps[] => [
         {
             label: NAV_FOOTER_MENU_ITEMS.HOME,
             icon: <HomeOutlined/>,
@@ -38,5 +36,5 @@ export const NavFooterMenuItems = (): NavFooterMenuItemProps[] => {
             icon: <TeamOutlined/>,
             key: NAV_FOOTER_MENU_ITEMS.POST_JOBS
         }
-    ]
-}
+
+]
