@@ -1,6 +1,7 @@
-import {TopContentInterface} from "./Home.interface.ts";
+import {JobCategoriesInterface, JobTypesInterface, TopContentInterface} from "./Home.interface.ts";
 import topSection from "/public/assets/images/bgImages/topSection.jpg"
 
+//top content constants
 const TOP_CONTENT_MENU_ITEMS = {
     JOBS : "Find Jobs",
     INDUSTRY_TRENDS: "Industry trends",
@@ -31,6 +32,58 @@ export const getTopContent = (navigate: (path: string) => void): TopContentInter
         image: topSection,
         onClick: () => navigate("/")
     },
+]
 
+//type of jobs
+const JOB_TYPES = {
+    FULL_TIME_JOBS: "Full-time Jobs",
+    PART_TIME_JOBS: "Part-time Jobs",
+    REMOTE_JOBS: "Remote jobs",
+}
+
+export const getJobTypes = (navigate: (path: string) => void): JobTypesInterface[] => [
+    {
+        key: JOB_TYPES.FULL_TIME_JOBS,
+        label: JOB_TYPES.FULL_TIME_JOBS,
+        onClick: () => navigate("/"),
+    },
+    {
+        key: JOB_TYPES.PART_TIME_JOBS,
+        label: JOB_TYPES.PART_TIME_JOBS,
+        onClick: () => navigate("/"),
+    },
+    {
+        key: JOB_TYPES.REMOTE_JOBS,
+        label: JOB_TYPES.REMOTE_JOBS,
+        onClick: () => navigate("/"),
+    }
+]
+//Job Categories
+const JOB_CATEGORIES = {
+    JOBS_BY_PROFESSION: "Jobs by Profession",
+    JOBS_BY_INDUSTRY: "Jobs by Industry",
+    JOBS_BY_CITY: "Jobs by City",
+    SEARCH: "Search"
+}
+export const getJobCategories = (navigate: (path: string) => void): JobCategoriesInterface[] => [
+    {
+        key: JOB_CATEGORIES.JOBS_BY_PROFESSION,
+        label: JOB_CATEGORIES.JOBS_BY_PROFESSION,
+        onClick: () => navigate("/"),
+        className: "",
+    },
+    {
+        key: JOB_CATEGORIES.JOBS_BY_INDUSTRY,
+        label: JOB_CATEGORIES.JOBS_BY_INDUSTRY,
+        onClick: () => navigate("/"),
+        className: "",
+    },
+    {
+        key: JOB_CATEGORIES.JOBS_BY_CITY,
+        label: JOB_CATEGORIES.JOBS_BY_CITY,
+        onClick: () => navigate("/"),
+        className: "",
+    }
 
 ]
+

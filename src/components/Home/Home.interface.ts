@@ -6,3 +6,17 @@ export interface TopContentInterface{
     image?: string;
     onClick?: () => void;
 }
+
+export interface JobTypesInterface{
+    key?: string;
+    label?: string;
+    onClick?: () => void;
+}
+
+export interface JobCategoriesInterface{
+    key?: string;
+    label?: string;
+    icon?: React.ReactNode,
+    onClick?: () => void;
+    className?: string;
+}

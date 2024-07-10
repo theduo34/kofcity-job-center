@@ -8,10 +8,10 @@ const TopContent = () => {
     const menuItems = getTopContent(navigate)
     return(
         <>
-            <div className="items-center space-y-4">
-                <div className="items-center justify-center md:justify-start pt-0 md:pt-4 space-y-4 md:space-y-8 w-full md:w-4/5 xl:w-3/5">
+            <div className="items-center space-y-4 py-4">
+                <div className="items-center justify-center md:justify-start space-y-4 md:space-y-8 w-full xl:w-3/5">
                     <div
-                        className="items-center capitalize flex text-red-600 font-bold text-4xl leading-tight ">
+                        className="items-center capitalize flex text-red-600 font-bold text-4xl leading-tight">
                         Your ultimate destination for finding the perfect job opportunity.
                     </div>
                     <div
@@ -26,20 +26,23 @@ const TopContent = () => {
                         menuItems.map((menu) => {
                             return (
                                 <div className="flex items-center justify-center md:justify-end">
-                                <div
-                                    className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
-                                    <div className="flex space-x-4 w-full">
-                                        <div className="flex items-center rounded-full w-14 border-2 border-kjc-950">
-                                            <KjcImage
-                                                src={menu.image}
-                                                alt="job logo"
-                                                className="rounded-full h-full w-full"
-                                            />
-                                        </div>
+                                    <div
+                                     className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
+                                        <div className="flex space-x-4 w-full">
+                                            <div className="flex items-center rounded-full w-14 border-2 border-kjc-950">
+                                                <KjcImage
+                                                    src={menu.image}
+                                                    alt="job logo"
+                                                    className="rounded-full h-full w-full"
+                                                />
+                                            </div>
 
                                         <div className="flex w-full items-center justify-between">
                                             <div className="items-center space-y-2 ">
-                                                <div className="font-bold text-xl md:text-2xl text-kjc-950 capitalize">
+                                                <div
+                                                    className="font-bold text-xl md:text-2xl text-kjc-950 capitalize"
+                                                    key={menu.key}
+                                                >
                                                     {menu.label}
                                                 </div>
                                                 <p className="flex">

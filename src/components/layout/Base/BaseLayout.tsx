@@ -18,7 +18,7 @@ export interface BaseLayoutProps {
 const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
     return (
         <Layout
-            style={{ height: "100vh" }}
+            style={{ minHeight: "100vh" }}
         >
             <Layout>
                 <KjcHeader
