@@ -3,6 +3,7 @@ import { useState } from "react";
 import KjcImage from "../../../builders/KjcImage";
 import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
+import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
 
 /**
  * Renders the nav header component.
@@ -56,8 +57,8 @@ const NavHeader = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-end">
-                        {/*<NavHeaderAuthBtn />*/}
-                        <LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />
+                        <NavHeaderAuthBtn />
+                        {/*<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />*/}
                     </div>
                 </div>
             </nav>

@@ -35,7 +35,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
                 </KjcHeader>
 
                 <KjcContent
-                    className="items-center p-4"
+                    className="items-center"
                 >
                     { children }
                 </KjcContent>
