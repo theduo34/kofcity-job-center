@@ -1,3 +1,4 @@
+import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {getJobCategories, getJobTypes} from "../Home.constants.tsx";
 import KjcButton from "../../../builders/KjcButton";
@@ -34,29 +35,23 @@ const PopularSearch = () => {
                     </div>
                     <div className="w-full item-center justify-center shadow-lg bg-white">
                         <div className="flex flex-row items-center justify-around">
-                            {
-                                jobCategories.map((category, index) => (
+                            {jobCategories.map((category, index) => (
+                                <React.Fragment key={category.key}>
                                     <div
-                                        key={category.key}
                                         className="font-light text-md md:text-xl py-4"
                                         onClick={category.onClick}
                                     >
                                         {category.label}
-                                        {
-                                            index < jobs.length - 1 &&
-                                            <span className="text-center text-kjc-950">|</span>
-                                        }
                                     </div>
-                                ))
-                            }
-                            {/*<div className="w-full">*/}
-                            {/*    <KjcButton*/}
-                            {/*        className=" font-base md:font-semibold text-md md:text-xl py-4 text-kjc-950 bg-kjcBtn-500"*/}
-                            {/*    >*/}
-                            {/*        Search*/}
-                            {/*    </KjcButton>*/}
-                            {/*</div>*/}
+                                    {index < jobCategories.length - 1 && (
+                                        <div className="mx-2">
+                                            <span className="text-center text-kjc-950" style={{height: "150%"}}>|</span>
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            ))}
                         </div>
+
                     </div>
                     <div>secthree</div>
                 </div>
