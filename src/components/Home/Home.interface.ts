@@ -19,4 +19,5 @@ export interface JobCategoriesInterface{
     icon?: React.ReactNode,
     onClick?: () => void;
     className?: string;
+    options?:Array<{ value: string; label: string }>;
 }

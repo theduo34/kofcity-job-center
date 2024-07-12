@@ -1,7 +1,7 @@
-import KjcImage from "../../../builders/KjcImage";
+import KjcImage from "../../../../builders/KjcImage";
 import {RightOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
-import {getTopContent} from "../Home.constants.tsx";
+import {getTopContent} from "./TopContent.constants.tsx";
 
 const TopContent = () => {
     const navigate = useNavigate();
