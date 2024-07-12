@@ -1,13 +1,15 @@
 import {useNavigate} from "react-router-dom";
 import { Select } from 'antd';
 import {SearchOutlined} from "@ant-design/icons";
-import {getJobCategories, getJobTypes, professionOption} from "./PopularSearch.constants.tsx";
+import {getJobCategories, getJobTypes, industryOption, professionOption} from "./PopularSearch.constants.tsx";
 
 const PopularSearch = () => {
     const navigate = useNavigate();
     const jobs = getJobTypes(navigate)
     const jobCategories = getJobCategories(navigate)
     const professions = professionOption;
+    const industry = industryOption;
+    const popularSearch = [ ...industry, ...professions];
 
     return(
         <>
@@ -54,9 +56,8 @@ const PopularSearch = () => {
                             <div className={"items-center font-light text-4xl pb-4"}>popular searches</div>
                             <div className={"flex items-center flex-wrap flex-row gap-1 space-x-1 md:space-x-3 space-y-2"}>
                                 {
-                                    professions.map((profession, ) => (
+                                    popularSearch.map((profession, ) => (
                                         <div
-                                            key={profession.value}
                                             className={"flex shadow-lg py-2 px-6 font-mono text-kjc-950 leading-normal cursor-pointer rounded-full"}>
                                             {profession.label}
                                             <span className={"items-center px-3"}><SearchOutlined/></span>

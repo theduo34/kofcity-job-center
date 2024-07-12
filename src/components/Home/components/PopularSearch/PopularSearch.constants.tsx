@@ -49,23 +49,26 @@ export const professionOption = [
     { value: 'teacher', label: 'Teacher' },
 ]
 
+export const industryOption = [
+    { value: 'information-technology', label: 'Information Technology' },
+    { value: 'healthcare', label: 'Healthcare' },
+    { value: 'finance', label: 'Finance' },
+    { value: 'education', label: 'Education' },
+    { value: 'manufacturing', label: 'Manufacturing' },
+    { value: 'retail', label: 'Retail' },
+    { value: 'construction', label: 'Construction' },
+    { value: 'real-estate', label: 'Real Estate' },
+    { value: 'hospitality', label: 'Hospitality' },
+    { value: 'transportation', label: 'Transportation' },
+
+]
+
 export const getJobCategories = (navigate: (path: string) => void): JobCategoriesInterface[] => [
     {
         key: JOB_CATEGORIES.JOBS_BY_INDUSTRY,
         label: JOB_CATEGORIES.JOBS_BY_INDUSTRY,
         onClick: () => navigate("/"),
-        options: [
-            { value: 'information-technology', label: 'Information Technology' },
-            { value: 'healthcare', label: 'Healthcare' },
-            { value: 'finance', label: 'Finance' },
-            { value: 'education', label: 'Education' },
-            { value: 'manufacturing', label: 'Manufacturing' },
-            { value: 'retail', label: 'Retail' },
-            { value: 'construction', label: 'Construction' },
-            { value: 'real-estate', label: 'Real Estate' },
-            { value: 'hospitality', label: 'Hospitality' },
-            { value: 'transportation', label: 'Transportation' },
-        ]
+        options: industryOption
     },
     {
         key: JOB_CATEGORIES.JOBS_BY_PROFESSION,
