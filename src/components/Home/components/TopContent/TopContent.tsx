@@ -29,42 +29,43 @@ const TopContent = () => {
                                     <div
                                      className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
                                         <div className="flex space-x-4 w-full">
-                                            <div className="flex items-center rounded-full w-14 border-2 border-kjc-950">
+                                            <div
+                                                className="flex items-center rounded-full w-14 h-14 border-2 border-kjc-950">
                                                 <KjcImage
                                                     src={menu.image}
-                                                    alt="job logo"
+                                                    alt=""
                                                     className="rounded-full h-full w-full"
                                                 />
                                             </div>
 
-                                        <div className="flex w-full items-center justify-between">
-                                            <div className="items-center space-y-2 ">
-                                                <div
-                                                    className="font-bold text-xl md:text-2xl text-kjc-950 capitalize"
-                                                    key={menu.key}
-                                                >
-                                                    {menu.label}
-                                                </div>
-                                                <p className="flex">
-                                                    <small className="items-center flex space-x-2">
-                                                        <p className="p-0.5 md:p-1 rounded-full text-white bg-kjcBtn-400">
-                                                            {menu.users}
-                                                        </p>
-                                                        <span
-                                                            className="font-base md:font-semibold">
+                                            <div className="flex w-full items-center justify-between">
+                                                <div className="items-center space-y-2 ">
+                                                    <div
+                                                        className="font-bold text-xl md:text-2xl text-kjc-950 capitalize"
+                                                        key={menu.key}
+                                                    >
+                                                        {menu.label}
+                                                    </div>
+                                                    <p className="flex">
+                                                        <small className="items-center flex space-x-2">
+                                                            <p className="p-0.5 md:p-1 rounded-full text-white bg-kjcBtn-400">
+                                                                {menu.users}
+                                                            </p>
+                                                            <span
+                                                                className="font-base md:font-semibold">
                                                             {menu.description}
                                                         </span>
-                                                    </small>
-                                                </p>
-                                            </div>
-                                            <div
-                                                className="rounded-full px-1.5 py-1 bg-gray-200 hover:bg-gray-300"
-                                                onClick={menu.onClick}
-                                            > <RightOutlined/>
+                                                        </small>
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    className="rounded-full px-1.5 py-1 bg-gray-200 hover:bg-gray-300"
+                                                    onClick={menu.onClick}
+                                                ><RightOutlined/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             )
                         })

@@ -1,36 +1,52 @@
 import KjcImage from "../../../../builders/KjcImage/KjcImage.tsx";
+import {getOurBenefits} from "./OurBenefits.constants.tsx";
+import KjcButton from "../../../../builders/KjcButton";
+import {useNavigate} from "react-router-dom";
 
 const OurBenefits = () => {
+    const navigate = useNavigate();
+    const ourBenefits = getOurBenefits();
     return(
         <>
-            <div className="items-center justify-center py-8 ">
+            <div className="items-center justify-center py-8 space-y-2 md:space-y-4">
                 <div className="flex items-center justify-center text-center font-serif capitalize text-3xl">
                     What are the benefits of  joining us ?
                 </div>
                 <div
-                    className="flex items-center rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
-                    <div className="flex space-x-4 w-full">
-                        <div className="flex items-center rounded-full w-14">
-                            <KjcImage
-                                src=""
-                                alt="job logo"
-                                className="rounded-full h-full w-full"
-                            />
-                        </div>
-                        <div className="flex w-full items-center justify-between">
-                            <div className="items-center space-y-1">
-                                <div
-                                    className="font-mono text-xl md:text-2xl text-kjc-950 capitalize"
-                                    key=""
-                                >
-                                   Header content goes here
+                    className="flex-none md:flex flex-wrap flex-col md:flex-row space-x-0 md:space-x-8 items-center px-4 py-2">
+                    {
+                        ourBenefits.map((benefit) => (
+                            <div className="flex py-4 space-x-4">
+                                <div className="flex items-center rounded-full w-14 h-14 border-2 border-kjc-950">
+                                    <KjcImage
+                                        src={benefit.image}
+                                        alt=""
+                                        className="rounded-full h-full w-full"
+                                    />
                                 </div>
-                                <p className="flex">
-                                    Description goes here
-                                </p>
+                                <div className="items-center">
+                                    <div
+                                        className="font-mono text-xl md:text-2xl text-kjc-950 capitalize"
+                                        key=""
+                                    >
+                                        {benefit.label}
+                                    </div>
+                                    <p className="">
+                                        {benefit.description}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        ))
+                    }
+                </div>
+                <div className={"flex py-4 space-x-4 w-full items-center justify-center"}>
+                    <KjcButton
+                        className="font-bold text-xl py-4 px-8 items-center justify-center  capitalize text-kjc-950 bg-kjcBtn-400"
+                        onClick={ ()=> navigate("/registration/user")}
+                    >
+                        Join us now
+                    </KjcButton>
+
                 </div>
             </div>
         </>

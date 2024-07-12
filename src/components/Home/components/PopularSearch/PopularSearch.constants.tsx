@@ -44,8 +44,8 @@ export const professionOption = [
     { value: 'accountant', label: 'Accountant' },
     { value: 'sales-representative', label: 'Sales Representative' },
     { value: 'hr-manager', label: 'Human Resources Manager' },
-    { value: 'marketing-specialist', label: 'Marketing Specialist' },
     { value: 'nurse', label: 'Nurse' },
+    { value: 'marketing-specialist', label: 'Marketing Specialist' },
     { value: 'teacher', label: 'Teacher' },
 ]
 
