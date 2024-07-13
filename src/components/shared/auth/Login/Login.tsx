@@ -3,7 +3,10 @@ import KjcImage from "../../../../builders/KjcImage";
 import { Checkbox, Col, Form, FormProps, Row } from "antd";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcCard from "../../../../builders/KjcCard";
-import { REGISTRATION_ROUTE_PATH, USER_REGISTRATION_PATH } from "../../registration/RegistrationRoutes.constants.ts";
+import {
+    ACCOUNT_REGISTRATION_ROUTE_PATH,
+    REGISTRATION_ROUTE_PATH,
+} from "../../registration/RegistrationRoutes.constants.ts";
 import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
@@ -163,7 +166,7 @@ const Login = () => {
                                                 <span
                                                     className="capitalize font-bold text-jybekBtn-600">
                                                     <Link
-                                                        to={REGISTRATION_ROUTE_PATH + USER_REGISTRATION_PATH}
+                                                        to={ACCOUNT_REGISTRATION_ROUTE_PATH + REGISTRATION_ROUTE_PATH}
                                                     >
                                                         Sign Up
                                                     </Link>

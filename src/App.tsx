@@ -5,8 +5,10 @@ import { AUTH_ROUTE_PATH } from './components/shared/auth/AuthRoutes.constants.t
 import RegistrationRoutes from './components/shared/registration/RegistrationRoutes.tsx'
 import Home from "./components/Home";
 import {
-    REGISTRATION_ROUTE_PATH,
+    ACCOUNT_REGISTRATION_ROUTE_PATH,
 } from "./components/shared/registration/RegistrationRoutes.constants.ts";
+import UserRoutes from "./components/user/UserRoutes.tsx";
+import {USER_ROUTE_PATH} from "./components/user/UserRoutes.constants.ts";
 
 function App() {
   
@@ -15,7 +17,8 @@ function App() {
      <Routes>
          <Route path='/' element={<Home/>}/>
          <Route path={`${AUTH_ROUTE_PATH}/*`} element={<AuthRoutes />}/>
-         <Route path={`${REGISTRATION_ROUTE_PATH}/*`} element={<RegistrationRoutes />}/>
+         <Route path={`${ACCOUNT_REGISTRATION_ROUTE_PATH}/*`} element={<RegistrationRoutes />}/>
+         <Route path={`${USER_ROUTE_PATH}/*`} element={<UserRoutes/>}/>
      </Routes>
     </>
   )

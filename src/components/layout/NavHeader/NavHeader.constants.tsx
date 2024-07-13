@@ -15,7 +15,7 @@ const NAV_HEADER_AUTH_BUTTONS = {
 export const getNavHeaderAuthBtn = (navigate: (path: string) => void): NavHeaderAuthBtnInterface[] => [
         {
             label: NAV_HEADER_AUTH_BUTTONS.JOIN_NOW,
-            onClick:() => navigate('/registration/user'),
+            onClick:() => navigate('/account/registration'),
             className: "bg-kjcBtn-400 shadow-sm text-kjc-950 "
         },
         {
