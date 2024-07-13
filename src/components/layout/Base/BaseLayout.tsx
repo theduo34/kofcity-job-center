@@ -18,7 +18,7 @@ export interface BaseLayoutProps {
 const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
     return (
         <Layout
-            style={{ height: "100vh" }}
+            style={{ minHeight: "100vh" }}
         >
             <Layout>
                 <KjcHeader
@@ -35,7 +35,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
                 </KjcHeader>
 
                 <KjcContent
-                    className="items-center p-4"
+                    className="items-center"
                 >
                     { children }
                 </KjcContent>
