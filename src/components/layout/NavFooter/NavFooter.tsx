@@ -19,15 +19,19 @@ const NavFooter = () => {
     const handleMenuClick = (item: NavFooterMenuItemProps) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        setActiveItem(item.key === activeItem ? null : item.key); 
+        setActiveItem(item.key === activeItem ? null : item.key);
         switch (item.key) {
             case "Home":
+                navigate("/user/dashboard")
                 break;
             case "Jobs":
+                navigate("/user/job-listings")
                 break;
             case "Trends":
+                navigate("/user/industry-trends")
                 break;
             case "Post Jobs":
+                navigate("/user/post-jobs")
                 break;
             default:
                 break;

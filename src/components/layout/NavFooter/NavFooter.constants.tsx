@@ -19,22 +19,28 @@ export const getNavFooterMenuItems = ( navigate: (path: string) => void): NavFoo
             label: NAV_FOOTER_MENU_ITEMS.HOME,
             icon: <HomeOutlined/>,
             key: NAV_FOOTER_MENU_ITEMS.HOME,
-            onClick:() => navigate('/auth/login')
+            onClick:() => navigate('/user/dashboard')
         },
         {
             label: NAV_FOOTER_MENU_ITEMS.JOBS,
             icon: <SolutionOutlined/>,
-            key: NAV_FOOTER_MENU_ITEMS.JOBS
+            key: NAV_FOOTER_MENU_ITEMS.JOBS,
+            onClick:() => navigate('/user/job-listings')
+
         },
         {
             label: NAV_FOOTER_MENU_ITEMS.TRENDS,
             icon: <LineChartOutlined/>,
-            key: NAV_FOOTER_MENU_ITEMS.TRENDS
+            key: NAV_FOOTER_MENU_ITEMS.TRENDS,
+            onClick:() => navigate('/user/industry-trends')
+
         },
         {
             label: NAV_FOOTER_MENU_ITEMS.POST_JOBS,
             icon: <TeamOutlined/>,
-            key: NAV_FOOTER_MENU_ITEMS.POST_JOBS
+            key: NAV_FOOTER_MENU_ITEMS.POST_JOBS,
+            onClick:() => navigate('/user/post-jobs')
+
         }
 
 ]

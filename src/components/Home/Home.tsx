@@ -1,9 +1,10 @@
 import React from "react";
-import { withBaseLayout } from "../layout/hoc/withBaseLayout.tsx";
+import { withBaseLayout } from "../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import { Col, Row } from "antd";
 import TopContent from "./components/TopContent/TopContent.tsx";
 import PopularSearch from "./components/PopularSearch/PopularSearch.tsx";
 import OurBenefits from "./components/OurBenefits";
+import WithContentLayout from "../layout/hoc/WithContentLayout";
 
 /**
  * Renders the home component.
@@ -33,34 +34,10 @@ const Home: React.FC = () => {
             </Col>
 
             {/*popular search content*/}
-            <Col
-                span={24}
-                className="items-center w-full"
-            >
-                    <Col
-                        xs={{span: 24}}
-                        sm={{span: 24}}
-                        md={{span: 16, offset: 4}}
-                        className="py-8 md:py-12"
-                    >
-                        <PopularSearch/>
-                    </Col>
-            </Col>
+            <WithContentLayout> { <PopularSearch/> } </WithContentLayout>
 
             {/*our benefits content*/}
-            <Col
-                span={24}
-                className="items-center w-full bg-kjcBtn-50"
-            >
-                <Col
-                    xs={{span: 24}}
-                    sm={{span: 24}}
-                    md={{span: 16, offset: 4}}
-                    className="py-8 md:py-12"
-                >
-                    <OurBenefits/>
-                </Col>
-            </Col>
+            <WithContentLayout className={"bg-kjcBtn-50 bg-opacity-45"}> { <OurBenefits/> }</WithContentLayout>
         </Row>
     );
 };

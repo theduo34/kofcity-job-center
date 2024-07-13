@@ -1,5 +1,5 @@
 import React, { ComponentType } from 'react';
-import BaseLayout from '../Base';
+import BaseLayout from '../../Base';
 
 interface Props {
     // eslint-disable-next-line
