@@ -22,7 +22,7 @@ const NavHeader = () => {
 
     return (
         <>
-            <nav className="fixed top-0 w-full text-center bg-white px-4">
+            <nav className="fixed top-0 w-full text-center bg-white px-4 py-2">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <KjcImage
@@ -39,7 +39,7 @@ const NavHeader = () => {
                                 return (
                                     <div
                                         key={menuItem.key}
-                                        className={`relative flex items-center text-xl text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
+                                        className={`relative flex items-center text-2xl text-kjc-950 font-semibold cursor-pointer hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
                                         onClick={() => {
                                             setActiveItem(menuItem.key || "");
                                             if (menuItem.onClick) {

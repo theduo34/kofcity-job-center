@@ -16,7 +16,7 @@ const PopularSearch = () => {
             <div className="items-center py-4">
                 <div className="text-center space-y-4 md:space-y-8">
                     <div className="space-y-2">
-                        <div className="font-bold text-2xl md:text-4xl">
+                        <div className="font-mono text-4xl md:text-5xl py-2 capitalize">
                             Discover jobs in Koforidua
                         </div>
                         <div className="items-center justify-center text-red-600 text-base flex mx-auto space-x-2">
@@ -58,7 +58,7 @@ const PopularSearch = () => {
                                 {
                                     popularSearch.map((profession, ) => (
                                         <div
-                                            className={"flex shadow-lg py-2 px-6 font-mono text-kjc-950 leading-normal cursor-pointer rounded-full"}>
+                                            className={"flex shadow-lg py-2 px-6 font-mono text-kjc-950 hover:scale-90 transition-transform duration-300 ease-in-out leading-normal cursor-pointer rounded-full"}>
                                             {profession.label}
                                             <span className={"items-center px-3"}><SearchOutlined/></span>
                                         </div>

@@ -44,6 +44,9 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
                     style={{ textAlign: "center" }}
                     className="hidden md:block font-semibold text-slate-500"
                 >
+                   <div className="">
+                       Browse by: Companies Jobs Locations Communities
+                   </div>
                     &copy;{ new Date().getFullYear() } Kofcity Job Center Powered by tHEDUo
                 </KjcFooter>
                 <KjcFooter

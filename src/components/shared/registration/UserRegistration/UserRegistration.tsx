@@ -13,6 +13,7 @@ import {parsePhoneNumberWithError} from "libphonenumber-js";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import {Rule} from "postcss";
+import {ArrowLefttOutlined} from "@ant-design/icons";
 
 /**
  * Renders the user registration component.
@@ -61,197 +62,210 @@ const UserRegistration = () => {
                         md={24}
                         lg={18}
                     >
-                        <div className="min-h-screen flex items-center justify-center lg:justify-between">
-                            <div className="hidden lg:block">
-                                <KjcImage
-                                    src={registerUser}
-                                    alt="Animated gif"
-                                />
+
+                        <div className="items-center min-h-screen ">
+                            <div className="pt-8 pl-8">
+                                {/*<ArrowLeftOutlined />*/}
                             </div>
+                            <div className={"flex items-center justify-center lg:justify-between"}>
+                                <div className="hidden lg:block">
+                                    <div>
+                                        <KjcImage
+                                            src={registerUser}
+                                            alt="Animated gif"
+                                        />
+                                    </div>
+                                </div>
 
-                            <div className="xs:max-w-sm lg:w-4/6 xl:w-2/6 shadow-none lg:shadow-lg">
-                                <KjcCard>
-                                    <div className="text-md md:text-lg">
-                                        <div className="flex flex-col justify-left mb-3">
-                                            <KjcImage
-                                                width={150}
-                                                src=""
-                                                className="img-fluid bg-center mb-6"
-                                                alt="KJCLogo"
-                                            />
-                                            <div>
-                                                <hr className="mb-3"/>
-                                                <p className="text-muted mt-3">
-                                                    Unlock Your Ultimate Future Potential. Fill Out the Form to Register
-                                                    Now!
-                                                </p>
+                                <div className="xs:max-w-sm lg:w-4/6 xl:w-2/6 shadow-none lg:shadow-lg">
+                                    <KjcCard>
+                                        <div className="text-md md:text-lg">
+                                            <div className="flex flex-col justify-left mb-3">
+                                                <KjcImage
+                                                    width={150}
+                                                    src=""
+                                                    className="img-fluid bg-center mb-6"
+                                                    alt="KJCLogo"
+                                                />
+                                                <div>
+                                                    <hr className="mb-3"/>
+                                                    <p className="text-muted mt-3">
+                                                        Unlock Your Ultimate Future Potential. Fill Out the Form to
+                                                        Register
+                                                        Now!
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="flex items-start mt-2 ">
-                                            <Form
-                                                form={form}
-                                                name="basic"
-                                                className="w-full"
-                                                onFinish={onFinish}
-                                                onFinishFailed={onFinishFailed}
-                                                autoComplete="off"
-                                            >
-                                                <div className="">
-                                                    <label htmlFor="first_name">First Name</label>
-                                                   <KjcInput
-                                                       label=""
-                                                       name="first_name"
-                                                       className="mt-1"
-                                                       placeholder="Doe"
-                                                       rules={[
-                                                           {
-                                                               required: true,
-                                                               message: "Please input your first name"
-                                                           },
-                                                       ]}
-                                                   />
-                                                </div>
-
-                                                <div className="">
-                                                    <label htmlFor="last_name">Last Name</label>
-                                                    <KjcInput
-                                                        label=""
-                                                        name="last_name"
-                                                        className="mt-1"
-                                                        placeholder="John"
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "Please input last name"
-                                                            },
-                                                        ]}
-                                                    />
-                                                </div>
-
-                                                <div className="mb-0">
-                                                    <label htmlFor="email">Email</label>
-                                                    <KjcInput
-                                                        label=""
-                                                        name="email"
-                                                        className="mt-1"
-                                                        placeholder="example123@gmail.com"
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "Please input your email",
-                                                            },
-                                                            {
-                                                                type: "email",
-                                                                message: "Please input valid email"
-                                                            },
-                                                        ]}
-                                                    />
-                                                </div>
-
-                                                <div className="mb-0">
-                                                    <label htmlFor="phone">Phone Number</label>
-                                                    <KjcPhoneNumber
-                                                        form={form}
-                                                        name="phone"
-                                                        label="Phone Number"
-                                                        rules={[
-                                                            {required: true, message: 'Please input your phone number'},
-                                                        ]}
-                                                        phoneNumber={phoneNumber}
-                                                        setPhoneNumber={setPhoneNumber}
-                                                        phoneNumberCountry={phoneNumberCountry}
-                                                        setPhoneNumberCountry={setPhoneNumberCountry}
-                                                    />
-                                                </div>
-
-                                                <div className="mb-0">
-                                                    <label htmlFor="password">Password</label>
-                                                   <KjcPasswordInput
-                                                       label=""
-                                                       name="password"
-                                                       className="mt-1"
-                                                       hasFeedback
-                                                       placeholder="****************"
-                                                       rules={[
-                                                           {
-                                                               required: true,
-                                                               message: "Please input your Password !"
-                                                           },
-                                                           {
-                                                               min: 8,
-                                                               message: "Password has to be at least 8 characters long !"
-                                                           }
-                                                       ]}
-                                                   />
-                                                </div>
-
-                                                <div className='mb-0'>
-                                                    <label htmlFor="confirm_password">Confirm Password</label>
-                                                    <KjcPasswordInput
-                                                        label=""
-                                                        name="confirm_password"
-                                                        className="mt-1"
-                                                        placeholder="****************"
-                                                        hasFeedback
-                                                        dependencies={['password']}
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "Please confirm your Password!"
-                                                            },
-                                                            ({ getFieldValue }: { getFieldValue: (name: string) => string }) => ({
-                                                                validator(_: Rule, value: string) {
-                                                                    if (!value || getFieldValue('password') === value) {
-                                                                        return Promise.resolve();
-                                                                    }
-                                                                    return Promise.reject(new Error('The new password that you entered do not match!'));
+                                            <div className="flex items-start mt-2 ">
+                                                <Form
+                                                    form={form}
+                                                    name="basic"
+                                                    className="w-full"
+                                                    onFinish={onFinish}
+                                                    onFinishFailed={onFinishFailed}
+                                                    autoComplete="off"
+                                                >
+                                                    <div className="">
+                                                        <label htmlFor="first_name">First Name</label>
+                                                        <KjcInput
+                                                            label=""
+                                                            name="first_name"
+                                                            className="mt-1"
+                                                            placeholder="Doe"
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: "Please input your first name"
                                                                 },
-                                                            }),
-                                                        ]}
-                                                    />
-                                                </div>
+                                                            ]}
+                                                        />
+                                                    </div>
 
-                                                <div className="hidden my-0">
-                                                    <Form.Item
-                                                        name="sms_notification"
-                                                        label=""
-                                                        valuePropName="checked">
-                                                        <label
-                                                            htmlFor="sms_notification"
-                                                            className="mx-3">
-                                                            Interested in Receiving SMS Notification
-                                                        </label>
-                                                    </Form.Item>
-                                                </div>
-                                                <div className="mb-4">
-                                                    <Form.Item>
-                                                        <KjcButton
-                                                            type="primary"
-                                                            htmlType="submit"
-                                                            className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0"
-                                                        >
-                                                            Continue
-                                                        </KjcButton>
-                                                    </Form.Item>
-                                                </div>
+                                                    <div className="">
+                                                        <label htmlFor="last_name">Last Name</label>
+                                                        <KjcInput
+                                                            label=""
+                                                            name="last_name"
+                                                            className="mt-1"
+                                                            placeholder="John"
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: "Please input last name"
+                                                                },
+                                                            ]}
+                                                        />
+                                                    </div>
 
-                                                <div className="text-neutral-800 text-center text-sm">
-                                                    Already a user?
-                                                    <span
-                                                        className="capitalize font-bold text-jybekBtn-600">
+                                                    <div className="mb-0">
+                                                        <label htmlFor="email">Email</label>
+                                                        <KjcInput
+                                                            label=""
+                                                            name="email"
+                                                            className="mt-1"
+                                                            placeholder="example123@gmail.com"
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: "Please input your email",
+                                                                },
+                                                                {
+                                                                    type: "email",
+                                                                    message: "Please input valid email"
+                                                                },
+                                                            ]}
+                                                        />
+                                                    </div>
+
+                                                    <div className="mb-0">
+                                                        <label htmlFor="phone">Phone Number</label>
+                                                        <KjcPhoneNumber
+                                                            form={form}
+                                                            name="phone"
+                                                            label="Phone Number"
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: 'Please input your phone number'
+                                                                },
+                                                            ]}
+                                                            phoneNumber={phoneNumber}
+                                                            setPhoneNumber={setPhoneNumber}
+                                                            phoneNumberCountry={phoneNumberCountry}
+                                                            setPhoneNumberCountry={setPhoneNumberCountry}
+                                                        />
+                                                    </div>
+
+                                                    <div className="mb-0">
+                                                        <label htmlFor="password">Password</label>
+                                                        <KjcPasswordInput
+                                                            label=""
+                                                            name="password"
+                                                            className="mt-1"
+                                                            hasFeedback
+                                                            placeholder="****************"
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: "Please input your Password !"
+                                                                },
+                                                                {
+                                                                    min: 8,
+                                                                    message: "Password has to be at least 8 characters long !"
+                                                                }
+                                                            ]}
+                                                        />
+                                                    </div>
+
+                                                    <div className='mb-0'>
+                                                        <label htmlFor="confirm_password">Confirm Password</label>
+                                                        <KjcPasswordInput
+                                                            label=""
+                                                            name="confirm_password"
+                                                            className="mt-1"
+                                                            placeholder="****************"
+                                                            hasFeedback
+                                                            dependencies={['password']}
+                                                            rules={[
+                                                                {
+                                                                    required: true,
+                                                                    message: "Please confirm your Password!"
+                                                                },
+                                                                ({getFieldValue}: {
+                                                                    getFieldValue: (name: string) => string
+                                                                }) => ({
+                                                                    validator(_: Rule, value: string) {
+                                                                        if (!value || getFieldValue('password') === value) {
+                                                                            return Promise.resolve();
+                                                                        }
+                                                                        return Promise.reject(new Error('The new password that you entered do not match!'));
+                                                                    },
+                                                                }),
+                                                            ]}
+                                                        />
+                                                    </div>
+
+                                                    <div className="hidden my-0">
+                                                        <Form.Item
+                                                            name="sms_notification"
+                                                            label=""
+                                                            valuePropName="checked">
+                                                            <label
+                                                                htmlFor="sms_notification"
+                                                                className="mx-3">
+                                                                Interested in Receiving SMS Notification
+                                                            </label>
+                                                        </Form.Item>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <Form.Item>
+                                                            <KjcButton
+                                                                type="primary"
+                                                                htmlType="submit"
+                                                                className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0 submitBtnsHover"
+                                                            >
+                                                                Continue
+                                                            </KjcButton>
+                                                        </Form.Item>
+                                                    </div>
+
+                                                    <div className="text-neutral-800 text-center text-sm">
+                                                        Already a user?
+                                                        <span
+                                                            className="capitalize font-bold text-jybekBtn-600">
                                                         <Link
                                                             to={'/auth/login'}
                                                             className="CustomHover">
                                                             Login
                                                         </Link>
                                                     </span>
-                                                </div>
-                                            </Form>
+                                                    </div>
+                                                </Form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </KjcCard>
+                                    </KjcCard>
+                                </div>
                             </div>
-
                         </div>
 
                     </Col>
