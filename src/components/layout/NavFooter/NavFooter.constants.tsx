@@ -25,7 +25,7 @@ export const getNavFooterMenuItems = ( navigate: (path: string) => void): NavFoo
             label: NAV_FOOTER_MENU_ITEMS.JOBS,
             icon: <SolutionOutlined/>,
             key: NAV_FOOTER_MENU_ITEMS.JOBS,
-            onClick:() => navigate('/user/job-listings')
+            onClick:() => navigate("/user/job-listings")
 
         },
         {

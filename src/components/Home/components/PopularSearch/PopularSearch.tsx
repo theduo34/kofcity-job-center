@@ -14,7 +14,7 @@ const PopularSearch = () => {
     return(
         <>
             <div className="items-center py-4">
-                <div className="text-center space-y-4 md:space-y-8">
+                <div className="text-center space-y-8 md:space-y-12">
                     <div className="space-y-2">
                         <div className="font-mono text-4xl md:text-5xl py-2 capitalize">
                             Discover jobs in Koforidua

@@ -25,12 +25,12 @@ const TopContent = () => {
                     {
                         menuItems.map((menu) => {
                             return (
-                                <div className="flex items-center justify-center md:justify-end translate-y-1 hover:scale-105 transition-transform duration-300 ease-in-out">
+                                <div className="flex items-center pt-2 justify-center md:justify-end translate-y-1 hover:scale-105 transition-transform duration-300 ease-in-out">
                                     <div
-                                     className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
+                                     className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-4">
                                         <div className="flex space-x-4 w-full">
                                             <div
-                                                className="flex items-center rounded-full w-14 h-14 border-2 border-kjc-950">
+                                                className="flex items-center rounded-full w-16 h-16 border-2 border-kjc-950">
                                                 <KjcImage
                                                     src={menu.image}
                                                     alt=""
@@ -41,7 +41,7 @@ const TopContent = () => {
                                             <div className="flex w-full items-center justify-between">
                                                 <div className="items-center space-y-2 ">
                                                     <div
-                                                        className="font-bold text-xl md:text-2xl text-kjc-950 capitalize"
+                                                        className="font-semibold text-3xl  text-kjc-950 capitalize"
                                                         key={menu.key}
                                                     >
                                                         {menu.label}

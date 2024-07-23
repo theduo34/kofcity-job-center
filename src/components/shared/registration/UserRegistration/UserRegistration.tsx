@@ -13,7 +13,6 @@ import {parsePhoneNumberWithError} from "libphonenumber-js";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import {Rule} from "postcss";
-import {ArrowLefttOutlined} from "@ant-design/icons";
 
 /**
  * Renders the user registration component.

@@ -11,4 +11,51 @@
 
 .submitBtnsHover:hover{
     background-color: #f76518 !important;
+    color: white;
+}
+/* styles.css */
+.carousel-container .inner-carousel {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px; /* Adjust the gap between columns as needed */
+}
+
+@media (min-width: 768px) {
+    .carousel-container .inner-carousel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-container .inner-carousel {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Custom styles for KjcCarousel */
+.kjc-carousel .slick-arrow {
+    font-weight: bold;
+    color: black !important;
+    padding: 8px;
+    /* Add margins for more spacing if needed */
+    margin: 0 8px;
+}
+
+.kjc-carousel .slick-dots {
+    /* Add some margin to position dots better */
+}
+
+.kjc-carousel .slick-dots li {
+    /* Ensure dots have enough spacing between them */
+    margin: 0 4px;
+}
+
+.kjc-carousel .slick-dots li button {
+    background-color: black !important;
+    /* Adjusting the size of the dots */
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50%;
+    /* Optionally remove padding for a tighter look */
+    padding: 0 !important;
 }
