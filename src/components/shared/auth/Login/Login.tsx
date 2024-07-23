@@ -3,7 +3,10 @@ import KjcImage from "../../../../builders/KjcImage";
 import { Checkbox, Col, Form, FormProps, Row } from "antd";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcCard from "../../../../builders/KjcCard";
-import { REGISTRATION_ROUTE_PATH, USER_REGISTRATION_PATH } from "../../registration/RegistrationRoutes.constants.ts";
+import {
+    ACCOUNT_REGISTRATION_ROUTE_PATH,
+    REGISTRATION_ROUTE_PATH,
+} from "../../registration/RegistrationRoutes.constants.ts";
 import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
@@ -150,7 +153,7 @@ const Login = () => {
                                                     <KjcButton
                                                         type="primary"
                                                         htmlType="submit"
-                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0"
+                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0 submitBtnsHover"
                                                     >
                                                         Continue
                                                     </KjcButton>
@@ -163,7 +166,7 @@ const Login = () => {
                                                 <span
                                                     className="capitalize font-bold text-jybekBtn-600">
                                                     <Link
-                                                        to={REGISTRATION_ROUTE_PATH + USER_REGISTRATION_PATH}
+                                                        to={ACCOUNT_REGISTRATION_ROUTE_PATH + REGISTRATION_ROUTE_PATH}
                                                     >
                                                         Sign Up
                                                     </Link>

@@ -8,14 +8,14 @@ const TopContent = () => {
     const menuItems = getTopContent(navigate)
     return(
         <>
-            <div className="items-center space-y-4 py-4">
+            <div className="items-center space-y-4 py-4 ">
                 <div className="items-center justify-center md:justify-start space-y-4 md:space-y-8 w-full xl:w-3/5">
                     <div
-                        className="items-center capitalize flex text-red-600 font-bold text-4xl leading-tight">
+                        className="items-center capitalize flex text-red-600 font-mono text-4xl leading-tight">
                         Your ultimate destination for finding the perfect job opportunity.
                     </div>
                     <div
-                        className="items-center leading-tight text-lg md:text-xl text-white">
+                        className="items-center leading-tight text-lg md:text-xl">
                         Transform your job search experience with our platform, where finding the perfect opportunity is
                         effortless. Explore a tailored selection of opportunities that align with your skills and
                         aspirations, guiding you towards a fulfilling career path customized just for you.
@@ -25,12 +25,12 @@ const TopContent = () => {
                     {
                         menuItems.map((menu) => {
                             return (
-                                <div className="flex items-center justify-center md:justify-end">
+                                <div className="flex items-center pt-2 justify-center md:justify-end translate-y-1 hover:scale-105 transition-transform duration-300 ease-in-out">
                                     <div
-                                     className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-2">
+                                     className="flex items-center bg-white shadow-md rounded-md w-full md:w-4/5 lg:w-3/5 xl:w-2/5 px-4 py-4">
                                         <div className="flex space-x-4 w-full">
                                             <div
-                                                className="flex items-center rounded-full w-14 h-14 border-2 border-kjc-950">
+                                                className="flex items-center rounded-full w-16 h-16 border-2 border-kjc-950">
                                                 <KjcImage
                                                     src={menu.image}
                                                     alt=""
@@ -41,7 +41,7 @@ const TopContent = () => {
                                             <div className="flex w-full items-center justify-between">
                                                 <div className="items-center space-y-2 ">
                                                     <div
-                                                        className="font-bold text-xl md:text-2xl text-kjc-950 capitalize"
+                                                        className="font-semibold text-3xl  text-kjc-950 capitalize"
                                                         key={menu.key}
                                                     >
                                                         {menu.label}

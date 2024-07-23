@@ -24,7 +24,7 @@ const NavHeaderAuthBtn = () => {
                             headerAuthBtn.map((btn) =>(
                                     <KjcButton
                                         onClick={btn.onClick}
-                                        className={`${btn.className} items-center justify-center text-sm md:text-md py-2 md:py-4 px-3 md:px-7 font-semibold leading-none`}
+                                        className={`${btn.className} items-center justify-center text-md md:text-md py-4 md:py-5 px-3 md:px-7 font-semibold leading-none`}
                                     >
                                         {btn.label}
                                     </KjcButton>

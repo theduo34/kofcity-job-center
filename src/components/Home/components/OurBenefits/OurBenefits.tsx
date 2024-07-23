@@ -9,11 +9,11 @@ const OurBenefits = () => {
     return(
         <>
             <div className="items-center justify-center py-8 space-y-2 md:space-y-4">
-                <div className="flex items-center justify-center text-center font-serif capitalize text-3xl">
+                <div className="flex items-center justify-center px-3 text-center font-mono capitalize text-4xl md:text-5xl">
                     What are the benefits of  joining us ?
                 </div>
                 <div
-                    className="flex-none md:flex flex-wrap flex-col md:flex-row space-x-0 md:space-x-8 items-center px-4 py-2">
+                    className="flex-none md:flex flex-wrap flex-col md:flex-row space-x-0 md:space-x-8 space-y-4 md:space-y-10 items-center px-4 py-2">
                     {
                         ourBenefits.map((benefit) => (
                             <div className="flex py-4 space-x-4">
@@ -41,8 +41,8 @@ const OurBenefits = () => {
                 </div>
                 <div className={"flex py-4 space-x-4 w-full items-center justify-center"}>
                     <KjcButton
-                        className="font-bold text-xl py-4 px-8 items-center justify-center  capitalize text-kjc-950 bg-kjcBtn-400"
-                        onClick={ ()=> navigate("/registration/user")}
+                        className="font-semibold text-xl py-5 px-8 items-center justify-center  capitalize text-kjc-950 bg-kjcBtn-400"
+                        onClick={ ()=> navigate("/account/registration")}
                     >
                         Join us now
                     </KjcButton>
