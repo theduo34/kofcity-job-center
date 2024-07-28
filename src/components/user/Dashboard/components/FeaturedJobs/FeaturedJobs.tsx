@@ -21,9 +21,6 @@ const FeaturedJobs = () => {
                     arrows
                     dots={true}
                     dotsPosition="bottom"
-                    autoplay={false}
-                    autoplaySpeed={700}
-                    infinite={true}
                     className="kjc-carousel items-center rounded-lg"
                 >
                     {
