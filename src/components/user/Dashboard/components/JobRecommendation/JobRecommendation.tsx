@@ -6,10 +6,10 @@ const JobRecommendation = () => {
     return(
         <>
             <div className="items-center py-8 px-2 md:px-0 ">
-                <div className="items-center text-white leading-tight font-mono text-4xl pb-8">
+                <div className="items-center text-white leading-tight font-mono  text-xl md:text-3xl pb-8">
                     Jobs Recommendation
                 </div>
-                <p className={"text-lg md:text-xl font-mono text-white"}>
+                <p className={"text-md md:text-xl font-mono text-white"}>
                     Hi aquasiNinetyNine, based on your skills, we found these jobs for you.
                 </p>
 

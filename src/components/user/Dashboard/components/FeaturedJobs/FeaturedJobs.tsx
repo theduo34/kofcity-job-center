@@ -14,7 +14,7 @@ const FeaturedJobs = () => {
     const featuredJobs = getFeaturedJobs();
     return (
         <div className="items-center ">
-            <div className="items-center leading-tight font-mono text-4xl pb-8 text-kjc-950">
+            <div className="items-center leading-tight font-mono text-xl md:text-3xl pb-8 text-kjc-950">
                 Featured Jobs
             </div>
             <div className="relative py-4 items-center border-2 border-neutral-200 rounded-lg">
@@ -56,15 +56,15 @@ const FeaturedJobs = () => {
                                         <span className={"items-center text-lg md:text-2xl font-normal"}> {featuredJob.education}</span>
                                     </p>
                                 </div>
-                                <div className={"w-full flex xl:w-2/5 items-center justify-between"}>
+                                <div className={"w-full pt-8 flex xl:w-2/5 items-center justify-between"}>
                                     <div>
                                         <KjcButton
-                                            className={"py-4 px-6 rounded-lg bg-kjcBtn-400 text-lg"}
+                                            className={"py-4 px-6 rounded-lg bg-kjcBtn-300 text-lg"}
                                         >
                                             Apply Now
                                         </KjcButton>
                                     </div>
-                                    <div className={"flex absolute top-0 right-8 items-center space-x-4 text-2xl"}>
+                                    <div className={"flex absolute top-0 right-2 md:right-8 items-center space-x-4 text-2xl"}>
                                         <div>
                                             <Bookmark/>
                                         </div>
