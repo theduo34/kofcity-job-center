@@ -1,7 +1,8 @@
 import KjcCarousel from "../../../../../builders/KjcCarousel";
 import KjcButton from "../../../../../builders/KjcButton";
-import {HeartOutlined} from "@ant-design/icons";
 import {getFeaturedJobs} from "./FeaturedJobs.constants.tsx";
+import { Bookmark } from 'lucide-react';
+
 
 /**
  * Renders the featured jobs component.
@@ -12,7 +13,7 @@ import {getFeaturedJobs} from "./FeaturedJobs.constants.tsx";
 const FeaturedJobs = () => {
     const featuredJobs = getFeaturedJobs();
     return (
-        <div className="items-center py-8 px-4 md:px-0">
+        <div className="items-center ">
             <div className="items-center leading-tight font-mono text-4xl pb-8 text-kjc-950">
                 Featured Jobs
             </div>
@@ -56,15 +57,17 @@ const FeaturedJobs = () => {
                                     </p>
                                 </div>
                                 <div className={"w-full flex xl:w-2/5 items-center justify-between"}>
-                                    <div className={""}>
+                                    <div>
                                         <KjcButton
                                             className={"py-4 px-6 rounded-lg bg-kjcBtn-400 text-lg"}
                                         >
                                             Apply Now
                                         </KjcButton>
                                     </div>
-                                    <div className={"absolute right-4 top-0 items-center"}>
-                                            <HeartOutlined className="text-2xl cursor-pointer hover:text-sunburst-600"/>
+                                    <div className={"flex absolute top-0 right-8 items-center space-x-4 text-2xl"}>
+                                        <div>
+                                            <Bookmark/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

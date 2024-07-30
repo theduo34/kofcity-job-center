@@ -5,7 +5,7 @@ import ListedJobs from "./components/ListedJobs.tsx";
 const JobRecommendation = () => {
     return(
         <>
-            <div className="items-center py-8 px-4 md:px-0 ">
+            <div className="items-center py-8 px-2 md:px-0 ">
                 <div className="items-center text-white leading-tight font-mono text-4xl pb-8">
                     Jobs Recommendation
                 </div>

@@ -1,14 +1,19 @@
-import {Pagination} from "antd";
+import {Link} from "react-router-dom";
 
 const ListedJobs = () => {
     return(
         <>
-            <div className={"flex flex-col lg:flex-row items-center justify-evenly"}>
-                <div className={""}>
-                    <Pagination defaultCurrent={6} total={300}/>
+            <div className={"flex flex-col md:flex-row items-center py-8 "}>
+                <div className={"items-center border-2 border-gray-200 rounded-lg"}>
+                    <Link to={""}>
+                       <div>
+
+                       </div>
+                    </Link>
                 </div>
+
             </div>
         </>
-    )
+)
 }
 export default ListedJobs

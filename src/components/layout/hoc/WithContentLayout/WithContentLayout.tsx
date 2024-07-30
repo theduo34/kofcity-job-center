@@ -16,8 +16,9 @@ const WithContentLayout: React.FC<WithContentLayoutProps> = ({ className, childr
             <Col
                 xs={{ span: 24 }}
                 sm={{ span: 24 }}
-                md={{ span: 16, offset: 4 }}
-                className="py-8 md:py-12"
+                md={{ span: 24 }}
+                lg={{ span: 16, offset: 4 }}
+                className=" lg:py-12 py-8 px-4 md:px-8 lg:px-0"
             >
                 {children}
             </Col>
