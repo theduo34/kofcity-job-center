@@ -1,4 +1,4 @@
-import {Input, Select} from 'antd';
+import {Input} from 'antd';
 import KjcSelectInput from "../../../../../../builders/KjcSelectInput";
 
 export interface onSearchInputSelectProps {
