@@ -60,8 +60,8 @@ const NavHeader = () => {
                     </div>
 
                     <div className="flex items-center justify-end">
-                        <NavHeaderAuthBtn/>
-                        {/*<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />*/}
+                        {/*<NavHeaderAuthBtn/>*/}
+                        <LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />
                     </div>
                 </div>
             </nav>

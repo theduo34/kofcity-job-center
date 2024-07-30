@@ -28,7 +28,7 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                         return (
                             <Col
                                 xs={{ span: 3, offset: 1 }}
-                                className={`flex items-center text-sm text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
+                                className={`flex items-center text-xm text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
                                 key={item.key}
                                 onClick={() => {
                                     setActiveItem(item.key || "");
@@ -37,11 +37,11 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                                     }
                                 }}
                             >
-                                <div className="relative flex flex-col items-center text-sm">
+                                <div className="relative flex flex-col items-center text-xs">
                                     {item.icon}
                                     {item.label}
                                     <span
-                                        className={`absolute -bottom-4 left-0 w-full h-1 bg-kjcBtn-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-right ${isActive ? 'scale-x-100' : ''}`}
+                                        className={`absolute -bottom-6 left-0 w-full h-1 bg-kjcBtn-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-right ${isActive ? 'scale-x-100' : ''}`}
                                     ></span>
                                 </div>
                             </Col>
