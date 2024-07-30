@@ -1,6 +1,6 @@
 import KjcCarousel from "../../../../../builders/KjcCarousel";
 import KjcButton from "../../../../../builders/KjcButton";
-import {HeartOutlined, DeleteOutlined, HeartFilled} from "@ant-design/icons";
+import {HeartOutlined} from "@ant-design/icons";
 import {getFeaturedJobs} from "./FeaturedJobs.constants.tsx";
 
 /**
