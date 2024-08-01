@@ -55,7 +55,7 @@ export const getFeaturedJobs = (): FeaturedJobsProps[] => [
     },
     {
         key: "barKeeper-work_barAttendant",
-        jobTitle: "Barman/ Barmaid",
+        jobTitle: "Junior Service Barman/ Barmaid",
         companyName: "Lumen bar & Grill",
         jobType: "On-site",
         jobLocation: "Koforidua,Adweso,poly junction",

@@ -30,30 +30,30 @@ const FeaturedJobs = () => {
                                 className="items-center px-8 lg:px-16 pb-14 ">
                                 <div className="items-center space-y-2 py-2 md:py-8 md:space-y-4">
                                     <p className={"items-center"}>
-                                        <span className={"text-xl md:text-3xl text-kjc-950  font-mono capitalize"}> Job Title: </span>
+                                        <span className={"text-xl md:text-3xl text-kjc-950  font-mono capitalize"}>  </span>
                                         <span
                                             className={"text-xl md:text-3xl items-center font-mono "}> {featuredJob.jobTitle}</span>
                                     </p>
                                     <p className={"items-center"}>
                                         <span
                                             className={" text-lg md:text-2xl font-mono capitalize"}> Company Name: </span>
-                                        <span className={"items-center  text-lg md:text-2xl font-normal"}> {featuredJob.companyName}</span>
+                                        <span className={"items-center  text-lg md:text-xl font-normal"}> {featuredJob.companyName}</span>
                                     </p>
                                     <p className={"items-center"}>
                                         <span className={"text-lg md:text-2xl font-mono capitalize"}> Skills: </span>
-                                        <span className={"items-center text-lg md:text-2xl font-normal"}> {featuredJob.jobSkills}</span>
+                                        <span className={"items-center text-lg md:text-xl font-normal"}> {featuredJob.jobSkills}</span>
                                     </p>
                                     <p className={"items-center"}>
                                         <span className={"text-lg md:text-2xl font-mono capitalize"}> Job Type: </span>
-                                        <span className={"items-center text-lg md:text-2xl font-normal"}> {featuredJob.jobType}</span>
+                                        <span className={"items-center text-lg md:text-xl font-normal"}> {featuredJob.jobType}</span>
                                     </p>
                                     <p className={"items-center"}>
                                         <span className={"text-lg md:text-2xl font-mono capitalize"}> Location: </span>
-                                        <span className={"items-center text-lg md:text-2xl font-normal"}> {featuredJob.jobLocation}</span>
+                                        <span className={"items-center text-lg md:text-xl font-normal"}> {featuredJob.jobLocation}</span>
                                     </p>
                                     <p className={"items-center"}>
                                         <span className={"text-lg md:text-2xl font-mono capitalize"}>Education: </span>
-                                        <span className={"items-center text-lg md:text-2xl font-normal"}> {featuredJob.education}</span>
+                                        <span className={"items-center text-lg md:text-xl font-normal"}> {featuredJob.education}</span>
                                     </p>
                                 </div>
                                 <div className={"w-full pt-8 flex xl:w-2/5 items-center justify-between"}>
