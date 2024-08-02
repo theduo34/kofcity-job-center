@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getCompanies } from "./CompanySpotlight.constants.tsx";
 import KjcImage from "../../../../../builders/KjcImage";
+import {useNavigate} from "react-router-dom";
+import {DASHBOARD_COMPANY_SPOTLIGHT_ROUTES_PATH} from "../../DashboardRoutes.constants.ts";
 
 const CompanySpotlight = () => {
     const companies = getCompanies();
@@ -8,6 +10,7 @@ const CompanySpotlight = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const text = 'Unlock Opportunities with Leading Companies';
     const speed: number = 150;
+    const navigate = useNavigate();
 
     useEffect(() => {
         let timer;
@@ -34,7 +37,7 @@ const CompanySpotlight = () => {
                         <div
                             key={company.id}
                             className="p-4 h-[150px] md:h-[250px] bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 flex flex-col justify-between"
-                            onClick={ () => console.log("You clicked on a company div")}
+                            onClick={ () => navigate(DASHBOARD_COMPANY_SPOTLIGHT_ROUTES_PATH)}
                         >
                             <div>
                                 <KjcImage

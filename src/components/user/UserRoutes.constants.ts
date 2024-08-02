@@ -1,5 +1,4 @@
 export const USER_ROUTE_PATH = "/user";
-export const USER_ROUTE_PATH_DASHBOARD = "/dashboard";
 
 export const USER_ROUTE_PATH_JOB_LISTINGS = "/job-listings"
 export const USER_ROUTE_PATH_TRENDS = "/industry-trends";
