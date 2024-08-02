@@ -13,11 +13,10 @@
     background-color: #f76518 !important;
     color: white;
 }
-/* styles.css */
 .carousel-container .inner-carousel {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 16px; /* Adjust the gap between columns as needed */
+    gap: 16px;
 }
 
 @media (min-width: 768px) {
@@ -32,30 +31,64 @@
     }
 }
 
-/* Custom styles for KjcCarousel */
 .kjc-carousel .slick-arrow {
     font-weight: bold;
     color: black !important;
     padding: 8px;
-    /* Add margins for more spacing if needed */
     margin: 0 8px;
 }
 
-.kjc-carousel .slick-dots {
-    /* Add some margin to position dots better */
-}
-
 .kjc-carousel .slick-dots li {
-    /* Ensure dots have enough spacing between them */
     margin: 0 4px;
 }
 
 .kjc-carousel .slick-dots li button {
     background-color: black !important;
-    /* Adjusting the size of the dots */
     width: 8px !important;
     height: 8px !important;
     border-radius: 50%;
-    /* Optionally remove padding for a tighter look */
     padding: 0 !important;
 }
+
+@media (min-width: 640px) {
+    .grid-cols-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+}
+
+
