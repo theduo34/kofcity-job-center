@@ -1,13 +1,3 @@
-.top-img {
-    background-image: url("/public/assets/images/bgImages/topSection.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    padding:0;
-    margin:0;
-}
 
 .submitBtnsHover:hover{
     background-color: #f76518 !important;
@@ -90,5 +80,6 @@
     margin: 0 auto;
     animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
 }
+
 
 
