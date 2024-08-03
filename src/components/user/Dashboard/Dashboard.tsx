@@ -4,6 +4,7 @@ import WithContentLayout from "../../layout/hoc/WithContentLayout";
 import FeaturedJobs from "./components/FeaturedJobs/FeaturedJobs.tsx";
 import JobRecommendation from "./components/JobRecommendation";
 import CompanySpotlight from "./components/CompanySpotlight";
+import SuccessStories from "./components/SuccessStories";
 
 const Dashboard = () => {
     return(
@@ -20,9 +21,12 @@ const Dashboard = () => {
                </WithContentLayout>
 
                {/*company spotlight*/}
-               <WithContentLayout className={"bg-kjc-800bg-amber-50 bg-opacity-80"}>
+               <WithContentLayout >
                    { <CompanySpotlight/>}
                </WithContentLayout>
+
+               {/*success stories*/}
+               <SuccessStories/>
 
            </Row>
         </>
