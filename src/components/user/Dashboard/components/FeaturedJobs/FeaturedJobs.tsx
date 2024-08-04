@@ -59,7 +59,7 @@ const FeaturedJobs = () => {
                                 <div className={"w-full pt-8 flex xl:w-2/5 items-center justify-between"}>
                                     <div>
                                         <KjcButton
-                                            className={"py-4 px-6 rounded-lg bg-kjcBtn-300 text-lg"}
+                                            className={" py-6 px-12 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110  duration-300 "}
                                         >
                                             Apply Now
                                         </KjcButton>

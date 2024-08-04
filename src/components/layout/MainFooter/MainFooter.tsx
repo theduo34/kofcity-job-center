@@ -3,54 +3,17 @@ import WithContentLayout from "../hoc/WithContentLayout";
 import { useNavigate } from "react-router-dom";
 import { Collapse } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import {getFooterItems, getSocialIcons} from "./MainFooter.constants.tsx";
+import KjcImage from "../../../builders/KjcImage";
 
-export interface footerItemsProps {
-    key?: string;
-    label?: string;
-    lists?: { item?: string; key?: string; onClick?: () => void }[];
-}
 
 const MainFooter: React.FC = () => {
     const navigate = useNavigate();
-
-    const footerItems: footerItemsProps[] = [
-        {
-            key: "forJobSeekers",
-            label: "For Job Seekers",
-            lists: [
-                {
-                    item: "Browse Jobs",
-                    key: "browseJobs",
-                    onClick: () => navigate("/")
-                }
-            ]
-        },
-        {
-            key: "forEmployers",
-            label: "For Employers",
-            lists: [
-                {
-                    item: "Post Jobs",
-                    key: "postJobs",
-                    onClick: () => navigate("/")
-                }
-            ]
-        },
-        {
-            key: "helpfulResource",
-            label: "Helpful Resource",
-            lists: [
-                {
-                    item: "Terms of Service",
-                    key: "termsOfService",
-                    onClick: () => navigate("/")
-                }
-            ]
-        }
-    ];
+    const footerItems = getFooterItems(navigate);
+    const socialIcons = getSocialIcons();
 
     return (
-            <div className="items-center space-y-8">
+            <div className="items-center bg-amber-50 ">
                 <div className=" items-center text-center block md:hidden">
                     <Collapse
                         accordion
@@ -69,7 +32,7 @@ const MainFooter: React.FC = () => {
                                        <p
                                            key={list.key}
                                            onClick={list.onClick}
-                                           className="leading-normal justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
+                                           className="leading-normal py-2 justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
                                        >
                                            {list.item}
                                        </p>
@@ -82,13 +45,16 @@ const MainFooter: React.FC = () => {
                     <WithContentLayout>
                         <div className="flex flex-col md:flex-row items-center justify-between">
                             {footerItems.map((item) => (
-                                <div key={item.key}>
+                                <div
+                                    key={item.key}
+                                    className={"items-center justify-start space-y-4"}
+                                >
                                     <h1 className="leading-normal text-xl text-kjcBtn-500">{item.label}</h1>
                                     {item.lists?.map((list) => (
                                         <p
                                             key={list.key}
                                             onClick={list.onClick}
-                                            className="leading-normal justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
+                                            className="text-lg leading-normal justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
                                         >
                                             {list.item}
                                         </p>
@@ -98,8 +64,30 @@ const MainFooter: React.FC = () => {
                         </div>
                     </WithContentLayout>
                 </div>
-                <div className="text-center bottom-0 w-full">
-                    &copy;{new Date().getFullYear()} Kofcity Job Center Powered by tHEDUo
+                <div className="pb-12 md:pb-0">
+                   <WithContentLayout>
+                       <div className={"text-start space-y-4"}>
+                           <div className={"items-center text-center md:text-start text-xl text-kjcBtn-500"}>
+                               Find us on social media
+                           </div>
+                           <div className={"items-center text-center md:text-start space-x-4"}>
+                               {
+                                   socialIcons.map((icon) => (
+                                       <KjcImage
+                                           src={icon.icon}
+                                           alt={icon.key}
+                                           className={"items-center rounded-full"}
+                                       />
+                                   ))
+                               }
+                           </div>
+                           <p className="text-center items-center">
+                               &copy;{new Date().getFullYear()} Kofcity Job Center Powered by tHEDUo
+                           </p>
+
+
+                       </div>
+                   </WithContentLayout>
                 </div>
             </div>
     );
