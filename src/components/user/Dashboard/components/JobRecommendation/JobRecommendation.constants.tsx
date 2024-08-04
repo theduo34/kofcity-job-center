@@ -34,9 +34,9 @@ export const getJobsRecommendation = ():JobsRecommendationProps[] => [
         jobLocation: "Koforidua, Adweso",
         jobSkills: "Clinical knowledge, attention to detail, communication skills, customer service, management skills",
         education: "Bachelor's Degree in Pharmacy (B.Pharm)Typically a 4-year program that covers fundamental pharmacy concepts, including pharmacology, chemistry, and medical ethics",
-        responsibility: "Responsibilities of Senior MD Pharmacist\n" +
+        responsibility: "\n" +
             "\n" +
-            "A senior MD pharmacist oversees medication management, ensures compliance with regulations, mentors junior pharmacists, collaborates with healthcare teams, conducts research, and educates patients on proper medication use."
+            "A senior MD pharmacist oversees medication management, ensures compliance with regulations, collaborates with healthcare teams, and educates patients on proper medication use."
     },
     {
         key: "hospi-work_cateringService",

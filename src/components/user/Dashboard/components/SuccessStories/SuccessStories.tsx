@@ -27,7 +27,7 @@ const SuccessStories = () => {
                 </div>
                 <div className="absolute top-1 right-4"></div>
 
-                <div className="items-center">
+                <div className="items-center  bg-white">
                     <WithContentLayout className="items-center">
                         <div className="flex flex-col lg:flex-row items-center justify-start lg:justify-between xl:justify-around space-y-14">
                             {currentStories.map((story, index) => (

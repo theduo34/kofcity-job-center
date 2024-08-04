@@ -50,52 +50,58 @@ const MainFooter: React.FC = () => {
     ];
 
     return (
-        <WithContentLayout>
             <div className="items-center space-y-8">
-                <div className="items-center block md:hidden">
+                <div className=" items-center text-center block md:hidden">
                     <Collapse
                         accordion
                         expandIcon={({ isActive }) => <PlusOutlined rotate={isActive ? 45 : 0} />}
                         expandIconPosition="end"
+                        className={"text-kjcBtn-500 px-4"}
                     >
                         {footerItems.map((item) => (
-                            <Collapse.Panel header={item.label} key={item.key}>
-                                {item.lists?.map((list) => (
-                                    <p
-                                        key={list.key}
-                                        onClick={list.onClick}
-                                        className="leading-normal justify-start cursor-pointer hover:underline"
-                                    >
-                                        {list.item}
-                                    </p>
-                                ))}
-                            </Collapse.Panel>
+                               <Collapse.Panel
+                                   key={item.key}
+                                   header={
+                                       <h1 className={"text-kjcBtn-500 font-semibold"}>{item.label}</h1>
+                                   }
+                               >
+                                   {item.lists?.map((list) => (
+                                       <p
+                                           key={list.key}
+                                           onClick={list.onClick}
+                                           className="leading-normal justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
+                                       >
+                                           {list.item}
+                                       </p>
+                                   ))}
+                               </Collapse.Panel>
                         ))}
                     </Collapse>
                 </div>
                 <div className="items-center hidden md:block">
-                    <div className="flex flex-col md:flex-row items-center justify-between">
-                        {footerItems.map((item) => (
-                            <div key={item.key}>
-                                <h1 className="leading-normal text-xl text-kjcBtn-500">{item.label}</h1>
-                                {item.lists?.map((list) => (
-                                    <p
-                                        key={list.key}
-                                        onClick={list.onClick}
-                                        className="leading-normal justify-start cursor-pointer hover:underline"
-                                    >
-                                        {list.item}
-                                    </p>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
+                    <WithContentLayout>
+                        <div className="flex flex-col md:flex-row items-center justify-between">
+                            {footerItems.map((item) => (
+                                <div key={item.key}>
+                                    <h1 className="leading-normal text-xl text-kjcBtn-500">{item.label}</h1>
+                                    {item.lists?.map((list) => (
+                                        <p
+                                            key={list.key}
+                                            onClick={list.onClick}
+                                            className="leading-normal justify-start cursor-pointer hover:text-kjcBtn-500 hover:underline"
+                                        >
+                                            {list.item}
+                                        </p>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </WithContentLayout>
                 </div>
                 <div className="text-center bottom-0 w-full">
                     &copy;{new Date().getFullYear()} Kofcity Job Center Powered by tHEDUo
                 </div>
             </div>
-        </WithContentLayout>
     );
 };
 

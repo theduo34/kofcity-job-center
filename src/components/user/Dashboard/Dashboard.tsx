@@ -11,7 +11,7 @@ const Dashboard = () => {
         <>
            <Row>
                {/*featured jobs*/}
-               <WithContentLayout className={"bg-amber-50 bg-opacity-80"}>
+               <WithContentLayout className={"bg-white"}>
                    { <FeaturedJobs/> }
                </WithContentLayout>
 

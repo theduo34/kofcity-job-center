@@ -43,7 +43,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
 
                 <KjcFooter
                     style={{ textAlign: "center" }}
-                    className="hidden md:block font-semibold bg-white"
+                    className="hidden md:block font-semibold bg-amber-50"
                 >
                     { <MainFooter/>}
                 </KjcFooter>
