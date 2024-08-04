@@ -4,6 +4,7 @@ import KjcImage from "../../../builders/KjcImage";
 import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
+import logo from '/public/assets/images/logo/logo.png'
 
 /**
  * Renders the nav header component.
@@ -25,11 +26,11 @@ const NavHeader = () => {
             <nav className="fixed top-0 w-full text-center bg-white px-4 py-2">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-24">
-                        <div className={"flex me-12"}>
+                        <div className={"flex w-24 me-12"}>
                             <KjcImage
-                                src="path/to/your/image.jpg" // Provide the correct path to the image
+                                src= {logo}
                                 alt="KcjImage"
-                                className="w-24"
+                                className="w-8"
                                 onClick={handleOnLogoClick}
                             />
                         </div>

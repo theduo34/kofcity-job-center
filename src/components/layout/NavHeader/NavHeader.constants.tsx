@@ -1,10 +1,6 @@
 import {LeftHeaderIconsInterface, NavHeaderAuthBtnInterface} from "./NavHeader.interface.ts";
 import { UilBookmark, UilChat, UilBell} from '@iconscout/react-unicons'
-
-// const NavHeaderConstant = (): NavHeaderInterface => [
-//
-// ]
-
+import KjcBadge from "../../../builders/KjcBadge";
 
 //nav-header auth btn constants
 const NAV_HEADER_AUTH_BUTTONS = {
@@ -26,18 +22,18 @@ export const getNavHeaderAuthBtn = (navigate: (path: string) => void): NavHeader
     ]
 
 
-
 //nav-header left icons
 const LEFT_HEADER_ICONS = {
     SAVED: "Saved",
     CHATBOT: "Chatbot",
-    NOTIFICATION: "Notification"
+    NOTIFICATION: "Notification",
+    Account: "Account",
 }
 export const getLeftHeaderIcons = (navigate: (path: string) => void): LeftHeaderIconsInterface[] => [
     {
         key: LEFT_HEADER_ICONS.SAVED,
         label: LEFT_HEADER_ICONS.SAVED,
-        icon: <UilBookmark/>,
+        icon: <KjcBadge size="small" count={5}><UilBookmark/></KjcBadge>,
         onClick: ()  => navigate("/")
     },
     {
@@ -49,7 +45,8 @@ export const getLeftHeaderIcons = (navigate: (path: string) => void): LeftHeader
     {
         key: LEFT_HEADER_ICONS.NOTIFICATION,
         label: LEFT_HEADER_ICONS.NOTIFICATION,
-        icon: <UilBell/>,
+        icon: <KjcBadge size="small" count={2}><UilBell/></KjcBadge>,
         onClick: ()  => navigate("/")
     },
+
 ]
