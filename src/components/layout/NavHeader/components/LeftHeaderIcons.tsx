@@ -1,6 +1,9 @@
-import { Col, Row } from "antd";
+import {Col, Dropdown, MenuProps, Row, Tooltip} from "antd";
 import { getLeftHeaderIcons } from "../NavHeader.constants";
 import { useNavigate } from "react-router-dom";
+import { UilUser} from '@iconscout/react-unicons'
+import {DownOutlined} from "@ant-design/icons";
+
 
 type LeftHeaderIconsProps = {
     activeItem: string;
@@ -13,21 +16,33 @@ type LeftHeaderIconsProps = {
  * @param {LeftHeaderIconsProps} props - The props for the component.
  * @return {JSX.Element} The rendered left header icons component.
  */
+
+const items: MenuProps["items"] = [
+    {
+        key: "Settings",
+        label: "Settings"
+    },
+    {
+        key: "Privacy",
+        label: "Privacy"
+    }
+]
+
 const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) => {
     const navigate = useNavigate();
     const menuItems = getLeftHeaderIcons(navigate);
 
     return (
-        <div className="flex items-center justify-between mx-4 md:mx-8 space-x-16">
-            <div className="hidden lg:block px-8">
+        <div className="flex items-center justify-between space-x-6">
+            <div className="hidden lg:block">
                 <Row
-                    gutter={{ xs: 16, sm: 14 }}
+                    gutter={{xs: 16, sm: 14}}
                     className="items-center justify-evenly space-x-2 font-sans">
                     {menuItems.map((item) => {
                         const isActive = activeItem === item.key;
                         return (
                             <Col
-                                xs={{ span: 3, offset: 1 }}
+                                xs={{span: 3, offset: 1}}
                                 className={`flex items-center text-xm text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
                                 key={item.key}
                                 onClick={() => {
@@ -37,9 +52,11 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                                     }
                                 }}
                             >
-                                <div className="relative flex flex-col items-center text-xs">
-                                    {item.icon}
-                                    {item.label}
+                                <div
+                                    className="relative flex flex-col items-center justify-center text-xs p-3 rounded-full bg-neutral-200">
+                                    <Tooltip title={item.label}>
+                                        <span>{item.icon}</span>
+                                    </Tooltip>
                                     <span
                                         className={`absolute -bottom-6 left-0 w-full h-1 bg-kjcBtn-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-right ${isActive ? 'scale-x-100' : ''}`}
                                     ></span>
@@ -49,12 +66,20 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                     })}
                 </Row>
             </div>
-            <div>
-                <Col
-                    span={24}
+            <div className="relative text-xs p-3 rounded-full bg-neutral-200">
+                <Dropdown
+                    menu={{items}}
+                    placement="bottom"
+                    arrow
                 >
-                    Header
-                </Col>
+                    <div className="flex items-center justify-center">
+                        <UilUser/>
+                        <span
+                            className="absolute bottom-1 right-0 flex items-center justify-center p-1 font-semibold rounded-full bg-white shadow-lg">
+                            <DownOutlined style={{fontSize: "10px"}}/>
+                        </span>
+                    </div>
+                </Dropdown>
             </div>
         </div>
     );
