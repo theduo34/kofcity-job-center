@@ -5,6 +5,7 @@ import NavFooter from "../NavFooter";
 import React from "react";
 import { Layout } from "antd";
 import NavHeader from "../NavHeader";
+import MainFooter from "../MainFooter";
 
 export interface BaseLayoutProps {
     children: React.ReactNode
@@ -29,7 +30,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
                         lineHeight: "64px",
                         padding: 0
                     }}
-                    className="top-0 z-50  shadow-md"
+                    className="top-0 z-50 shadow-md"
                 >
                     <NavHeader/>
                 </KjcHeader>
@@ -42,15 +43,18 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
 
                 <KjcFooter
                     style={{ textAlign: "center" }}
-                    className="hidden md:block font-semibold text-slate-500"
+                    className="hidden md:block font-semibold bg-white"
                 >
-                    &copy;{ new Date().getFullYear() } Kofcity Job Center Powered by tHEDUo
+                    { <MainFooter/>}
                 </KjcFooter>
                 <KjcFooter
                     style={{padding: 0}}
-                    className="md:hidden"
+                    className="md:hidden bg-white"
                 >
-                    <NavFooter/>
+                    <div>
+                        <MainFooter/>
+                        <NavFooter/>
+                    </div>
                 </KjcFooter>
             </Layout>
         </Layout>
