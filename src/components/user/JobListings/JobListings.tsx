@@ -11,11 +11,11 @@ const JobListings = () => {
                        <span className={"text-white mx-3"}>Most popular jobs in Koforidua</span>
                    </h1>
                 </div>
-               <div>
-                   <WithContentLayout>
-                       <FilterSearch/>
-                   </WithContentLayout>
-               </div>
+
+                {/*filter search*/}
+                <WithContentLayout>
+                    <FilterSearch/>
+                </WithContentLayout>
             </div>
         </>
     )
