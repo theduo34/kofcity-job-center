@@ -1,6 +1,7 @@
 import { SlidersHorizontal } from 'lucide-react';
 import {useState} from "react";
-import SearchModal from "./components/SearchModal.tsx";
+import SearchModal from "../SearchModal.tsx";
+import ListedJobs from "../ListedJobs.tsx";
 
 
 const FilterSearch = () => {
@@ -17,11 +18,11 @@ const FilterSearch = () => {
     }
     return(
         <>
-            <div className="items-center leading-normal">
+            <div className="items-center leading-normal space-y-4 ">
                 <div className={"flex items-center justify-between"}>
-                    <div className={"text-lg md:text-xl "}>All results</div>
+                    <div className={"py-2 text-lg"}>All results</div>
                     <div
-                        className={"py-2 md:py-3 px-4 md:px-4 rounded-lg bg-kjcBtn-200 hover:bg-kjcBtn-300 cursor-pointer ease-in-out\""}>
+                        className={"py-2 md:py-3 px-4 md:px-4 rounded-lg bg-amber-50 hover:bg-amber-100 cursor-pointer ease-in-out"}>
                         <p
                             className={"flex items-center justify-between"}
                             onClick={ handleFilterClick}
@@ -30,6 +31,9 @@ const FilterSearch = () => {
                             <span className={"text-md font-bold px-2"}>Filter</span>
                         </p>
                     </div>
+                </div>
+                <div className={"items-center "}>
+                    <ListedJobs/>
                 </div>
             </div>
             <SearchModal

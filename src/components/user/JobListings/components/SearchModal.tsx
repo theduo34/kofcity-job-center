@@ -1,8 +1,8 @@
-import KjcModal from "../../../../../../builders/KjcModal";
+import KjcModal from "../../../../builders/KjcModal";
 import {Checkbox, Form, FormProps, Radio} from "antd";
 import {
     getSearchInputSelects
-} from "../../../../Dashboard/components/JobRecommendation/JobRecommendation.constants.tsx";
+} from "../../Dashboard/components/JobRecommendation/JobRecommendation.constants.tsx";
 
 export interface SearchModalProps {
     title?: string;
