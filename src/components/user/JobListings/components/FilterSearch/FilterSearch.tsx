@@ -22,7 +22,7 @@ const FilterSearch = () => {
                 <div className={"flex items-center justify-between"}>
                     <div className={"py-2 text-lg"}>All results</div>
                     <div
-                        className={"py-2 md:py-3 px-4 md:px-4 rounded-lg bg-kjcBtn-200 hover:bg-kjcBtn-300 cursor-pointer ease-in-out"}>
+                        className={"py-2 md:py-3 px-4 md:px-4 rounded-lg bg-amber-50 hover:bg-amber-100 cursor-pointer ease-in-out"}>
                         <p
                             className={"flex items-center justify-between"}
                             onClick={ handleFilterClick}

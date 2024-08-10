@@ -58,7 +58,7 @@ export const getFeaturedJobs = (): FeaturedJobsProps[] => [
         jobTitle: "Junior Service Barman/ Barmaid",
         companyName: "Lumen bar & Grill",
         jobType: "On-site",
-        jobLocation: "Koforidua,Adweso,poly junction",
+        jobLocation: "Koforidua,Adweso",
         jobSkills: "Memory and Multitasking, Basic Math Skills, Physical Stamina, Communication Skills, Customer Service Skills, Knowledge of Alcohol Laws",
         education: "High School Diploma, Certifications, Bartending School : Knowledge in drink mixing, customer service, and bar operations"
     }
