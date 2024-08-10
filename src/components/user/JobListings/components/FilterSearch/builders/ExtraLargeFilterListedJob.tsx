@@ -2,23 +2,15 @@ import { Bookmark, CircleArrowOutUpRight } from "lucide-react";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import {listedJobs} from "../../../JobListings.constants.tsx";
+import {bookmarkedStateProps} from "../FilterSearch.interface.ts";
 
-const ExtraFilterListedJob = () => {
+
+const ExtraLargeFilterListedJob  = (props: bookmarkedStateProps) => {
     const [selectedJobKey, setSelectedJobKey] = useState<string | null>(null);
-    const [bookmarkedJob, setBookmarkedJob] = useState<{ [key: string]: boolean }>({});
 
     const handleShowDescription = (key: string) => {
         setSelectedJobKey(key);
     };
-
-    const toggleBookmark = (key: string) => {
-        setBookmarkedJob((prevState) => ({
-            ...prevState,
-            [key]: !prevState[key],
-        }));
-    };
-
-
 
     return (
         <>
@@ -42,10 +34,10 @@ const ExtraFilterListedJob = () => {
                                     <p
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            toggleBookmark(job.key);
+                                            props.toggleBookmark(job.key);
                                         }}
                                     >
-                                        {bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
+                                        {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
                                     </p>
                                 </div>
                                 <div className="items-center">
@@ -100,10 +92,10 @@ const ExtraFilterListedJob = () => {
                                         className="flex absolute top-4 right-4"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            toggleBookmark(job.key);
+                                            props.toggleBookmark(job.key);
                                         }}
                                     >
-                                        {bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
+                                        {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
                                     </p>
                                 </div>
                                 <div className="p-4 space-y-8 text-lg">
@@ -120,4 +112,4 @@ const ExtraFilterListedJob = () => {
     );
 };
 
-export default ExtraFilterListedJob;
+export default ExtraLargeFilterListedJob;

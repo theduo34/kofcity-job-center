@@ -1,18 +1,12 @@
 import {Bookmark, CircleArrowOutUpRight} from "lucide-react";
 import {EnvironmentOutlined} from "@ant-design/icons";
 import {listedJobs} from "../../../JobListings.constants.tsx";
-import {useState} from "react";
+import {bookmarkedStateProps} from "../FilterSearch.interface.ts";
 
 
-const LargeFilterListedJob = () => {
-    const [bookmarkedJob, setBookmarkedJob] = useState<{[key: string]: boolean}>({});
 
-    const toggleBookmark = (key: string) => {
-        setBookmarkedJob((prevState) => ({
-            ...prevState,
-            [key]: !prevState[key],
-        }))
-    }
+const LargeFilterListedJob = (props: bookmarkedStateProps) => {
+
     return(
         <>
             <div className={"grid grid-cols-2 gap-8"}>
@@ -31,10 +25,10 @@ const LargeFilterListedJob = () => {
                                 <p
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        toggleBookmark(job.key);
+                                        props.toggleBookmark(job.key);
                                     }}
                                 >
-                                    {bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
+                                    {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
                                 </p>
                             </div>
                             <div className="items-center">
@@ -42,7 +36,7 @@ const LargeFilterListedJob = () => {
                                     { job.jobTitle}
                                 </h1>
                                 <h3 className="text-lg text-balance items-center leading-normal">
-                                    Procore Technologies
+                                    {job.companyName}
                                 </h3>
                                 <div
                                     className="flex list-disc text-lg text-balance items-center leading-normal space-x-4">

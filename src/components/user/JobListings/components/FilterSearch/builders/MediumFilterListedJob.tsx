@@ -1,18 +1,10 @@
 import {Bookmark, CircleArrowOutUpRight} from "lucide-react";
 import {EnvironmentOutlined} from "@ant-design/icons";
 import {listedJobs} from "../../../JobListings.constants.tsx";
-import {useState} from "react";
+import {bookmarkedStateProps} from "../FilterSearch.interface.ts";
 
 
-const MediumFilterListedJob = () => {
-    const [bookmarkedJob, setBookmarkedJob] = useState<{ [key: string]: boolean }>({});
-
-    const toggleBookmark = (key: string) => {
-        setBookmarkedJob((prevState) => ({
-            ...prevState,
-            [key]: !prevState[key],
-        }));
-    };
+const MediumFilterListedJob = (props: bookmarkedStateProps) => {
 
     return(
         <>
@@ -22,7 +14,9 @@ const MediumFilterListedJob = () => {
                     listedJobs.map((job) => (
                         <div
                             key={job.key}
-                            className="p-4 rounded-lg bg-white  space-y-8">
+                            className="p-4 rounded-lg bg-white  space-y-8"
+                            onClick={ ""}
+                        >
                             <div className="flex items-center justify-between">
                                 <p className="flex items-center space-x-2">
                                     <span
@@ -32,10 +26,10 @@ const MediumFilterListedJob = () => {
                                 <p
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        toggleBookmark(job.key);
+                                        props.toggleBookmark(job.key);
                                     }}
                                 >
-                                    {bookmarkedJob[job.key] ? <Bookmark style={{fill: "black"}}/> : <Bookmark/>}
+                                    {props.bookmarkedJob[job.key] ? <Bookmark style={{fill: "black"}}/> : <Bookmark/>}
                                 </p></div>
                             <div className="items-center">
                                 <h1 className="text-xl text-balance font-semibold leading-normal">
