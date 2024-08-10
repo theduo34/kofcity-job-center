@@ -2,9 +2,12 @@ import {Bookmark, CircleArrowOutUpRight} from "lucide-react";
 import {EnvironmentOutlined} from "@ant-design/icons";
 import {listedJobs} from "../../../JobListings.constants.tsx";
 import {bookmarkedStateProps} from "../FilterSearch.interface.ts";
+import {useNavigate} from "react-router-dom";
+import {DESCRIPTION_ROUTE_PATH} from "../../../JobListingsRoutes.constants.ts";
 
 
 const MediumFilterListedJob = (props: bookmarkedStateProps) => {
+    const navigate = useNavigate();
 
     return(
         <>
@@ -15,7 +18,7 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                         <div
                             key={job.key}
                             className="p-4 rounded-lg bg-white  space-y-8"
-                            onClick={ ""}
+                            onClick={ () => navigate(DESCRIPTION_ROUTE_PATH)}
                         >
                             <div className="flex items-center justify-between">
                                 <p className="flex items-center space-x-2">

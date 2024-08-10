@@ -1,7 +1,7 @@
 import { SlidersHorizontal } from 'lucide-react';
 import {useState} from "react";
-import SearchModal from "./components/SearchModal.tsx";
-import FilterListedJobs from "./components/FilterListedJobs.tsx";
+import SearchModal from "../SearchModal.tsx";
+import ListedJobs from "../ListedJobs.tsx";
 
 
 const FilterSearch = () => {
@@ -33,7 +33,7 @@ const FilterSearch = () => {
                     </div>
                 </div>
                 <div className={"items-center "}>
-                    <FilterListedJobs/>
+                    <ListedJobs/>
                 </div>
             </div>
             <SearchModal

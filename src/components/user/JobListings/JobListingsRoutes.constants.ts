@@ -1,0 +1,1 @@
+export const DESCRIPTION_ROUTE_PATH= 'description'

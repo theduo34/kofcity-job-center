@@ -1,9 +1,9 @@
-import MediumFilterListedJob from "../builders/MediumFilterListedJob.tsx";
-import LargeFilterListedJob from "../builders/LargeFilterListedJob.tsx";
-import ExtraLargeFilterListedJob from "../builders/ExtraLargeFilterListedJob.tsx";
+import MediumFilterListedJob from "./FilterSearch/builders/MediumFilterListedJob.tsx";
+import LargeFilterListedJob from "./FilterSearch/builders/LargeFilterListedJob.tsx";
+import ExtraLargeFilterListedJob from "./FilterSearch/builders/ExtraLargeFilterListedJob.tsx";
 import {useState} from "react";
 
-const FilterListedJobs = () => {
+const ListedJobs = () => {
     const [bookmarkedJob, setBookmarkedJob] = useState<{ [key: string]: boolean }>( {})
 
     const toggleBookmark = (key: string) => {
@@ -30,4 +30,4 @@ const FilterListedJobs = () => {
     );
 };
 
-export default FilterListedJobs;
+export default ListedJobs;
