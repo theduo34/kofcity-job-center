@@ -1,3 +1,4 @@
+import {withBaseLayout} from "../../../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 
 const JobDescription = () => {
     return(
@@ -8,4 +9,4 @@ const JobDescription = () => {
         </>
     )
 }
-export default JobDescription;
+export default withBaseLayout(JobDescription);
