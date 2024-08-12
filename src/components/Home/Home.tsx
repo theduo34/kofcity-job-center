@@ -34,7 +34,7 @@ const Home: React.FC = () => {
             </Col>
 
             {/*popular search content*/}
-            <WithContentLayout className={""}> { <PopularSearch/> } </WithContentLayout>
+            <WithContentLayout className={"bg-kjcBtn-200"}> { <PopularSearch/> } </WithContentLayout>
 
             {/*our benefits content*/}
             <WithContentLayout className={"bg-white"}> { <OurBenefits/> }</WithContentLayout>

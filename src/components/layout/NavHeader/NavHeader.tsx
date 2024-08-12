@@ -4,7 +4,7 @@ import KjcImage from "../../../builders/KjcImage";
 import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
-import KofKobs from '/public/assets/images/logo/KofJobs.png';
+import KofKobs from '/assets/images/logo/IMG.png';
 
 /**
  * Renders the nav header component.
