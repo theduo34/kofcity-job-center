@@ -4,7 +4,7 @@ import KjcImage from "../../../builders/KjcImage";
 import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
-import newOne from '/public/assets/images/logo/newOne.png';
+import KofKobs from '/public/assets/images/logo/KofJobs.png';
 
 /**
  * Renders the nav header component.
@@ -28,7 +28,7 @@ const NavHeader = () => {
                     <div className="flex items-center space-x-24">
                         <div className={"flex w-24 me-12"}>
                             <KjcImage
-                                src= {newOne}
+                                src= {KofKobs}
                                 alt="KcjImage"
                                 className="w-8"
                                 onClick={handleOnLogoClick}
