@@ -10,7 +10,6 @@ export interface FeaturedJobsProps  {
     jobSalary?: string,
     jobOverview?: string,
     jobResponsibility?: string,
-    onClick?: () => void,
     key?: string
 
 }
@@ -23,7 +22,6 @@ export const getFeaturedJobs = (): FeaturedJobsProps[] => [
         jobSkills: "Python, Power BI, SQL, R, Tableau, SAS, SPSS, Machine learning, Data mining",
         jobLocation: "koforidua, Two Streams",
         education: "A bachelor's degree in a field such as statistics, mathematics, computer science, or business, is required",
-
     },
     {
         key: "admin-work_pharmacist",

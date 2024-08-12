@@ -18,7 +18,7 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                         <div
                             key={job.key}
                             className="p-4 rounded-lg bg-white  space-y-8"
-                            onClick={ () => navigate(DESCRIPTION_ROUTE_PATH)}
+                            onClick={ () => navigate(`${DESCRIPTION_ROUTE_PATH}/${job.key}`)}
                         >
                             <div className="flex items-center justify-between">
                                 <p className="flex items-center space-x-2">
@@ -55,6 +55,8 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                         </div>
                     ))
                 }
+
+
             </div>
         </>
     )

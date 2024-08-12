@@ -9,9 +9,8 @@ const JobListingsRoutes = () => {
         <>
             <Routes>
                 <Route path={"/"} element={<Outlet/>}>
-                    <Route path={"/"} element={<JobListings />}>
-                        <Route path={DESCRIPTION_ROUTE_PATH} element={<JobDescription/>}/>
-                    </Route>
+                    <Route path={"/"} element={<JobListings />}/>
+                    <Route path={`${DESCRIPTION_ROUTE_PATH}/:jobKey`} element={<JobDescription/>}/>
                 </Route>
             </Routes>
         </>
