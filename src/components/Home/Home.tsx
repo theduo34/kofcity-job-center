@@ -18,7 +18,7 @@ const Home: React.FC = () => {
             {/*top section content*/}
             <Col
                 span={24}
-                className="relative items-center w-full px-4 lg:px-0 shadow-md"
+                className="relative items-center w-full px-4 lg:px-0 "
             >
                 <div className="absolute inset-0  z-10"></div>
                 <div className="relative z-20 w-full flex ">
@@ -34,10 +34,10 @@ const Home: React.FC = () => {
             </Col>
 
             {/*popular search content*/}
-            <WithContentLayout className={"shadow-md"}> { <PopularSearch/> } </WithContentLayout>
+            <WithContentLayout className={""}> { <PopularSearch/> } </WithContentLayout>
 
             {/*our benefits content*/}
-            <WithContentLayout > { <OurBenefits/> }</WithContentLayout>
+            <WithContentLayout className={"bg-white"}> { <OurBenefits/> }</WithContentLayout>
         </Row>
     );
 };
