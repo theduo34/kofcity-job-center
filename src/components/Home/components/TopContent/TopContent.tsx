@@ -34,7 +34,7 @@ const TopContent = () => {
                                                 <KjcImage
                                                     src={menu.image}
                                                     alt=""
-                                                    className="rounded-full h-full w-full"
+                                                    className="rounded-full h-full w-full object-center"
                                                 />
                                             </div>
 
