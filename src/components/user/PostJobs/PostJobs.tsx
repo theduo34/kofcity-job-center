@@ -1,6 +1,6 @@
 import {withBaseLayout} from "../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import PostJobSection from "./builders/PostJobSection.tsx";
-import {ArrowRight, ArrowRightToLine} from "lucide-react";
+import {ArrowRight} from "lucide-react";
 
 const PostJobs = () => {
 
