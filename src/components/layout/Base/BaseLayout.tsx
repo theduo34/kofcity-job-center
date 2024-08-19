@@ -7,6 +7,8 @@ import { Layout } from "antd";
 import NavHeader from "../NavHeader";
 import MainFooter from "../MainFooter";
 import {useLocation} from "react-router-dom";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS} from "../../user/UserRoutes.constants.ts";
+import {SET_UP_ACCOUNT_ROUTE_PATH} from "../../user/PostJobs/PostJobsRoutes.constants.ts";
 
 export interface BaseLayoutProps {
     children: React.ReactNode
@@ -22,11 +24,13 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
     const path = useLocation();
 
     useEffect(() => {
-        if(path.pathname === "/user/post-jobs") {
+        const accountRoute = `${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${SET_UP_ACCOUNT_ROUTE_PATH}`
+        const userRoute = `${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}`
+
+        if(path.pathname.startsWith(userRoute) || path.pathname === accountRoute) {
             setShowMainFooter(true);
         }
-
-    })
+    }, [path.pathname]);
     return (
         <Layout
             style={{ minHeight: "100vh" }}
