@@ -1,0 +1,1 @@
+export const SET_UP_ACCOUNT_ROUTE_PATH = "/set-up-an-account";
