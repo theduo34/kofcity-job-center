@@ -30,7 +30,7 @@ const setAnAccountStepper = (step: number, formRefs: MutableRefObject<FormInstan
         case 0:
             return <BasicInformation formRef={formRefs[0]} />;
         case 1:
-            return <ContactInformation  />;
+            return <ContactInformation formRef={formRefs[1]} />;
         case 2:
             return <CompanyDetails />;
         case 3:
@@ -143,7 +143,7 @@ const SetAnAccount = () => {
                     </div>
                 )}
 
-                <div className="flex items-center justify-between cursor-pointer bottom-0">
+                <div className="flex items-center justify-between cursor-pointer mb-8">
                     <p className={`items-center justify-center py-2 md:py-2 px-8 font-semibold rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:shadow-lg ${
                             showBackBtn ? "visible" : "invisible"
                         }`}

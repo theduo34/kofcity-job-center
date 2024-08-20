@@ -1,4 +1,4 @@
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import {MenuFoldOutlined} from "@ant-design/icons";
 import {useState} from "react";
 import {Drawer} from "antd";
 
