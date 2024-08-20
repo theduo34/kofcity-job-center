@@ -18,7 +18,7 @@ interface CompanyDetailsProps {
 
 const props: UploadProps = {
     name: "file",
-    action: "/upload-company_logo",      //server url of upload company logo
+    action: "/upload_company_logo",      //server url of upload company logo
     headers: {
         authorization: "authorization-text"
     },
@@ -111,7 +111,6 @@ const CompanyDetails = ({ formRef }:CompanyDetailsProps) => {
                         ]}
                     >
                         <Select
-                            name="industry-type"
                             placeholder={"Select company industry type"}
                         >
                             {
