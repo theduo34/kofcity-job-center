@@ -3,15 +3,15 @@ import HeaderNavigationBack from "../../../../../layout/hoc/HeaderNavigationBack
 import {EnvironmentOutlined} from "@ant-design/icons";
 import {Col} from "antd";
 
-interface JobDescriptionProps {
-    key: string,
-    title: string,
-    location: string,
-    daysPosted: string,
-    companyName: string,
-    description: string[],
-
-}
+// interface JobDescriptionProps {
+//     key: string,
+//     title: string,
+//     location: string,
+//     daysPosted: string,
+//     companyName: string,
+//     description: string[],
+//
+// }
 const JobDescription = () => {
     return(
         <>

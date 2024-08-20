@@ -34,7 +34,7 @@ const setAnAccountStepper = (step: number, formRefs: MutableRefObject<FormInstan
         case 2:
             return <CompanyDetails formRef={formRefs[2]} />;
         case 3:
-            return <AdditionalInformation />;
+            return <AdditionalInformation formRef={formRefs[3]} />;
         default:
             return null;
     }
