@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef, MutableRefObject } from "react";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Steps, FormInstance } from "antd";
+import {Steps, FormInstance, message} from "antd";
 import PostJobSection from "../../builders/PostJobSection.tsx";
 import { withBaseLayout } from "../../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import BasicInformation from "./components/BasicInformation.tsx";
 import ContactInformation from "./components/ContactInformation.tsx";
 import CompanyDetails from "./components/CompanyDetails.tsx";
 import AdditionalInformation from "./components/AdditionalInformation.tsx";
+import SpinnerOverlay from "./builders/SpinnerOverlay.tsx";
+import NextStageModal from "./builders/NextStageModal.tsx";
 
 const { Step } = Steps;
 
@@ -45,6 +47,15 @@ const SetAnAccount = () => {
     const [showBackBtn, setShowBackBtn] = useState<boolean>(false);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
     const [formData, setFormData] = useState<Record<string, any>>({});
+    const [spinning, setSpinning] = useState<boolean>(false)
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    const handleOk = () => {
+        setShowModal(false);
+    }
+    const handleCancel = () => {
+        setShowModal(false)
+    }
 
     //form references
     const formRefs: MutableRefObject<FormInstance | null>[] = [
@@ -74,6 +85,12 @@ const SetAnAccount = () => {
                 if (step < 3) {
                     setStep(step + 1);
                 } else {
+                    setSpinning(true)
+                    setTimeout( () => {
+                        setSpinning(false);
+                        setShowModal(true);
+                        message.success("Successfully setup an account");
+                    }, 4000)
                     console.log("All data provided across steps:", formData);
                 }
             } catch (errorInfo) {
@@ -105,6 +122,7 @@ const SetAnAccount = () => {
 
     return (
         <PostJobSection className="">
+            <SpinnerOverlay spinning={spinning}/>
             <div className="w-full md:w-[75%] lg:w-[80%] xl:w-[70%] 2xl:w-[50%] space-y-4">
                 <h1 className="items-center justify-center font-semibold text-lg md:text-2xl capitalize">
                     Set-up an Account
@@ -161,6 +179,11 @@ const SetAnAccount = () => {
                     </p>
                 </div>
             </div>
+            <NextStageModal
+                open={showModal}
+                onOk={handleOk}
+                onCancel={handleCancel}
+            />
         </PostJobSection>
     );
 };
