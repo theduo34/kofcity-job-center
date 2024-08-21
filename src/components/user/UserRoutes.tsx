@@ -7,7 +7,7 @@ import IndustryTrends from "./IndustryTrends";
 import { DASHBOARD_ROUTES_PATH } from "./Dashboard/DashboardRoutes.constants.ts";
 import DashboardRoutes from "./Dashboard/DashboardRoutes.tsx";
 import JobListingsRoutes from "./JobListings/JobListingsRoutes.tsx";
-import PostJobs from "./PostJobs";
+import PostJobsRoutes from "./PostJobs/PostJobsRoutes.tsx";
 
 const UserRoutes = () => {
     return (
@@ -17,7 +17,7 @@ const UserRoutes = () => {
                     <Route path={`${DASHBOARD_ROUTES_PATH}/*`} element={<DashboardRoutes />} />
                     <Route path={`${USER_ROUTE_PATH_JOB_LISTINGS}/*`} element={<JobListingsRoutes />} />
                     <Route path={USER_ROUTE_PATH_TRENDS} element={<IndustryTrends />} />
-                    <Route path={USER_ROUTE_PATH_POST_JOBS} element={<PostJobs/>} />
+                    <Route path={`${USER_ROUTE_PATH_POST_JOBS}/*`} element={<PostJobsRoutes/>} />
                 </Route>
             </Routes>
         </>

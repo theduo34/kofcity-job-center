@@ -1,7 +1,6 @@
 import {withBaseLayout} from "../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import FilterSearch from "./components/FilterSearch/FilterSearch.tsx";
 import {Col, Row} from "antd";
-import React from "react";
 
 const JobListings = () => {
     return(

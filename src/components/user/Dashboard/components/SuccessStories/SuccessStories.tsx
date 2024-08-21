@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import WithContentLayout from "../../../../layout/hoc/WithContentLayout";
 import { UserOutlined } from "@ant-design/icons";
 import {getSuccessStories} from "./SuccessStories.constants.tsx";
+import {useState} from "react";
 
 
 const SuccessStories = () => {

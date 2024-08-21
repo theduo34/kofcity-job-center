@@ -1,8 +1,12 @@
 import {withBaseLayout} from "../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import PostJobSection from "./builders/PostJobSection.tsx";
-import {ArrowRight, ArrowRightToLine} from "lucide-react";
+import {ArrowRight} from "lucide-react";
+import {useNavigate} from "react-router-dom";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS} from "../UserRoutes.constants.ts";
+import {SET_UP_ACCOUNT_ROUTE_PATH} from "./PostJobsRoutes.constants.ts";
 
 const PostJobs = () => {
+    const navigate = useNavigate();
 
     return(
         <>
@@ -12,11 +16,10 @@ const PostJobs = () => {
                         Let's find your company
                     </h1>
                     <p className="text-lg items-center leading-normal">
-                        Reach millions of job seekers with Kofcity Job Center. Create a compelling company profile
-                        effortlessly, designed to attract top talent for your job openings. Join now and ensure your
-                        vacancies are seen by the best candidates available
+                        Get your company in front of millions of job seekers. Join Kofcity Job Center, where you can easily create a company profile that will help you attract the best candidates for your open positions
                     </p>
-                    <p className={"flex items-center justify-center py-2 px-12 float-right font-semibold rounded-md shadow-lg bg-kjcBtn-200 hover:kjcBtn-300 transition hover:-translate-y-1 hover:scale-110 duration-200"}
+                    <p className={"flex items-center justify-center py-2 px-12 float-right font-semibold rounded-md shadow-lg cursor-pointer bg-kjcBtn-200 hover:bg-kjcBtn-300 transition hover:-translate-y-1 hover:scale-110 duration-200"}
+                       onClick = { () => { navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${SET_UP_ACCOUNT_ROUTE_PATH}`)}}
                     >
                         Get started <span className={"ml-2"}><ArrowRight/></span>
                     </p>
