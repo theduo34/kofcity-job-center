@@ -6,6 +6,8 @@ import KjcImage from "../../../../builders/KjcImage";
 import registerUser from "/public/assets/images/user/registration/registerUser.gif"
 import KjcPhoneNumber from "../../../../builders/KjcPhoneNumber/KjcPhoneNumber.tsx";
 import {useState} from "react";
+import logo from '/public/assets/images/logo/IMG.png';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import {CountryCode} from "libphonenumber-js/types";
@@ -76,26 +78,25 @@ const UserRegistration = () => {
                                     </div>
                                 </div>
 
-                                <div className="xs:max-w-sm lg:w-4/6 xl:w-2/6 shadow-none lg:shadow-lg">
+                                <div className="xs:max-w-sm lg:w-4/6 xl:w-2/5 shadow-none lg:shadow-lg">
                                     <KjcCard>
                                         <div className="text-md md:text-lg">
-                                            <div className="flex flex-col justify-left mb-3">
+                                            <div className="flex flex-col items-center justify-center">
                                                 <KjcImage
-                                                    width={150}
-                                                    src=""
-                                                    className="img-fluid bg-center mb-6"
+                                                    width={100}
+                                                    src={logo}
+                                                    className="img-fluid bg-center"
                                                     alt="KJCLogo"
                                                 />
                                                 <div>
-                                                    <hr className="mb-3"/>
-                                                    <p className="text-muted mt-3">
+                                                    <p className="text-muted">
                                                         Unlock Your Ultimate Future Potential. Fill Out the Form to
                                                         Register
                                                         Now!
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className="flex items-start mt-2 ">
+                                            <div className="flex items-start">
                                                 <Form
                                                     form={form}
                                                     name="basic"

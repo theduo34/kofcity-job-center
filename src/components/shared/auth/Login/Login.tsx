@@ -10,6 +10,7 @@ import {
 import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
+import logo from '/public/assets/images/logo/IMG.png';
 
 /**
  * Renders the login component.
@@ -67,9 +68,9 @@ const Login = () => {
                                     <div className="flex flex-col items-center">
                                         <KjcImage
                                             onClick={handleOnLogoClick}
-                                            width={150}
-                                            src=""
-                                            className="img-fluid bg-center mb-6"
+                                            width={100}
+                                            src={logo}
+                                            className="img-fluid bg-center mb-4"
                                             alt="Kjc Logo"
                                         />
                                         <div className="text-center">
@@ -153,7 +154,7 @@ const Login = () => {
                                                     <KjcButton
                                                         type="primary"
                                                         htmlType="submit"
-                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0 submitBtnsHover"
+                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-300 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-400 focus:bg-kjcBtn-400 active:bg-kjcBtn-400 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-400 focus:outline-none focus:ring-0 submitBtnsHover"
                                                     >
                                                         Continue
                                                     </KjcButton>
@@ -164,9 +165,9 @@ const Login = () => {
                                             <div className="text-neutral-800 text-center text-xs">
                                                 Don't have an account?
                                                 <span
-                                                    className="capitalize font-bold text-jybekBtn-600">
+                                                    className="capitalize font-bold">
                                                     <Link
-                                                        to={ACCOUNT_REGISTRATION_ROUTE_PATH + REGISTRATION_ROUTE_PATH}
+                                                        to={`${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`}
                                                     >
                                                         Sign Up
                                                     </Link>
