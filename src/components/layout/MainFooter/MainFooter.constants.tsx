@@ -1,13 +1,9 @@
-import facebook from '/public/assets/images/social/facebook.png';
-import twitter from '/public/assets/images/social/twitter.png';
-import pinterest from '/public/assets/images/social/pinterest.png';
-import whatsapp from '/public/assets/images/social/whatsapp.png';
-import instagram from '/public/assets/images/social/instagram.png';
-import linkedIn from '/public/assets/images/social/linkedIn.png';
-
-
-
-
+import facebook from '/assets/images/social/facebook.png';
+import twitter from '/assets/images/social/twitter.png';
+import pinterest from '/assets/images/social/pinterest.png';
+import whatsapp from '/assets/images/social/whatsapp.png';
+import instagram from '/assets/images/social/instagram.png';
+import linkedIn from '/assets/images/social/linkedIn.png';
 
 export interface footerItemsProps {
     key?: string;

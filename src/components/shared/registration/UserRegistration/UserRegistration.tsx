@@ -36,7 +36,7 @@ const UserRegistration = () => {
                 <Col span={24}>
                     <div className="hidden md:flex relative h-[400px] bg-amber-50 border-b-2 border-b-gray-300"></div>
                     <div
-                        className="absolute w-full max-w-md bg-gray-100 z-10"
+                        className="absolute w-full md:w-2/2 max-w-md bg-gray-100 z-10"
                         style={{
                             top: "150px",
                             left: "50%",
