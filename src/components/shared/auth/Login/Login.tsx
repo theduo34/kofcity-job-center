@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import KjcImage from "../../../../builders/KjcImage";
-import { Checkbox, Col, Form, FormProps, Row } from "antd";
+import {Checkbox, Col, Form, FormProps, message, Row} from "antd";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcCard from "../../../../builders/KjcCard";
 import {
@@ -10,6 +10,12 @@ import {
 import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
+import logo from '/public/assets/images/logo/IMG.png';
+import {db, auth} from "../../../../utils/firebase/firebase.ts";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
 
 /**
  * Renders the login component.
@@ -28,16 +34,39 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
-        console.log(formData)
-        form.resetFields();
+        try {
+
+            const userCredential = await signInWithEmailAndPassword(auth, formData.email!, formData.password!);
+            const user = userCredential.user;
+
+            // Fetch UUID from Firestore
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (userDoc.exists()) {
+                const userUUID = userDoc.data()?.uuid;
+                if (userUUID) {
+                    navigate(`${USER_ROUTE_PATH}${userUUID}${DASHBOARD_ROUTES_PATH}`);
+                } else {
+                    message.error("User does not exist!");
+                }
+            } else {
+                console.error("User document does not exist");
+                KjcNotification.showKjcNotification({
+                    type: 'error',
+                    message: 'Error',
+                    description: 'User document does not exist.',
+                });
+            }
+
+            form.resetFields();
+        } catch (error) {
+            message.error(`Invalid email or password `)
+        }
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
-        KjcNotification.showKjcNotification({
-            type: 'error',
-            message: 'Error occurred!',
-            description: 'Failed to login',
-        })
+       message.error("Error occurred! Field required")
     };
 
     const handleOnLogoClick = () => {
@@ -67,9 +96,9 @@ const Login = () => {
                                     <div className="flex flex-col items-center">
                                         <KjcImage
                                             onClick={handleOnLogoClick}
-                                            width={150}
-                                            src=""
-                                            className="img-fluid bg-center mb-6"
+                                            width={100}
+                                            src={logo}
+                                            className="img-fluid bg-center mb-4"
                                             alt="Kjc Logo"
                                         />
                                         <div className="text-center">
@@ -153,7 +182,7 @@ const Login = () => {
                                                     <KjcButton
                                                         type="primary"
                                                         htmlType="submit"
-                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0 submitBtnsHover"
+                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-300 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-400 focus:bg-kjcBtn-400 active:bg-kjcBtn-400 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-400 focus:outline-none focus:ring-0 submitBtnsHover"
                                                     >
                                                         Continue
                                                     </KjcButton>
@@ -164,9 +193,9 @@ const Login = () => {
                                             <div className="text-neutral-800 text-center text-xs">
                                                 Don't have an account?
                                                 <span
-                                                    className="capitalize font-bold text-jybekBtn-600">
+                                                    className="capitalize font-bold">
                                                     <Link
-                                                        to={ACCOUNT_REGISTRATION_ROUTE_PATH + REGISTRATION_ROUTE_PATH}
+                                                        to={`${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`}
                                                     >
                                                         Sign Up
                                                     </Link>

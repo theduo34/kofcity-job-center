@@ -1,5 +1,5 @@
 import {TopContentInterface} from "../../Home.interface.ts";
-import topSection from "/public/assets/images/bgImages/topSection.jpg";
+import topSection from "/assets/images/bgImages/topSection.jpg";
 
 const TOP_CONTENT_MENU_ITEMS = {
     JOBS : "Find Jobs",

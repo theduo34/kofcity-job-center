@@ -1,11 +1,17 @@
-import {Col, Form, FormProps, Row} from "antd";
-import {Link,} from "react-router-dom";
+import {Col, Form, FormProps, message, Row} from "antd";
+import {Link, useNavigate,} from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcImage from "../../../../builders/KjcImage";
 import registerUser from "/public/assets/images/user/registration/registerUser.gif"
 import KjcPhoneNumber from "../../../../builders/KjcPhoneNumber/KjcPhoneNumber.tsx";
 import {useState} from "react";
+import logo from '/public/assets/images/logo/IMG.png';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+//eslint-disable-next-line
+// @ts-ignore
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import {CountryCode} from "libphonenumber-js/types";
@@ -13,6 +19,9 @@ import {parsePhoneNumberWithError} from "libphonenumber-js";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import {Rule} from "postcss";
+import {auth} from "../../../../utils/firebase/firebase.ts"
+import {db} from "../../../../utils/firebase/firebase.ts";
+import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
 
 /**
  * Renders the user registration component.
@@ -33,20 +42,41 @@ const UserRegistration = () => {
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const [phoneNumberCountry, setPhoneNumberCountry] = useState<CountryCode>('GH');
     const [form] = Form.useForm();
+    const navigate = useNavigate()
 
     //onFinish event
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
-        const parsePhoneNumber = parsePhoneNumberWithError(phoneNumber, phoneNumberCountry);
-        if (parsePhoneNumber) {
-            formData["phone"] = parsePhoneNumber.number;
+        try {
+            const parsePhoneNumber = parsePhoneNumberWithError(phoneNumber, phoneNumberCountry);
+            if (parsePhoneNumber) {
+                formData["phone"] = parsePhoneNumber.number;
+            }
+            // Create user with email and password
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email!, formData.password!);
+            const user = userCredential.user;
+
+            // Save user data in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                uuid: user.uid,
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                email: formData.email,
+                phone: formData.phone,
+                sms_notification: formData.sms_notification,
+            });
+
+            navigate( `${AUTH_ROUTE_PATH}${LOGIN_PATH}`);
+            message.success("Successfully registered!")
+            console.log("User signed up and data saved:", user);
+            form.resetFields();
+        } catch (error) {
+            console.error("Error signing up:", error);
         }
-        form.resetFields();
-        console.log(formData)
     }
 
     //onFinishFailed event
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () =>{
-        // failure to submit....
+       message.error("Error signing up!").then(r => r.valueOf());
     }
 
     return (
@@ -76,26 +106,25 @@ const UserRegistration = () => {
                                     </div>
                                 </div>
 
-                                <div className="xs:max-w-sm lg:w-4/6 xl:w-2/6 shadow-none lg:shadow-lg">
+                                <div className="xs:max-w-sm lg:w-4/6 xl:w-2/5 shadow-none lg:shadow-lg">
                                     <KjcCard>
                                         <div className="text-md md:text-lg">
-                                            <div className="flex flex-col justify-left mb-3">
+                                            <div className="flex flex-col items-center justify-center">
                                                 <KjcImage
-                                                    width={150}
-                                                    src=""
-                                                    className="img-fluid bg-center mb-6"
+                                                    width={100}
+                                                    src={logo}
+                                                    className="img-fluid bg-center"
                                                     alt="KJCLogo"
                                                 />
                                                 <div>
-                                                    <hr className="mb-3"/>
-                                                    <p className="text-muted mt-3">
+                                                    <p className="text-muted">
                                                         Unlock Your Ultimate Future Potential. Fill Out the Form to
                                                         Register
                                                         Now!
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className="flex items-start mt-2 ">
+                                            <div className="flex items-start">
                                                 <Form
                                                     form={form}
                                                     name="basic"
