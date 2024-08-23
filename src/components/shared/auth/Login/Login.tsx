@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import KjcImage from "../../../../builders/KjcImage";
-import { Checkbox, Col, Form, FormProps, Row } from "antd";
+import {Checkbox, Col, Form, FormProps, message, Row} from "antd";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcCard from "../../../../builders/KjcCard";
 import {
@@ -11,6 +11,11 @@ import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import logo from '/public/assets/images/logo/IMG.png';
+import {db, auth} from "../../../../utils/firebase/firebase.ts";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
 
 /**
  * Renders the login component.
@@ -29,16 +34,39 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
-        console.log(formData)
-        form.resetFields();
+        try {
+
+            const userCredential = await signInWithEmailAndPassword(auth, formData.email!, formData.password!);
+            const user = userCredential.user;
+
+            // Fetch UUID from Firestore
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (userDoc.exists()) {
+                const userUUID = userDoc.data()?.uuid;
+                if (userUUID) {
+                    navigate(`${USER_ROUTE_PATH}${userUUID}${DASHBOARD_ROUTES_PATH}`);
+                } else {
+                    message.error("User does not exist!");
+                }
+            } else {
+                console.error("User document does not exist");
+                KjcNotification.showKjcNotification({
+                    type: 'error',
+                    message: 'Error',
+                    description: 'User document does not exist.',
+                });
+            }
+
+            form.resetFields();
+        } catch (error) {
+            message.error(`Invalid email or password `)
+        }
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
-        KjcNotification.showKjcNotification({
-            type: 'error',
-            message: 'Error occurred!',
-            description: 'Failed to login',
-        })
+       message.error("Error occurred! Field required")
     };
 
     const handleOnLogoClick = () => {
