@@ -10,6 +10,7 @@ import {
 import KjcNotification from "../../../../builders/KjcNotification";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
+import {withBaseLayout} from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 
 /**
  * Renders the login component.
@@ -166,7 +167,7 @@ const Login = () => {
                                                 <span
                                                     className="capitalize font-bold text-jybekBtn-600">
                                                     <Link
-                                                        to={ACCOUNT_REGISTRATION_ROUTE_PATH + REGISTRATION_ROUTE_PATH}
+                                                        to={`${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`}
                                                     >
                                                         Sign Up
                                                     </Link>
@@ -184,4 +185,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withBaseLayout(Login);
