@@ -1,21 +1,18 @@
 import { Col, Form, FormProps, Row } from "antd";
-import { Link } from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
-import KjcImage from "../../../../builders/KjcImage";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import { Rule } from "postcss";
-import {withBaseLayout} from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
+import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
+import {GoogleOutlined} from "@ant-design/icons";
+import {Link} from "react-router-dom";
+import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
 
 type FieldType = {
-    first_name?: string;
-    last_name?: string;
     email?: string;
-    phone?: string;
     password?: string;
     confirm_password?: string;
-    sms_notification?: boolean;
 };
 
 const UserRegistration = () => {
@@ -32,11 +29,11 @@ const UserRegistration = () => {
 
     return (
         <>
-            <Row style={{ minHeight: "100vh" }}>
+            <Row style={{ minHeight: "100vh" }} className={"bg-white"}>
                 <Col span={24}>
-                    <div className="hidden md:flex relative h-[400px] bg-amber-50 border-b-2 border-b-gray-300"></div>
+                    <div className="hidden md:flex w-full relative h-[400px] bg-kjcBtn-200 border-b-2 border-b-gray-300"></div>
                     <div
-                        className="absolute w-full md:w-2/2 max-w-md bg-gray-100 z-10"
+                        className="absolute w-full max-w-4xl px-0 md:px-16 z-10 bg-white shadow-lg"
                         style={{
                             top: "150px",
                             left: "50%",
@@ -44,23 +41,26 @@ const UserRegistration = () => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-
                         }}
                     >
-                        {/* Form content centered within the second div */}
-                        <div className="w-full">
+                        <div className="w-full md:w-3/5 py-8">
                             <KjcCard>
-                                <div className="text-md md:text-lg">
-                                    <div className="flex flex-col items-center mb-3">
-                                        <KjcImage
-                                            width={150}
-                                            src=""
-                                            className="img-fluid bg-center mb-6"
-                                            alt="KJCLogo"
-                                        />
-                                        <hr className="mb-3" />
-                                        <p className="text-muted mt-3 text-center">
-                                            Unlock Your Ultimate Future Potential. Fill Out the Form to Register Now!
+                                <div className="text-md md:text-lg space-y-4">
+                                    <div className="items-center space-y-4">
+                                        <Link to={`${AUTH_ROUTE_PATH}${LOGIN_PATH}`}>
+                                            <h3 className={"p-2 text-center bg-kjcBtn-50 text-sm border-2 border-neutral-200 cursor-pointer hover:font-semibold hover:underline hover:bg-kjcBtn-200 rounded-md"}>
+                                                Have an account? <span>Log in</span></h3>
+                                        </Link>
+                                        <h1 className={"font-semibold text-2xl capitalize"}>Create An Account</h1>
+                                    </div>
+                                    <div className="items-center">
+                                        <h3 className={"font-semibold text-center text-lg p-3 border-2 border-neutral-200 cursor-pointer hover:bg-neutral-300 rounded-lg"}>
+                                            <span><GoogleOutlined/></span> Continue with Google
+                                        </h3>
+                                    </div>
+                                    <div className="flex flex-col items-center mb-4">
+                                        <p className="text-muted mt-3 text-pretty capitalize">
+                                          Or Sign up with email
                                         </p>
                                     </div>
                                     <div className="flex items-start mt-2">
@@ -125,7 +125,7 @@ const UserRegistration = () => {
                                                             required: true,
                                                             message: "Please confirm your Password!",
                                                         },
-                                                        ({ getFieldValue }) => ({
+                                                        ({getFieldValue}) => ({
                                                             validator(_: Rule, value: string) {
                                                                 if (!value || getFieldValue('password') === value) {
                                                                     return Promise.resolve();
@@ -141,19 +141,11 @@ const UserRegistration = () => {
                                                     <KjcButton
                                                         type="primary"
                                                         htmlType="submit"
-                                                        className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600"
+                                                        className="w-full rounded-md bg-kjcBtn-200 py-4 font-semibold text-black  text-lg ease-in-out"
                                                     >
-                                                        Continue
+                                                        Create Account
                                                     </KjcButton>
                                                 </Form.Item>
-                                            </div>
-                                            <div className="text-neutral-800 text-center text-sm">
-                                                Already a user?
-                                                <span className="capitalize font-bold text-jybekBtn-600">
-                                            <Link to={'/auth/login'} className="CustomHover">
-                                                Login
-                                            </Link>
-                                        </span>
                                             </div>
                                         </Form>
                                     </div>
@@ -164,7 +156,6 @@ const UserRegistration = () => {
                 </Col>
             </Row>
         </>
-
     );
 };
 
