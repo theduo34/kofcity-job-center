@@ -42,7 +42,7 @@ const OurBenefits = () => {
                     className="flex font-semibold text-xl py-4 w-full lg:w-3/4 xl:w-2/4 mx-auto rounded-md items-center justify-center capitalize shadow-md cursor-pointer text-kjc-950 bg-kjcBtn-200  hover:-translate-y-1 hover:scale-110 hover:bg-kjcBtn-300 ease-in-out duration-300"
                     onClick={() =>
                         navigate(
-                            `${ACCOUNT_REGISTRATION_ROUTE_PATH}/${REGISTRATION_ROUTE_PATH}`
+                            `${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`
                         )
                     }
                 >
