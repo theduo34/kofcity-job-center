@@ -1,4 +1,4 @@
-import { Col, Form, FormProps, Row } from "antd";
+import {Col, Form, FormProps, message, Row} from "antd";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcInput from "../../../../builders/KjcInput";
@@ -8,6 +8,8 @@ import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayou
 import {GoogleOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
+import {doCreateUserWithEmailAndPassword, doSignInWithGoogle} from "../../../../utils/firebase/auth.ts";
+import {useState} from "react";
 
 type FieldType = {
     email?: string;
@@ -16,11 +18,34 @@ type FieldType = {
 };
 
 const UserRegistration = () => {
+    const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [form] = Form.useForm();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
-        form.resetFields();
-        console.log(formData);
+           if(!isRegistering) {
+               setIsRegistering(true);
+               try{
+                   await doCreateUserWithEmailAndPassword(formData.email!, formData.password!);
+                   message.success("Successfully registered an account!");
+               } catch (error) {
+                   message.error("Error occurred!")
+               } finally {
+                   setIsRegistering(false)
+               }
+           }
+    };
+
+    const onGoogleSignIn = async () => {
+        if (!isRegistering) {
+            setIsRegistering(true);
+            try {
+                await doSignInWithGoogle();
+            } catch (err) {
+                message.error("Google Sign-In failed. Please try again.");
+            } finally {
+                setIsRegistering(false);
+            }
+        }
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
@@ -53,7 +78,10 @@ const UserRegistration = () => {
                                         </Link>
                                         <h1 className={"font-semibold text-2xl capitalize"}>Create An Account</h1>
                                     </div>
-                                    <div className="items-center">
+                                    <div
+                                        className="items-center"
+                                        onClick={onGoogleSignIn}
+                                    >
                                         <h3 className={"font-semibold text-center text-lg p-3 border-2 border-neutral-200 cursor-pointer hover:bg-neutral-300 rounded-lg"}>
                                             <span><GoogleOutlined/></span> Continue with Google
                                         </h3>
@@ -125,7 +153,8 @@ const UserRegistration = () => {
                                                             required: true,
                                                             message: "Please confirm your Password!",
                                                         },
-                                                        ({getFieldValue}) => ({
+                                                        //eslint-disable-next-line
+                                                        ({ getFieldValue }: { getFieldValue: (name: string) => any }) => ({
                                                             validator(_: Rule, value: string) {
                                                                 if (!value || getFieldValue('password') === value) {
                                                                     return Promise.resolve();

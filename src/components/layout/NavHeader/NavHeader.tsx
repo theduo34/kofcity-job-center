@@ -4,7 +4,8 @@ import KjcImage from "../../../builders/KjcImage";
 import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
-import KofKobs from '/assets/images/logo/IMG.png';
+import KofJobs from '/assets/images/logo/IMG.png';
+import {useAuth} from "../../../utils/context/AuthContext/AuthContext.tsx";
 
 /**
  * Renders the nav header component.
@@ -12,6 +13,7 @@ import KofKobs from '/assets/images/logo/IMG.png';
  * @return {JSX.Element} The rendered nav header component.
  */
 const NavHeader = () => {
+    const { userLoggedIn} = useAuth()
     const [activeItem, setActiveItem] = useState<string>("");
     const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const NavHeader = () => {
                     <div className="flex items-center space-x-24">
                         <div className={"flex w-24 me-12"}>
                             <KjcImage
-                                src= {KofKobs}
+                                src= {KofJobs}
                                 alt="KcjImage"
                                 className="w-8"
                                 onClick={handleOnLogoClick}
@@ -61,8 +63,10 @@ const NavHeader = () => {
                     </div>
 
                     <div className="flex items-center justify-end">
-                        <NavHeaderAuthBtn/>
-                        {/*<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />*/}
+                        {
+                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />
+
+                        }
                     </div>
                 </div>
             </nav>

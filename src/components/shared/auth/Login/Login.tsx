@@ -1,5 +1,5 @@
 import {Col, Form, Row, Checkbox, message, FormProps} from "antd";
-import { Link, Navigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcInput from "../../../../builders/KjcInput";
@@ -7,8 +7,9 @@ import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout";
 import {ACCOUNT_REGISTRATION_ROUTE_PATH, REGISTRATION_ROUTE_PATH,} from "../../registration/RegistrationRoutes.constants";
 import { doSignInWithEmailAndPassword, doSignInWithGoogle,} from "../../../../utils/firebase/auth";
-import { useAuth } from "../../../../utils/context/AuthContext/AuthContext";
 import { useState } from "react";
+import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
 
 type FieldType = {
     email: string;
@@ -17,19 +18,23 @@ type FieldType = {
 };
 
 const Login = () => {
-    const { userLoggedIn } = useAuth();
+    // const { userLoggedIn, loading } = useAuth();
     const [form] = Form.useForm();
     const [isSigningIn, setIsSigningIn] = useState(false);
+    const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
         if (!isSigningIn) {
             setIsSigningIn(true);
             try {
                 await doSignInWithEmailAndPassword(formData.email, formData.password);
+                navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
+                message.success("Successfully logged in!");
             } catch (error) {
                 message.error("Login failed. Please check your credentials and try again.");
             } finally {
                 setIsSigningIn(false);
+
             }
         }
     };
@@ -39,6 +44,8 @@ const Login = () => {
             setIsSigningIn(true);
             try {
                 await doSignInWithGoogle();
+                navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
+                message.success("Successfully loggedIn")
             } catch (err) {
                 message.error("Google Sign-In failed. Please try again.");
             } finally {
@@ -53,7 +60,6 @@ const Login = () => {
 
     return (
         <>
-            {userLoggedIn && <Navigate to="/dashboard" replace={true} />}
             <Row style={{ minHeight: "100vh" }} className={"bg-white"}>
                 <Col span={24}>
                     <div className="hidden md:flex w-full relative h-[400px] bg-kjcBtn-200 border-b-2 border-b-gray-300"></div>
