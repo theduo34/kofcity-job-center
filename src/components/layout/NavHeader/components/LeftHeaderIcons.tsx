@@ -1,32 +1,98 @@
-import {Col, Dropdown, MenuProps, Row, Tooltip} from "antd";
-import { getLeftHeaderIcons } from "../NavHeader.constants";
+import { Col, Dropdown, MenuProps, Row, Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
-import { UilUser} from '@iconscout/react-unicons'
-import {DownOutlined} from "@ant-design/icons";
-
+import {
+    DownOutlined,
+    LogoutOutlined,
+    NotificationOutlined,
+    QuestionCircleOutlined, SaveOutlined,
+    SettingOutlined, UserAddOutlined,
+    UserOutlined
+} from "@ant-design/icons";
+import {getLeftHeaderIcons} from "../NavHeader.constants.tsx";
+import DropdownItem from "../builders/DropdownItem.tsx";
 
 type LeftHeaderIconsProps = {
     activeItem: string;
     setActiveItem: (key: string) => void;
 };
 
-/**
- * Renders the left header icons component.
- *
- * @param {LeftHeaderIconsProps} props - The props for the component.
- * @return {JSX.Element} The rendered left header icons component.
- */
-
 const items: MenuProps["items"] = [
     {
-        key: "Settings",
-        label: "Settings"
+        key: "email",
+        label: <span className={"flex items-center justify-center font-semibold uppercase py-3 px-2 shadow-lg border-2 border-neutral-400"}>emmsom506@gmail.com</span>
     },
     {
-        key: "Privacy",
-        label: "Privacy"
+        key: "profile",
+        label: (
+            <DropdownItem
+                itemKey="profile"
+                label="Profile"
+                icon={<UserAddOutlined style={{ fontSize: "18px" }}/>}
+                withArrow
+                route={ "/user/home"}
+            />
+        ),
+    },
+    {
+        key: "settings",
+        label: (
+            <DropdownItem
+                itemKey="settings"
+                label="Settings "
+                icon={<SettingOutlined  style={{ fontSize: "18px" }}/>}
+                withArrow
+                route={ ""}
+            />
+        ),
+    },
+    {
+        key: "notification",
+        label: (
+            <DropdownItem
+                itemKey="notification"
+                label="Notification"
+                icon={<NotificationOutlined style={{ fontSize: "18px" }} />}
+                withArrow
+                route={ ""}
+            />
+        ),
+    },
+    {
+        key: "savedJobs",
+        label: (
+            <DropdownItem
+                itemKey="savedJobs"
+                label="Saved Jobs"
+                icon={<SaveOutlined style={{ fontSize: "18px" }}/>}
+                withArrow
+                route={ ""}
+            />
+        ),
+    },
+    {
+        key: "helpCenter",
+        label: (
+            <DropdownItem
+                itemKey="helpCenter"
+                label="Help Center"
+                icon={<QuestionCircleOutlined style={{ fontSize: "18px" }}/>}
+                withArrow
+                route={""}
+            />
+        ),
+    },
+    {
+        key: "logOut",
+        label: (
+            <DropdownItem
+                itemKey="logOut"
+                label="Logout"
+                icon={<LogoutOutlined style={{ fontSize: "18px" }}/>}
+                className={"flex items-center justify-center"}
+            />
+        ),
     }
-]
+];
 
 const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) => {
     const navigate = useNavigate();
@@ -36,13 +102,13 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
         <div className="flex items-center justify-between space-x-6">
             <div className="hidden lg:block">
                 <Row
-                    gutter={{xs: 16, sm: 14}}
+                    gutter={{ xs: 16, sm: 14 }}
                     className="items-center justify-evenly space-x-2 font-sans">
                     {menuItems.map((item) => {
                         const isActive = activeItem === item.key;
                         return (
                             <Col
-                                xs={{span: 3, offset: 1}}
+                                xs={{ span: 3, offset: 1 }}
                                 className={`flex items-center text-xm text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
                                 key={item.key}
                                 onClick={() => {
@@ -68,15 +134,15 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
             </div>
             <div className="relative text-xs p-3 rounded-full bg-neutral-200">
                 <Dropdown
-                    menu={{items}}
+                    menu={{ items }}
                     placement="bottom"
                     arrow
                 >
                     <div className="flex items-center justify-center">
-                        <UilUser/>
+                        <UserOutlined style={{ fontSize: "24px" }} />
                         <span
                             className="absolute bottom-1 right-0 flex items-center justify-center p-1 font-semibold rounded-full bg-white shadow-lg">
-                            <DownOutlined style={{fontSize: "10px"}}/>
+                            <DownOutlined style={{ fontSize: "10px" }} />
                         </span>
                     </div>
                 </Dropdown>
