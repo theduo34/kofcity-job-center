@@ -2,6 +2,7 @@ import { Col, Row } from "antd";
 import { withBaseLayout } from "../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import {LikeOutlined, NotificationOutlined, SaveOutlined, StarOutlined, UserOutlined} from "@ant-design/icons";
 import { useState } from "react";
+import MyProfile from "./components/MyProfile.tsx";
 
 interface UserProfileTabProps {
     key: string;
@@ -22,7 +23,7 @@ const UserProfile = () => {
             key: "myProfile",
             label: "My Profile",
             icon: <UserOutlined />,
-            children: "Hey my profile",
+            children: <MyProfile/>,
         },
         {
             key: "featuredJobs",
@@ -52,8 +53,8 @@ const UserProfile = () => {
 
     return (
         <Row>
-           <Col span={24}>
-               <Col span={24} className="flex items-center w-full h-16 bg-kjcBtn-950">
+           <Col span={24} className={""}>
+               <Col span={24} className="flex items-center w-full h-16 bg-kjcBtn-950 px-4 md:px-0">
                    <Col
                        xs={{span: 24}}
                        sm={{span: 24}}
@@ -88,7 +89,7 @@ const UserProfile = () => {
                    xs={{span: 24}}
                    sm={{span: 24}}
                    md={{span: 20, offset: 2}}
-                   className={"py-4"}
+                   className={"py-4 px-4 md:px-0"}
                >
                    <div className="items-center leading-normal">
                        {UserProfileTab.map((item) => (
