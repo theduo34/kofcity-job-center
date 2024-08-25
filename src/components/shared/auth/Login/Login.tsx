@@ -1,49 +1,56 @@
-import { Col, Form, FormProps, Row, Checkbox, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import {Col, Form, Row, Checkbox, message, FormProps} from "antd";
+import {Link, useNavigate} from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
 import KjcButton from "../../../../builders/KjcButton";
 import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
-import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
-import { auth, db } from "../../../../utils/firebase/firebase.ts";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
+import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout";
+import {ACCOUNT_REGISTRATION_ROUTE_PATH, REGISTRATION_ROUTE_PATH,} from "../../registration/RegistrationRoutes.constants";
+import { doSignInWithEmailAndPassword, doSignInWithGoogle,} from "../../../../utils/firebase/auth";
+import { useState } from "react";
+import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
 import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
-import {
-    ACCOUNT_REGISTRATION_ROUTE_PATH,
-    REGISTRATION_ROUTE_PATH
-} from "../../registration/RegistrationRoutes.constants.ts";
 
 type FieldType = {
-    email?: string;
-    password?: string;
-    remember?: boolean;
+    email: string;
+    password: string;
+    remember: boolean;
 };
 
 const Login = () => {
+    // const { userLoggedIn, loading } = useAuth();
     const [form] = Form.useForm();
+    const [isSigningIn, setIsSigningIn] = useState(false);
     const navigate = useNavigate();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, formData.email!, formData.password!);
-            const user = userCredential.user;
+        if (!isSigningIn) {
+            setIsSigningIn(true);
+            try {
+                await doSignInWithEmailAndPassword(formData.email, formData.password);
+                navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
+                message.success("Successfully logged in!");
+            } catch (error) {
+                message.error("Login failed. Please check your credentials and try again.");
+            } finally {
+                setIsSigningIn(false);
 
-            const userDocRef = doc(db, "users", user.uid);
-            const userDoc = await getDoc(userDocRef);
-
-            if (userDoc.exists()) {
-                const userUUID = userDoc.data()?.uuid;
-                if (userUUID) {
-                    navigate(`${USER_ROUTE_PATH}${userUUID}${DASHBOARD_ROUTES_PATH}`);
-                }
-            }  else {
-                message.error("User does not exist!");
             }
-            form.resetFields();
-        } catch (error) {
-            message.error("Invalid email or password");
+        }
+    };
+
+    const onGoogleSignIn = async () => {
+        if (!isSigningIn) {
+            setIsSigningIn(true);
+            try {
+                await doSignInWithGoogle();
+                navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
+                message.success("Successfully loggedIn")
+            } catch (err) {
+                message.error("Google Sign-In failed. Please try again.");
+            } finally {
+                setIsSigningIn(false);
+            }
         }
     };
 
@@ -56,8 +63,7 @@ const Login = () => {
             <Row style={{ minHeight: "100vh" }} className={"bg-white"}>
                 <Col span={24}>
                     <div className="hidden md:flex w-full relative h-[400px] bg-kjcBtn-200 border-b-2 border-b-gray-300"></div>
-                    <div
-                        className="absolute w-full max-w-4xl px-0 md:px-16 z-10 bg-white shadow-lg"
+                    <div className="absolute w-full max-w-4xl px-0 md:px-16 z-10 bg-white shadow-lg"
                         style={{
                             top: "150px",
                             left: "50%",
@@ -74,9 +80,12 @@ const Login = () => {
                                         <div className="items-center space-y-4">
                                             <Link to={`${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`}>
                                                 <h3 className={"p-2 text-center bg-kjcBtn-50 text-sm border-2 border-neutral-200 cursor-pointer hover:font-semibold hover:underline hover:bg-kjcBtn-200 rounded-md"}>
-                                                   Don't Have an Account Yet? <span>Sign up</span></h3>
+                                                    Don't Have an Account Yet? <span>Sign up</span>
+                                                </h3>
                                             </Link>
-                                            <h1 className={"font-semibold text-2xl capitalize"}>Please Log in</h1>
+                                            <h1 className={"font-semibold text-2xl capitalize"}>
+                                                Please Log in
+                                            </h1>
                                         </div>
                                     </div>
                                     <div className="flex items-start mt-2">
@@ -84,34 +93,35 @@ const Login = () => {
                                             form={form}
                                             name="basic"
                                             className="w-full"
-                                            initialValues={{remember: false}}
+                                            initialValues={{ remember: false }}
                                             onFinish={onFinish}
                                             onFinishFailed={onFinishFailed}
                                             autoComplete="off"
                                         >
-                                        <div className="mb-4">
+                                            <div className="mb-4">
                                                 <label htmlFor="email">Email</label>
-                                                <KjcInput
-                                                    label=""
+                                                <Form.Item
                                                     name="email"
-                                                    className="mt-1"
                                                     rules={[
-                                                        {required: true, message: "Please input your email!"},
-                                                        {type: "email", message: "Please input a valid email"},
+                                                        { required: true, message: "Please input your email!" },
+                                                        { type: "email", message: "Please input a valid email" },
                                                     ]}
-                                                />
+                                                >
+                                                    <KjcInput />
+                                                </Form.Item>
                                             </div>
 
                                             <div className="mb-4">
                                                 <label htmlFor="password">Password</label>
-                                                <KjcPasswordInput
+                                                <Form.Item
                                                     name="password"
-                                                    className="mt-1"
                                                     rules={[
-                                                        {required: true, message: "Please input your password!"},
-                                                        {min: 8, message: "Password must be at least 8 characters."},
+                                                        { required: true, message: "Please input your password!" },
+                                                        { min: 8, message: "Password must be at least 8 characters." },
                                                     ]}
-                                                />
+                                                >
+                                                    <KjcPasswordInput />
+                                                </Form.Item>
                                             </div>
 
                                             <div className="mb-4 flex justify-between">
@@ -122,7 +132,10 @@ const Login = () => {
                                                 >
                                                     <Checkbox>Remember me</Checkbox>
                                                 </Form.Item>
-                                                <Link to={'/auth/forgot-password'} className="text-neutral-800 text-xs">
+                                                <Link
+                                                    to={"/auth/forgot-password"}
+                                                    className="text-neutral-800 text-xs"
+                                                >
                                                     Forgot Password
                                                 </Link>
                                             </div>
@@ -138,9 +151,23 @@ const Login = () => {
                                                     </KjcButton>
                                                 </Form.Item>
                                             </div>
+                                            <div className="mb-4">
+                                                <KjcButton
+                                                    type="primary"
+                                                    className="w-full rounded-md py-4 bg-white font-semibold text-black  text-lg ease-in-out"
+                                                    onClick={onGoogleSignIn}
+                                                >
+                                                   Continue with Google
+                                                </KjcButton>
+                                            </div>
                                             <div>
-                                                <p>By continuing, you agree to Kofcity Job Center's Terms of Use and Privacy Policy. You consent to receive job recommendations, featured job alerts, and updates via email. You can unsubscribe at any time by following the instructions in our emails or updating your communication preferences."
-
+                                                <p>
+                                                    By continuing, you agree to Kofcity Job Center's Terms of
+                                                    Use and Privacy Policy. You consent to receive job
+                                                    recommendations, featured job alerts, and updates via email.
+                                                    You can unsubscribe at any time by following the
+                                                    instructions in our emails or updating your communication
+                                                    preferences.
                                                 </p>
                                             </div>
                                         </Form>

@@ -12,7 +12,7 @@ export const getNavHeaderAuthBtn = (navigate: (path: string) => void): NavHeader
         {
             label: NAV_HEADER_AUTH_BUTTONS.JOIN_NOW,
             onClick:() => navigate('/account/registration'),
-            className:" rounded bg-kjcBtn-400 leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 hover:text-white submitBtnsHover"
+            className:" rounded bg-kjcBtn-900 leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 hover:text-white submitBtnsHover"
         },
         {
             label: NAV_HEADER_AUTH_BUTTONS.SIGN_IN,
