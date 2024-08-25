@@ -24,7 +24,7 @@ const ExtraLargeFilterListedJob  = (props: bookmarkedStateProps) => {
                                 className={`p-8 mb-4 rounded-lg bg-white space-y-8 cursor-pointer ${
                                     selectedJobKey === job.key ? "border-2 border-neutral-400" : ""
                                 }`}
-                                onClick={() => handleShowDescription(job.key)}
+                                onClick={() => handleShowDescription(job.key as string)}
                             >
                                 <div className="flex items-center justify-between">
                                     <p className="flex items-center space-x-2">
@@ -34,10 +34,10 @@ const ExtraLargeFilterListedJob  = (props: bookmarkedStateProps) => {
                                     <p
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            props.toggleBookmark(job.key);
+                                            props.toggleBookmark(job.key as string);
                                         }}
                                     >
-                                        {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
+                                        {props.bookmarkedJob[job.key as string] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
                                     </p>
                                 </div>
                                 <div className="items-center">
@@ -92,7 +92,7 @@ const ExtraLargeFilterListedJob  = (props: bookmarkedStateProps) => {
                                         className="flex absolute top-4 right-4"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            props.toggleBookmark(job.key);
+                                            props.toggleBookmark(job.key as string);
                                         }}
                                     >
                                         {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}

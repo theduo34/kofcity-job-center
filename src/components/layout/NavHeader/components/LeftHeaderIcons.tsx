@@ -29,7 +29,7 @@ const items: MenuProps["items"] = [
                 label="Profile"
                 icon={<UserAddOutlined style={{ fontSize: "18px" }}/>}
                 withArrow
-                route={ "/user/home"}
+                route={ "/user/profile"}
             />
         ),
     },
@@ -136,7 +136,7 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                 <Dropdown
                     menu={{ items }}
                     placement="bottom"
-                    arrow
+                    trigger={['click']}
                 >
                     <div className="flex items-center justify-center">
                         <UserOutlined style={{ fontSize: "24px" }} />

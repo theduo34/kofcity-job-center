@@ -25,7 +25,7 @@ const PostJobSection: React.FC<PostJobSectionProps> = ({className, children}) =>
     }
     return(
         <>
-            <div className="w-full flex flex-row min-h-screen">
+            <div className="w-full flex flex-row min-h-screen p-4 md:p-0">
 
                 {/*side bar*/}
                 <div className={`bg-kjcBtn-950 text-white hidden lg:flex lg:w-[30%] xl:w-[15%]`}>
