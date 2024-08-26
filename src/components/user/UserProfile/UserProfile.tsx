@@ -3,6 +3,10 @@ import { withBaseLayout } from "../../layout/hoc/WithBaseLayout/withBaseLayout.t
 import {LikeOutlined, NotificationOutlined, SaveOutlined, StarOutlined, UserOutlined} from "@ant-design/icons";
 import { useState } from "react";
 import MyProfile from "./components/MyProfile.tsx";
+import RecommendedJobs from "./components/RecommendedJobs.tsx";
+import SavedJobs from "./components/SavedJobs.tsx";
+import JobAlerts from "./components/JobAlerts.tsx";
+import FeaturedJobs from "./components/FeaturedJobs.tsx";
 
 interface UserProfileTabProps {
     key: string;
@@ -29,25 +33,25 @@ const UserProfile = () => {
             key: "featuredJobs",
             label: "Featured Jobs",
             icon: <StarOutlined />,
-            children: "Hey Featured Jobs",
+            children: <FeaturedJobs/>,
         },
         {
             key: "recommendedJobs",
             label: "Recommended Jobs",
             icon: <LikeOutlined />,
-            children: "Hey Recommended Jobs",
+            children: <RecommendedJobs/>,
         },
         {
             key: "savedJobs",
             label: "Saved Jobs",
             icon: <SaveOutlined />,
-            children: "Hey Saved Jobs",
+            children: <SavedJobs/>,
         },
         {
             key: "jobAlerts",
             label: "Job Alerts",
             icon: <NotificationOutlined/>,
-            children: "Hey Recommended Jobs",
+            children: <JobAlerts/>,
         },
     ];
 
