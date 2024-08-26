@@ -59,7 +59,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
                     <NavHeader/>
                 </KjcHeader>
 
-                <KjcContent className="items-center p-4 md:p-0"
+                <KjcContent className="items-center md:p-0"
                 >
                     { children }
                 </KjcContent>
