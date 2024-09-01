@@ -1,12 +1,21 @@
 import { Col, Row } from "antd";
 import { withBaseLayout } from "../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
-import { LikeOutlined, NotificationOutlined, SaveOutlined, StarOutlined, UserOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import {
+    LikeOutlined,
+    NotificationOutlined,
+    SaveOutlined,
+    SettingOutlined,
+    StarOutlined,
+    UserOutlined,
+    DownOutlined, UpOutlined,
+} from "@ant-design/icons";
+import React, { useState } from "react";
 import MyProfile from "./components/MyProfile.tsx";
 import RecommendedJobs from "./components/RecommendedJobs.tsx";
 import SavedJobs from "./components/SavedJobs.tsx";
 import JobAlerts from "./components/JobAlerts.tsx";
 import FeaturedJobs from "./components/FeaturedJobs.tsx";
+import Settings from "./components/Settings.tsx";
 
 interface UserProfileTabProps {
     key: string;
@@ -17,12 +26,18 @@ interface UserProfileTabProps {
 
 const UserProfile = () => {
     const [selectedItem, setSelectedItem] = useState<string>("myProfile");
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
     const handleItemSelected = (itemKey: string) => {
         setSelectedItem(itemKey);
+        setShowDropdown(false);
     };
 
-    const UserProfileTab: UserProfileTabProps[] = [
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+
+    const userProfileTab: UserProfileTabProps[] = [
         {
             key: "myProfile",
             label: "My Profile",
@@ -53,47 +68,92 @@ const UserProfile = () => {
             icon: <NotificationOutlined />,
             children: <JobAlerts />,
         },
+        {
+            key: "settings",
+            label: "Settings",
+            icon: <SettingOutlined />,
+            children: <Settings />,
+        },
     ];
+
 
     return (
         <Row>
-            <Col span={24} className="">
-                <Col span={24} className="flex items-center w-full h-16 bg-kjcBtn-950 px-4 md:px-0">
+            <Col span={24}>
+                {/*First inner col: tab section*/}
+                <Col span={24} className="flex items-center w-full py-4 bg-kjcBtn-950">
+                    {/* Mobile view: Show dropdown */}
                     <Col
                         xs={{ span: 24 }}
-                        sm={{ span: 24 }}
-                        md={{ span: 20, offset: 2 }}
-                        className="flex overflow-x-auto scroll-snap-x-mandatory"
+                        className="flex md:hidden w-full relative px-4"
                     >
-                        <div className="flex items-center space-x-4 min-w-max">
-                            {UserProfileTab.map((item) => {
-                                const isActive = selectedItem === item.key;
-                                return (
-                                    <div
-                                        key={item.key}
-                                        onClick={() => handleItemSelected(item.key)}
-                                        className={`flex items-center cursor-pointer px-4 scroll-snap-start relative ${isActive ? 'text-white' : 'text-gray-400'}`}
-                                    >
-                                        <span className="text-xl mr-2">{item.icon}</span>
-                                        <span className="text-sm">{item.label}</span>
-                                        <span
-                                            className={`absolute -bottom-2 left-0 w-full h-1 ${isActive ? 'bg-white' : 'bg-transparent'} transition-transform duration-300`}
-                                            style={{ transform: isActive ? 'scaleX(1)' : 'scaleX(0)' }}
-                                        ></span>
-                                    </div>
-                                );
-                            })}
+                        <div
+                            className="w-full flex items-center cursor-pointer py-2 bg-kjcBtn-950 text-white"
+                            onClick={toggleDropdown}
+                        >
+                            <span className="text-xl mr-2">
+                                {userProfileTab.find((item) => item.key === selectedItem)?.icon}
+                            </span>
+                            <span className="text-sm flex-1">
+                                {userProfileTab.find((item) => item.key === selectedItem)?.label}
+                            </span>
+                            {showDropdown ? <UpOutlined className="ml-2" /> : <DownOutlined className="ml-2" />}
                         </div>
+                        {showDropdown && (
+                            <div
+                                className="absolute top-12 px-4  left-0 w-full bg-kjcBtn-950 shadow-md z-10"
+                            >
+                                {
+                                    userProfileTab.filter(item => item.key !== selectedItem)
+                                        .map(item => (
+                                            <div
+                                                key={item.key}
+                                                onClick={() => handleItemSelected(item.key)}
+                                                className="flex items-center cursor-pointer py-2 hover:bg-kjcBtn-750 text-white w-full border-t-2 border-bg-white"
+                                            >
+                                                <span className="text-xl mr-2">{item.icon}</span>
+                                                <span className="text-sm">{item.label}</span>
+                                            </div>
+                                        ))
+                                }
+                            </div>
+                        )}
+                    </Col>
+
+                    {/* Medium screen and above: Show all tabs */}
+                    <Col
+                        md={{span: 20, offset: 2}}
+                        className="hidden md:flex lg:space-x-4"
+                    >
+                        {userProfileTab.map((item) => {
+                            const isActive = selectedItem === item.key;
+                            return (
+                                <div
+                                    key={item.key}
+                                    onClick={() => handleItemSelected(item.key)}
+                                    className={`flex items-center cursor-pointer px-4 relative ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                                >
+                                    <span className="text-xl mr-2 block md:hidden lg:block">{item.icon}</span>
+                                    <span className="text-sm ">{item.label}</span>
+                                    <span
+                                        className={`absolute -bottom-2 left-0 w-full h-1 ${isActive ? 'bg-white' : 'bg-transparent'} transition-transform duration-300`}
+                                        style={{ transform: isActive ? 'scaleX(1)' : 'scaleX(0)' }}
+                                    ></span>
+                                </div>
+                            );
+                        })}
                     </Col>
                 </Col>
+
+                {/* Second inner col: content */}
                 <Col
                     xs={{ span: 24 }}
                     sm={{ span: 24 }}
-                    md={{ span: 20, offset: 2 }}
-                    className={"py-4 px-4 md:px-0"}
+                    lg={{ span: 20, offset: 2 }}
+                    className={"py-4 px-4 lg:px-0"}
                 >
                     <div className="items-center leading-normal">
-                        {UserProfileTab.map((item) => (
+                        {userProfileTab.map((item) => (
                             <div
                                 key={item.key}
                                 style={{ display: selectedItem === item.key ? "block" : "none" }}

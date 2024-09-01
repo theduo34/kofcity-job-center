@@ -4,7 +4,7 @@ const MyProfile = () => {
     return (
         <>
             <div>
-                <h1 className="text-xl font-semibold py-2 px-4 md:px-0">My Profile</h1>
+                <h1 className="text-xl font-semibold py-2 px-4 lg:px-0">My Profile</h1>
             </div>
             <div className="w-full flex flex-col md:flex-row items-start justify-between">
 
@@ -32,11 +32,6 @@ const MyProfile = () => {
                         <div>
                             <h4 className="f text-lg">Remote Opportunities</h4>
                             <h4 className=" text-lg">Remote Opportunities</h4>
-                            <h4 className=" text-lg">Remote Opportunities</h4>
-                            <h4 className=" text-lg">Remote Opportunities</h4>
-                            <h4 className=" text-lg">Remote Opportunities</h4>
-                            <h4 className=" text-lg">Remote Opportunities</h4>
-                            <h4 className="text-lg">Remote Opportunities</h4>
                         </div>
                     </div>
                 </div>
