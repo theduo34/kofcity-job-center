@@ -1,113 +1,108 @@
+import { Col, Form, Row, message, FormProps } from "antd";
+import { Link } from "react-router-dom";
 import KjcCard from "../../../../builders/KjcCard";
-import KjcImage from "../../../../builders/KjcImage";
-import {Form, FormProps} from "antd";
-import KjcInput from "../../../../builders/KjcInput";
-import {Link, useNavigate} from "react-router-dom";
 import KjcButton from "../../../../builders/KjcButton";
-
+import KjcInput from "../../../../builders/KjcInput";
+import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../AuthRoutes.constants.ts";
+import {withBaseLayout} from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 
 type FieldType = {
-    email?: string;
-}
-/**
- * Renders forgot password component.
- *
- * @return {JSX.Element} The rendered forgot password component.
- */
+    email: string;
+};
+
 const ForgotPassword = () => {
-    const navigate = useNavigate();
     const [form] = Form.useForm();
 
-    const handleOnLogoClick = () => {
-        navigate("")
-    }
-
-    const onFinish: FormProps<FieldType>["onFinish"] = () => {
-
+    const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
+        console.log(formData);
+        try {
+            message.success("Password reset instructions sent to your email.");
+        } catch (error) {
+            message.error("Failed to send reset instructions. Please try again.");
+        }
     };
 
-    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-        errorInfo) =>{
-        console.log("failed:", errorInfo);
+    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
+        message.error("Error occurred! Field required.");
     };
-
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="w-full max-w-md min-h-2/4 md:w-3/6 lg:w-2/6">
-                <KjcCard
-                    className="shadow-2xl"
-                >
-                    <div className="text-sm">
-                        <div className="flex flex-col justify-left mb-4">
-                            <KjcImage
-                                onClick={handleOnLogoClick}
-                                width={150}
-                                src={""}
-                                className="img-fluid w-32 bg-center mb-6"
-                                alt="Kjc Logo"
-                            />
-                            <div>
-                                <h3 className="mb-3 mt-0 text-2xl font-medium leading-tight text-jybek-600">
-                                   Forgot Password
-                                </h3>
-                                <hr className="mb-3"/>
-                                <p className="text-muted mt-3">
-                                    Enter Your Email to Recover Your Account Password and Get Back on Track!
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start mt-2">
-                            <Form
-                                form={form}
-                                name="basic"
-                                className="w-full"
-                                initialValues={{remember: true}}
-                                onFinish={onFinish}
-                                onFinishFailed={onFinishFailed}
-                                autoComplete="off"
-                            >
-                                <div className="mb-4">
-                                    <label htmlFor="">Email</label>
-                                    <KjcInput
-                                        label=""
-                                        name="email"
-                                        className="mt-1"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: "Please input your email",
-                                            },
-                                            {
-                                                type: "email",
-                                                message: "Please input valid email"
-                                            },
-                                        ]}
-                                    />
-                                </div>
-
-                                <div className="mb-4">
-                                    <Form.Item>
-                                        <KjcButton
-                                            type='primary'
-                                            htmlType="submit"
-                                            className="inline-block w-full border-0 rounded bg-kjcBtn-400 px-7 pb-1 pt-1 text-xs font-medium uppercase leading-normal text-white ease-in-out hover:bg-kjcBtn-500 focus:bg-kjcBtn-500 active:bg-kjcBtn-600 hover:shadow-kjcBtn-500 focus:shadow-kjcBtn-500 active:shadow-kjcBtn-600 focus:outline-none focus:ring-0 submitBtnsHover"
+        <>
+            <Row style={{ minHeight: "100vh" }} className={"bg-white"}>
+                <Col span={24}>
+                    <div className="hidden md:flex w-full relative h-[400px] bg-kjcBtn-200 border-b-2 border-b-gray-300"></div>
+                    <div className="absolute w-full max-w-4xl px-0 md:px-16 z-10 bg-white shadow-lg"
+                         style={{
+                             top: "150px",
+                             left: "50%",
+                             transform: "translateX(-50%)",
+                             display: "flex",
+                             justifyContent: "center",
+                             alignItems: "center",
+                         }}
+                    >
+                        <div className="w-full md:w-3/5 py-8">
+                            <KjcCard>
+                                <div className="text-md md:text-lg space-y-4">
+                                    <div className="items-center space-y-4">
+                                        <h1 className={"font-semibold text-2xl capitalize"}>
+                                            Forgot Password
+                                        </h1>
+                                        <p>Enter Your Email to Reset Your Password and Regain Access!</p>
+                                    </div>
+                                    <div className="flex items-start mt-2">
+                                        <Form
+                                            form={form}
+                                            name="basic"
+                                            className="w-full"
+                                            initialValues={{ remember: false }}
+                                            onFinish={onFinish}
+                                            onFinishFailed={onFinishFailed}
+                                            autoComplete="off"
                                         >
-                                            Continue
-                                        </KjcButton>
-                                    </Form.Item>
-                                </div>
+                                            <div className="mb-4">
+                                                <label htmlFor="email">Email</label>
+                                                <Form.Item
+                                                    name="email"
+                                                    rules={[
+                                                        { required: true, message: "Please input your email!" },
+                                                        { type: "email", message: "Please input a valid email" },
+                                                    ]}
+                                                >
+                                                    <KjcInput />
+                                                </Form.Item>
+                                            </div>
 
-                                <div className="text-neutral-800 text-center text-xs">
-                                    Remembered your password? <span className="capitalize font-bold text-jybekBtn-600 "> <Link
-                                    to={'/auth/login'} className='CustomHover'>Sign In</Link> </span>
+                                            <div className="mb-4">
+                                                <Form.Item>
+                                                    <KjcButton
+                                                        type="primary"
+                                                        htmlType="submit"
+                                                        className="w-full rounded-md bg-kjcBtn-200 py-4 font-semibold text-black text-lg ease-in-out"
+                                                    >
+                                                        Continue
+                                                    </KjcButton>
+                                                </Form.Item>
+                                            </div>
+
+                                            <div className="text-neutral-800 text-center text-xs">
+                                                Remembered your password?
+                                                <span className="capitalize font-bold text-jybekBtn-600">
+                                                    <Link to={`${AUTH_ROUTE_PATH}${LOGIN_PATH}`} className='CustomHover'>
+                                                        Sign In
+                                                    </Link>
+                                                </span>
+                                            </div>
+                                        </Form>
+                                    </div>
                                 </div>
-                            </Form>
+                            </KjcCard>
                         </div>
                     </div>
-                </KjcCard>
-            </div>
-        </div>
+                </Col>
+            </Row>
+        </>
     );
-}
-export default ForgotPassword
+};
+
+export default withBaseLayout(ForgotPassword);

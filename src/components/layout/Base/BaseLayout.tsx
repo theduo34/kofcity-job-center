@@ -13,17 +13,13 @@ import {
     ACCOUNT_REGISTRATION_ROUTE_PATH,
     REGISTRATION_ROUTE_PATH
 } from "../../shared/registration/RegistrationRoutes.constants.ts";
-import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../shared/auth/AuthRoutes.constants.ts";
+import {AUTH_ROUTE_PATH, FORGOT_PASSWORD_PATH, LOGIN_PATH} from "../../shared/auth/AuthRoutes.constants.ts";
 
 export interface BaseLayoutProps {
     children: React.ReactNode
 }
 
-/**
- * Renders the base layout component.
- *
- * @return {JSX.Element} The rendered base layout component.
- */
+
 const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
     const [showMainFooter, setShowMainFooter] = useState<boolean>(false);
     const path = useLocation();
@@ -34,10 +30,16 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({children}) => {
 
         const registrationRoute = `${ACCOUNT_REGISTRATION_ROUTE_PATH}${REGISTRATION_ROUTE_PATH}`
         const loginRoute = `${AUTH_ROUTE_PATH}${LOGIN_PATH}`
+        const forgotPasswordRoute = `${AUTH_ROUTE_PATH}${FORGOT_PASSWORD_PATH}`
+
         if(path.pathname.startsWith(userRoute) || path.pathname === accountRoute) {
             setShowMainFooter(true);
         }
         if(path.pathname === registrationRoute || path.pathname === loginRoute) {
+            setShowMainFooter(true)
+        }
+
+        if(path.pathname === forgotPasswordRoute ) {
             setShowMainFooter(true)
         }
     }, [path.pathname]);
