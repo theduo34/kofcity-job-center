@@ -10,6 +10,8 @@ import { doSignInWithEmailAndPassword, doSignInWithGoogle,} from "../../../../ut
 import { useState } from "react";
 import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
 import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
+import KjcImage from "../../../../builders/KjcImage/KjcImage.tsx";
+import Google from '/assets/images/third-party/Google.png'
 
 type FieldType = {
     email: string;
@@ -154,11 +156,14 @@ const Login = () => {
                                             <div className="mb-4">
                                                 <KjcButton
                                                     type="primary"
-                                                    className="w-full rounded-md py-4 bg-white font-semibold text-black  text-lg ease-in-out"
+                                                    className="w-full rounded-md py-4 bg-white font-semibold text-black border-2 border-neutral-300 text-lg ease-in-out flex items-center justify-center"
                                                     onClick={onGoogleSignIn}
-                                                >
-                                                   Continue with Google
+                                                ><span className="flex items-center mr-2">
+                                                    <KjcImage src={Google} alt="Google" width={18} />
+                                                </span>
+                                                    Continue with Google
                                                 </KjcButton>
+
                                             </div>
                                             <div>
                                                 <p>

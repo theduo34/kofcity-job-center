@@ -5,11 +5,12 @@ import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import { Rule } from "postcss";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
-import {GoogleOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
 import {doCreateUserWithEmailAndPassword, doSignInWithGoogle} from "../../../../utils/firebase/auth.ts";
 import {useState} from "react";
+import Google from '/assets/images/third-party/Google.png'
+import KjcImage from "../../../../builders/KjcImage";
 
 type FieldType = {
     email?: string;
@@ -82,13 +83,20 @@ const UserRegistration = () => {
                                         className="items-center"
                                         onClick={onGoogleSignIn}
                                     >
-                                        <h3 className={"font-semibold text-center text-lg p-3 border-2 border-neutral-200 cursor-pointer hover:bg-neutral-300 rounded-lg"}>
-                                            <span><GoogleOutlined/></span> Continue with Google
+                                        <h3
+                                            className={
+                                                "font-semibold text-center p-2 border-2 border-neutral-300 cursor-pointer hover:bg-neutral-300 rounded-lg flex items-center justify-center"
+                                            }
+                                        ><span className="flex items-center mr-2">
+                                            <KjcImage src={Google} alt="Google" width={18} className="mr-2"/>
+                                        </span>
+                                            Continue with Google
                                         </h3>
+
                                     </div>
                                     <div className="flex flex-col items-center mb-4">
                                         <p className="text-muted mt-3 text-pretty capitalize">
-                                          Or Sign up with email
+                                            Or Sign up with email
                                         </p>
                                     </div>
                                     <div className="flex items-start mt-2">

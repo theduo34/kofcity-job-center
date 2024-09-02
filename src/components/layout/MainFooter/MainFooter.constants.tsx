@@ -1,8 +1,5 @@
-import facebook from '/assets/images/social/facebook.png';
-import twitter from '/assets/images/social/twitter.png';
 import pinterest from '/assets/images/social/pinterest.png';
 import whatsapp from '/assets/images/social/whatsapp.png';
-import instagram from '/assets/images/social/instagram.png';
 import linkedIn from '/assets/images/social/linkedIn.png';
 
 export interface footerItemsProps {
@@ -174,12 +171,10 @@ export const getFooterItems = (navigate: (path: string) => void): footerItemsPro
 
 export const SOCIAL_MEDIA_ICONS={
     WHATSAPP: 'WhatsApp',
-    EMAIL: 'Email',
-    FACEBOOK: 'Facebook',
     TWITTER: 'Twitter',
-    INSTAGRAM: 'Instagram',
     LINKEDIN: 'Linkedin',
-    PINTEREST: "Pinterest"
+    PINTEREST: "Pinterest",
+    MEDUIM: 'Meduim'
 
 }
 
@@ -200,12 +195,9 @@ const handleTwitter = () => {
     window.open('https://twitter.com/', '_blank')
 
 }
-//instagram
-const handleInstagram = () => {
-    window.open('https://www.instagram.com/', '_blank')
-}
+
 //facebook
-const handleFacebook = () => {
+const handleMeduim = () => {
     window.open('https://www.facebook.com/', '_blank')
 
 
@@ -218,14 +210,9 @@ const handleLinkedIn = () => {
 
 export const getSocialIcons= (): socialMediaIconsProps[] => [
     {
-        icon: facebook,
-        onClick: handleFacebook,
-        key: SOCIAL_MEDIA_ICONS.FACEBOOK
-    },
-    {
-        icon: instagram,
-        onClick: handleInstagram,
-        key: SOCIAL_MEDIA_ICONS.INSTAGRAM
+        icon: "",
+        onClick: handleMeduim,
+        key: SOCIAL_MEDIA_ICONS.MEDUIM
     },
     {
         icon: whatsapp,
@@ -238,7 +225,7 @@ export const getSocialIcons= (): socialMediaIconsProps[] => [
         key:SOCIAL_MEDIA_ICONS.LINKEDIN
     },
     {
-        icon: twitter,
+        icon: "",
         onClick: handleTwitter,
         key: SOCIAL_MEDIA_ICONS.TWITTER
     },
