@@ -14,4 +14,5 @@ export interface LeftHeaderIconsInterface{
     icon?: React.ReactNode,
     key?: string
     onClick?: () => void
+    children?: React.ReactNode,
 }

@@ -16,6 +16,13 @@ import SavedJobs from "./components/SavedJobs.tsx";
 import JobAlerts from "./components/JobAlerts.tsx";
 import FeaturedJobs from "./components/FeaturedJobs.tsx";
 import Settings from "./components/Settings.tsx";
+import {useNavigate} from "react-router-dom";
+import {
+    USER_FEATURED_JOBS_PATH, USER_JOB_ALERTS_PATH,
+    USER_MY_PROFILE_PATH,
+    USER_PROFILE_PATH, USER_RECOMMENDED_JOBS_PATH,
+    USER_ROUTE_PATH, USER_SAVED_JOBS_PATH, USER_SETTINGS_PATH
+} from "../UserRoutes.constants.ts";
 
 interface UserProfileTabProps {
     key: string;
@@ -28,9 +35,29 @@ const UserProfile = () => {
     const [selectedItem, setSelectedItem] = useState<string>("myProfile");
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
+    const navigate = useNavigate();
+
     const handleItemSelected = (itemKey: string) => {
         setSelectedItem(itemKey);
         setShowDropdown(false);
+
+        let path = ''
+        if (itemKey === "myProfile") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_MY_PROFILE_PATH}`
+        }else if (itemKey === "featuredJobs") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_FEATURED_JOBS_PATH}`
+        } else if (itemKey === "recommendedJobs") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_RECOMMENDED_JOBS_PATH}`
+        } else if (itemKey === "savedJobs") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_SAVED_JOBS_PATH}`
+        } else if (itemKey === "jobAlerts") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_JOB_ALERTS_PATH}`
+        } else if (itemKey === "settings") {
+            path = `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_SETTINGS_PATH}`
+        }
+
+
+        navigate(path)
     };
 
     const toggleDropdown = () => {
