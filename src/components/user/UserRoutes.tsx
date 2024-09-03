@@ -20,7 +20,7 @@ const UserRoutes = () => {
                     <Route path={`${USER_ROUTE_PATH_JOB_LISTINGS}/*`} element={<JobListingsRoutes />} />
                     <Route path={USER_ROUTE_PATH_TRENDS} element={<IndustryTrends />} />
                     <Route path={`${USER_ROUTE_PATH_POST_JOBS}/*`} element={<PostJobsRoutes/>} />
-                    <Route path={`${USER_PROFILE_PATH}`} element={<UserProfile/>}/>
+                    <Route path={`${USER_PROFILE_PATH}/*`} element={<UserProfile/>}/>
                 </Route>
             </Routes>
         </>
