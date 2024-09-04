@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../shared/auth/AuthRoutes.constants.ts";
 import {
     ACCOUNT_REGISTRATION_ROUTE_PATH,
@@ -6,7 +5,6 @@ import {
 } from "../../shared/registration/RegistrationRoutes.constants.ts";
 import {NavHeaderAuthBtnInterface} from "./NavHeader.interface.ts";
 
-//nav-header auth btn constants
 const NAV_HEADER_AUTH_BUTTONS = {
     JOIN_NOW: "Join Now",
     SIGN_IN: "Sign in",

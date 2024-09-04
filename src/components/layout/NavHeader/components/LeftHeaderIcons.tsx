@@ -29,7 +29,7 @@ const LeftHeaderIcons = () => {
     return (
         <div className="flex items-center justify-between space-x-6">
             <div className="flex items-center justify-center space-x-1 cursor-pointer" onClick={showModal}>
-                <LogOut />Logout
+                <LogOut size={20} />Logout
             </div>
             <div className="relative text-xs p-3 rounded-full bg-neutral-200">
                 <div className="flex items-center justify-center"
