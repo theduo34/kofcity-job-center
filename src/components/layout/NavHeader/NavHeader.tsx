@@ -72,7 +72,7 @@ const NavHeader = () => {
 
                     <div className="flex items-center justify-end">
                         {
-                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />
+                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons/>
 
                         }
                     </div>
