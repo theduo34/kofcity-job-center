@@ -1,7 +1,7 @@
 import {LeftHeaderIconsInterface, NavHeaderAuthBtnInterface} from "./NavHeader.interface.ts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-import { UilBookmark, UilChat, UilBell} from '@iconscout/react-unicons'
+import { UilBookmark, UilBell} from '@iconscout/react-unicons'
 import KjcBadge from "../../../builders/KjcBadge";
 import {
     USER_JOB_ALERTS_PATH,
@@ -44,25 +44,25 @@ const LEFT_HEADER_ICONS = {
     Account: "Account",
 }
 export const getLeftHeaderIcons = (navigate: (path: string) => void): LeftHeaderIconsInterface[] => [
-    {
-        key: LEFT_HEADER_ICONS.SAVED,
-        label: LEFT_HEADER_ICONS.SAVED,
-        icon: <KjcBadge size="small" count={5}><UilBookmark/></KjcBadge>,
-        onClick: ()  => navigate( `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_SAVED_JOBS_PATH}`),
-        children: <SavedJobs />
-    },
+    // {
+    //     key: LEFT_HEADER_ICONS.SAVED,
+    //     label: LEFT_HEADER_ICONS.SAVED,
+    //     icon: <KjcBadge size="small" count={5}><UilBookmark/></KjcBadge>,
+    //     onClick: ()  => navigate( `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_SAVED_JOBS_PATH}`),
+    //     children: <SavedJobs />
+    // },
     // {
     //     key: LEFT_HEADER_ICONS.CHATBOT,
     //     label: LEFT_HEADER_ICONS.CHATBOT,
     //     icon: <UilChat/>,
     //     onClick: ()  => navigate("")
     // },
-    {
-        key: LEFT_HEADER_ICONS.NOTIFICATION,
-        label: LEFT_HEADER_ICONS.NOTIFICATION,
-        icon: <KjcBadge size="small" count={2}><UilBell/></KjcBadge>,
-        onClick: ()  => navigate(`${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_JOB_ALERTS_PATH}`),
-        children: <JobAlerts />
-    },
+    // {
+    //     key: LEFT_HEADER_ICONS.NOTIFICATION,
+    //     label: LEFT_HEADER_ICONS.NOTIFICATION,
+    //     icon: <KjcBadge size="small" count={2}><UilBell/></KjcBadge>,
+    //     onClick: ()  => navigate(`${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_JOB_ALERTS_PATH}`),
+    //     children: <JobAlerts />
+    // },
 
 ]

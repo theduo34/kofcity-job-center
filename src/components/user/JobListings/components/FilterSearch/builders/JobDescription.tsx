@@ -53,10 +53,9 @@ const JobDescription = () => {
 
                     <div className={"items-center p-4 space-y-4"}>
                         <h1 className={"font-normal text-2xl"}>props.companyName</h1>
-                        <p>Hey there i am fucking doing well in coding what the hell you doing and you thinking you
-                            doing fantacticc amazing the same then let's keep going or harder. Heaads up and let's do
-                            some magic</p>
+                        <p>description</p>
                     </div>
+                    
                 </div>
             </Col>
         </>

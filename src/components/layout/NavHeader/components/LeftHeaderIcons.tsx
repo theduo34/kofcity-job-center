@@ -1,11 +1,14 @@
 import { Col, Row, Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
-    DownOutlined,
+    DownOutlined, LogoutOutlined,
     UserOutlined
 } from "@ant-design/icons";
 import {getLeftHeaderIcons} from "../NavHeader.constants.tsx";
 import {USER_PROFILE_PATH, USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
+import { LogOut } from 'lucide-react';
+import KjcButton from "../../../../builders/KjcButton";
+
 
 type LeftHeaderIconsProps = {
     activeItem: string;
@@ -98,13 +101,13 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
         <div className="flex items-center justify-between space-x-6">
             <div className="hidden lg:block">
                 <Row
-                    gutter={{ xs: 16, sm: 14 }}
+                    gutter={{xs: 16, sm: 14}}
                     className="items-center justify-evenly space-x-2 font-sans">
                     {menuItems.map((item) => {
                         const isActive = activeItem === item.key;
                         return (
                             <Col
-                                xs={{ span: 3, offset: 1 }}
+                                xs={{span: 3, offset: 1}}
                                 className={`flex items-center text-xm text-kjc-950 font-semibold cursor-pointer ease-in-out hover:text-kjcBtn-900 active:text-kjcBtn-900 group ${isActive ? 'text-kjcBtn-900' : ''}`}
                                 key={item.key}
                                 onClick={() => {
@@ -128,6 +131,9 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                     })}
                 </Row>
             </div>
+            <div className="flex items-center justify-center space-x-1 cursor-pointer">
+                    <LogOut/>Logout
+            </div>
             <div className="relative text-xs p-3 rounded-full bg-neutral-200">
                 {/*<Dropdown*/}
                 {/*    menu={{ items }}*/}
@@ -142,8 +148,9 @@ const LeftHeaderIcons = ({ activeItem, setActiveItem }: LeftHeaderIconsProps) =>
                 {/*        </span>*/}
                 {/*    </div>*/}
                 {/*</Dropdown>*/}
+
                 <div className="flex items-center justify-center"
-                     onClick={ () => navigate(`${USER_ROUTE_PATH}${USER_PROFILE_PATH}`)}
+                     onClick={() => navigate(`${USER_ROUTE_PATH}${USER_PROFILE_PATH}`)}
                 >
                     <UserOutlined style={{fontSize: "24px"}}/>
                     <span

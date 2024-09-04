@@ -29,10 +29,10 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                                 <p
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        props.toggleBookmark(job.key);
+                                        props.toggleBookmark(job.key as string);
                                     }}
                                 >
-                                    {props.bookmarkedJob[job.key] ? <Bookmark style={{fill: "black"}}/> : <Bookmark/>}
+                                    {props.bookmarkedJob[job.key as string] ? <Bookmark style={{fill: "black"}}/> : <Bookmark/>}
                                 </p></div>
                             <div className="items-center">
                                 <h1 className="text-xl text-balance font-semibold leading-normal">
