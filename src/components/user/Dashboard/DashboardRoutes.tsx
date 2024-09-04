@@ -1,4 +1,3 @@
-import React from "react";
 import {Outlet, Route, Routes} from "react-router-dom";
 import { DASHBOARD_COMPANY_SPOTLIGHT_ROUTES_PATH } from "./DashboardRoutes.constants.ts";
 import Dashboard from "./Dashboard.tsx";

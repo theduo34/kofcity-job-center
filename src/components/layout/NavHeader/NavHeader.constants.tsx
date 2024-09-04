@@ -51,12 +51,12 @@ export const getLeftHeaderIcons = (navigate: (path: string) => void): LeftHeader
         onClick: ()  => navigate( `${USER_ROUTE_PATH}${USER_PROFILE_PATH}${USER_SAVED_JOBS_PATH}`),
         children: <SavedJobs />
     },
-    {
-        key: LEFT_HEADER_ICONS.CHATBOT,
-        label: LEFT_HEADER_ICONS.CHATBOT,
-        icon: <UilChat/>,
-        onClick: ()  => navigate("")
-    },
+    // {
+    //     key: LEFT_HEADER_ICONS.CHATBOT,
+    //     label: LEFT_HEADER_ICONS.CHATBOT,
+    //     icon: <UilChat/>,
+    //     onClick: ()  => navigate("")
+    // },
     {
         key: LEFT_HEADER_ICONS.NOTIFICATION,
         label: LEFT_HEADER_ICONS.NOTIFICATION,

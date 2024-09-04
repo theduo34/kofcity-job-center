@@ -37,7 +37,7 @@ export const getCompanies = (): CompanySpotlightProps[] => [
         offers: ['Flexible Hours', 'Gym Memberships', 'Career Development']
     },
     {
-        id: 2,
+        id: 3,
         name: 'HealthPlus',
         logo: 'healthplus-logo.png',
         news: ['HealthPlus expands globally', 'HealthPlus wins industry award'],
@@ -49,7 +49,7 @@ export const getCompanies = (): CompanySpotlightProps[] => [
         offers: ['Flexible Hours', 'Gym Memberships', 'Career Development']
     },
     {
-        id: 2,
+        id: 4,
         name: 'HealthPlus',
         logo: 'healthplus-logo.png',
         news: ['HealthPlus expands globally', 'HealthPlus wins industry award'],
@@ -61,7 +61,7 @@ export const getCompanies = (): CompanySpotlightProps[] => [
         offers: ['Flexible Hours', 'Gym Memberships', 'Career Development']
     },
     {
-        id: 2,
+        id: 5,
         name: 'HealthPlus',
         logo: 'healthplus-logo.png',
         news: ['HealthPlus expands globally', 'HealthPlus wins industry award'],
