@@ -29,20 +29,21 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        const initializeUser = (user: User | null) => {
+            if (user) {
+                setCurrentUser(user);
+                setUserLoggedIn(true);
+            } else {
+                setCurrentUser(null);
+                setUserLoggedIn(false);
+            }
+            setLoading(false);
+        };
+
         const unsubscribe = onAuthStateChanged(auth, initializeUser);
         return () => unsubscribe();
     }, []);
 
-    const initializeUser = (user: User | null) => {
-        if (user) {
-            setCurrentUser(user);
-            setUserLoggedIn(true);
-        } else {
-            setCurrentUser(null);
-            setUserLoggedIn(false);
-        }
-        setLoading(false);
-    };
 
     const value = { currentUser, userLoggedIn, loading };
 

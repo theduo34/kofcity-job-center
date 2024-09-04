@@ -1,10 +1,12 @@
 import KjcButton from "../../../../../../builders/KjcButton/KjcButton.tsx";
 import { ArrowRight, Bookmark} from "lucide-react";
 import { getJobsRecommendation } from "../JobRecommendation.constants.tsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {EnvironmentOutlined} from "@ant-design/icons";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_JOB_LISTINGS} from "../../../../UserRoutes.constants.ts";
 
 const ListedJobs = () => {
+    const navigate = useNavigate();
     const jobsRecommendation = getJobsRecommendation();
     const smallDisplay = window.innerWidth <=1024
     return (
@@ -60,6 +62,7 @@ const ListedJobs = () => {
                                 </div>
                                 <div className="px-4 flex justify-between items-center">
                                     <KjcButton
+                                        onClick={ () => navigate('')}
                                         className={"w-full  py-6 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110  duration-300 "}
                                     >
                                         Apply Now
@@ -73,7 +76,7 @@ const ListedJobs = () => {
                     )
                     }
                 </div>
-                <Link to={""}>
+                <Link to={`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}`}>
                     <p className={"flex text-md text-semibold text-md text-white items-center float-start md:float-end cursor-pointer hover:underline hover:text-kjc-300"}>
                         <span className={"m-2"}>Find more jobs</span> <ArrowRight/>
                     </p>

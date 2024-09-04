@@ -23,7 +23,7 @@ const MainFooter: React.FC = () => {
                     >
                         {footerItems.map((item) => (
                                <Collapse.Panel
-                                   key={item.key}
+                                   key={item.key as string}
                                    header={
                                        <h1 className={"text-kjcBtn-500 font-semibold"}>{item.label}</h1>
                                    }
@@ -72,8 +72,9 @@ const MainFooter: React.FC = () => {
                            </div>
                            <div className={"items-center text-center md:text-start space-x-4"}>
                                {
-                                   socialIcons.map((icon) => (
+                                   socialIcons.map((icon,index) => (
                                        <KjcImage
+                                           key={index.toString()}
                                            src={icon.icon}
                                            alt={icon.key}
                                            className={"items-center rounded-full"}

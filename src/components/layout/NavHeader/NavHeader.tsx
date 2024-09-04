@@ -6,6 +6,8 @@ import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
 import KofJobs from '/assets/images/logo/IMG.png';
 import {useAuth} from "../../../utils/context/AuthContext/AuthContext.tsx";
+import {USER_ROUTE_PATH} from "../../user/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../user/Dashboard/DashboardRoutes.constants.ts";
 
 /**
  * Renders the nav header component.
@@ -18,7 +20,13 @@ const NavHeader = () => {
     const navigate = useNavigate();
 
     const handleOnLogoClick = () => {
-        navigate('/');
+        if(userLoggedIn){
+            navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`);
+        }
+        else {
+            navigate(`/`)
+        }
+
     }
 
     const headerMenuOptions = getNavFooterMenuItems(navigate);
@@ -64,7 +72,7 @@ const NavHeader = () => {
 
                     <div className="flex items-center justify-end">
                         {
-                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons activeItem={activeItem} setActiveItem={setActiveItem} />
+                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons/>
 
                         }
                     </div>

@@ -5,7 +5,7 @@ import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import { Rule } from "postcss";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
 import {doCreateUserWithEmailAndPassword, doSignInWithGoogle} from "../../../../utils/firebase/auth.ts";
 import {useState} from "react";
@@ -22,14 +22,17 @@ const UserRegistration = () => {
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [form] = Form.useForm();
 
+    const navigate = useNavigate();
+
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
            if(!isRegistering) {
                setIsRegistering(true);
                try{
                    await doCreateUserWithEmailAndPassword(formData.email!, formData.password!);
+                   navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`)
                    message.success("Successfully registered an account!");
                } catch (error) {
-                   message.error("Error occurred!")
+                   message.error("Error occurred!" + (error as Error).message)
                } finally {
                    setIsRegistering(false)
                }
