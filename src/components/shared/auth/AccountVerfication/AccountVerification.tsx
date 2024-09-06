@@ -12,7 +12,7 @@ import {
 } from "../../registration/RegistrationRoutes.constants.ts";
 
 const AccountVerification = () => {
-    const [isVerified, setIsVerified] = useState<boolean>(false);
+    const [isVerified, setIsVerified] = useState<boolean>(true);
     const navigate = useNavigate();
 
     // useEffect(() => {
