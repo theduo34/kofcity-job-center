@@ -108,7 +108,7 @@ const UserProfile = () => {
         <Row>
             <Col span={24}>
                 {/*First inner col: tab section*/}
-                <Col span={24} className="flex items-center w-full py-4 bg-kjcBtn-950">
+                <Col span={24} className="flex items-center justify-center w-full py-3 bg-kjcBtn-950">
                     {/* Mobile view: Show dropdown */}
                     <Col
                         xs={{ span: 24 }}

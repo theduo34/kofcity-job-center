@@ -33,7 +33,7 @@ const NavHeader = () => {
 
     return (
         <>
-            <nav className="fixed top-0 w-full text-center bg-white px-4 py-2">
+            <nav className="fixed top-0 w-full text-center bg-white px-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-24">
                         <div className={"flex w-24 me-12"}>
@@ -61,7 +61,7 @@ const NavHeader = () => {
                                         >
                                             {menuItem.key}
                                             <span
-                                                className={`absolute -bottom-8 left-0 w-full h-1 bg-kjcBtn-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-right ${isActive ? 'scale-x-100' : ''}`}
+                                                className={`absolute -bottom-5 left-0 w-full h-1 bg-kjcBtn-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-right ${isActive ? 'scale-x-100' : ''}`}
                                             ></span>
                                         </div>
                                     );
