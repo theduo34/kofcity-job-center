@@ -121,7 +121,7 @@ const SetAnAccount = () => {
     }, []);
 
     return (
-        <PostJobSection className="">
+        <PostJobSection className="mb-8">
             <SpinnerOverlay spinning={spinning}/>
             <div className="w-full md:w-[75%] lg:w-[80%] xl:w-[70%] 2xl:w-[50%] space-y-4">
                 <h1 className="items-center justify-center font-semibold text-lg md:text-2xl capitalize">
@@ -161,7 +161,7 @@ const SetAnAccount = () => {
                     </div>
                 )}
 
-                <div className="flex items-center justify-between cursor-pointer mb-8">
+                <div className="flex items-center justify-between cursor-pointer mb-16">
                     <p className={`items-center justify-center py-2 md:py-2 px-8 font-semibold rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:shadow-lg ${
                             showBackBtn ? "visible" : "invisible"
                         }`}
