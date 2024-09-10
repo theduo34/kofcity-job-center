@@ -10,11 +10,15 @@ export interface FeaturedJobsProps  {
     jobSalary?: string,
     jobOverview?: string,
     jobResponsibility?: string,
-    key?: string
+    key?: string,
+    isRemote?: boolean
+    roleLevel?: string,
+    industry?: string,
 
 }
 export const getFeaturedJobs = (): FeaturedJobsProps[] => [
     {
+        isRemote: true,
         key: "admin-work_dataAnalytics",
         jobTitle: "Data Analytics",
         companyName: "Nayasty Technology Consult",
@@ -24,6 +28,7 @@ export const getFeaturedJobs = (): FeaturedJobsProps[] => [
         education: "A bachelor's degree in a field such as statistics, mathematics, computer science, or business, is required",
     },
     {
+        industry: "Healthcare And Medical",
         key: "admin-work_pharmacist",
         jobTitle: "Pharmacist",
         companyName: "Bedicta Pharmaceutical shop",
