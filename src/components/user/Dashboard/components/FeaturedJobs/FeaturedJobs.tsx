@@ -3,6 +3,8 @@ import KjcButton from "../../../../../builders/KjcButton";
 import { getFeaturedJobs } from "./FeaturedJobs.constants.tsx";
 import { Bookmark } from 'lucide-react';
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_JOB_LISTINGS} from "../../../UserRoutes.constants.ts";
 
 //eslint-disable-next-line
 const JobDetail = ({ label, value }: { label: string; value: any }) => (
@@ -14,6 +16,8 @@ const JobDetail = ({ label, value }: { label: string; value: any }) => (
 
 const FeaturedJobs = () => {
     const [bookmarkedJob, setBookmarkedJob] = useState<{ [key: string]: boolean }>({});
+    const navigate = useNavigate();
+
     const featuredJobs = getFeaturedJobs();
 
     const toggleBookmark = (key: string) => {
@@ -49,6 +53,7 @@ const FeaturedJobs = () => {
                             <div className="w-full pt-8 flex xl:w-2/5 justify-between">
                                 <KjcButton
                                     className="py-6 px-12 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300"
+                                    onClick={ () =>navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}?jobKey=${key}`)}
                                 >
                                     Apply Now
                                 </KjcButton>

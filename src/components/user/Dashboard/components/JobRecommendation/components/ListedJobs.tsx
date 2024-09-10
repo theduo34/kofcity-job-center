@@ -6,13 +6,11 @@ import { EnvironmentOutlined } from "@ant-design/icons";
 import { USER_ROUTE_PATH, USER_ROUTE_PATH_JOB_LISTINGS } from "../../../../UserRoutes.constants.ts";
 import { useState, useEffect } from "react";
 
-// Helper function to get saved jobs from local storage
 const getSavedJobs = () => {
     const savedJobs = localStorage.getItem("savedJobs");
     return savedJobs ? JSON.parse(savedJobs) : [];
 };
 
-// Helper function to save jobs to local storage
 const saveJobs = (jobs: string[]) => {
     localStorage.setItem("savedJobs", JSON.stringify(jobs));
 };
@@ -25,12 +23,10 @@ const ListedJobs = () => {
     const jobsRecommendation = getJobsRecommendation();
 
     useEffect(() => {
-        // Initialize saved jobs from local storage
         setSavedJobs(getSavedJobs());
     }, []);
 
     useEffect(() => {
-        // Update local storage whenever saved jobs change
         saveJobs(savedJobs);
     }, [savedJobs]);
 
@@ -57,7 +53,7 @@ const ListedJobs = () => {
                     {window.innerWidth <= 1024 ? (
                         jobsRecommendation.slice(0, 2).map((jobs) => (
                             <div
-                                key={jobs.key}  // Ensure to add a key for each element
+                                key={jobs.key}
                                 className="relative bg-white w-full min-h-[350px] md:min-h-[400px] lg:min-h-[450px] p-4 border-2 border-gray-200 rounded-lg flex flex-col justify-between"
                             >
                                 <div className="px-4">
@@ -91,7 +87,7 @@ const ListedJobs = () => {
                     ) : (
                         jobsRecommendation.slice(0, 3).map((jobs) => (
                             <div
-                                key={jobs.key}  // Ensure to add a key for each element
+                                key={jobs.key}
                                 className="relative bg-white w-full min-h-[350px] md:min-h-[400px] lg:min-h-[450px] p-4 border-2 border-gray-200 rounded-lg flex flex-col justify-between"
                             >
                                 <div className="px-4">
@@ -110,7 +106,7 @@ const ListedJobs = () => {
                                 </div>
                                 <div className="px-4 flex justify-between items-center">
                                     <KjcButton
-                                        onClick={() => navigate('')}
+                                        onClick={ () =>navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}?jobKey=${jobs.key}`)}
                                         className="w-full py-6 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300 "
                                     >
                                         Apply Now

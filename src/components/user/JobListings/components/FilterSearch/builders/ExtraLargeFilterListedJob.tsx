@@ -1,15 +1,28 @@
 import { Bookmark, CircleArrowOutUpRight } from "lucide-react";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {listedJobs} from "../../../JobListings.constants.tsx";
 import {bookmarkedStateProps} from "../FilterSearch.interface.ts";
+import {useLocation, useNavigate} from "react-router-dom";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_JOB_LISTINGS} from "../../../../UserRoutes.constants.ts";
 
 
 const ExtraLargeFilterListedJob  = (props: bookmarkedStateProps) => {
     const [selectedJobKey, setSelectedJobKey] = useState<string | null>(null);
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const jobKey = queryParams.get('jobKey');
+        if (jobKey) {
+            setSelectedJobKey(jobKey);
+        }
+    }, [location.search]);
     const handleShowDescription = (key: string) => {
         setSelectedJobKey(key);
+       navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}${key}`);
+
     };
 
     return (

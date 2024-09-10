@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 import { getCompanies } from "./CompanySpotlight.constants.tsx";
 import KjcImage from "../../../../../builders/KjcImage";
 import {useNavigate} from "react-router-dom";
@@ -6,31 +6,31 @@ import {DASHBOARD_COMPANY_SPOTLIGHT_ROUTES_PATH} from "../../DashboardRoutes.con
 
 const CompanySpotlight = () => {
     const companies = getCompanies();
-    const [displayText, setDisplayText] = useState('');
-    const [isDeleting, setIsDeleting] = useState(false);
+    //const [displayText, setDisplayText] = useState('');
+    //const [isDeleting, setIsDeleting] = useState(false);
     const text = 'Unlock Opportunities with Leading Companies';
-    const speed: number = 150;
+   // const speed: number = 150;
     const navigate = useNavigate();
 
-    useEffect(() => {
-        let timer;
-        if (!isDeleting && displayText === text) {
-            timer = setTimeout(() => setIsDeleting(true), 2000);
-        } else if (isDeleting && displayText === '') {
-            timer = setTimeout(() => setIsDeleting(false), 1000);
-        } else if (isDeleting) {
-            timer = setTimeout(() => setDisplayText(text.substring(0, displayText.length - 1)), speed);
-        } else {
-            timer = setTimeout(() => setDisplayText(text.substring(0, displayText.length + 1)), speed);
-        }
-        return () => clearTimeout(timer);
-    }, [displayText, isDeleting, text]);
+    // useEffect(() => {
+    //     let timer;
+    //     if (!isDeleting && displayText === text) {
+    //         timer = setTimeout(() => setIsDeleting(true), 2000);
+    //     } else if (isDeleting && displayText === '') {
+    //         timer = setTimeout(() => setIsDeleting(false), 1000);
+    //     } else if (isDeleting) {
+    //         timer = setTimeout(() => setDisplayText(text.substring(0, displayText.length - 1)), speed);
+    //     } else {
+    //         timer = setTimeout(() => setDisplayText(text.substring(0, displayText.length + 1)), speed);
+    //     }
+    //     return () => clearTimeout(timer);
+    // }, [displayText, isDeleting, text]);
 
     return (
         <div className="p-6 bg-white shadow-md rounded-lg">
             <div>
                 <h1 className="items-center leading-tight  text-xl md:text-3xl pb-8 typewriter-container">
-                    {displayText}
+                    {/*{displayText}*/} {text}
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {companies.map((company) => (
