@@ -1,5 +1,5 @@
 import {Bookmark, CircleArrowOutUpRight} from "lucide-react";
-import HeaderNavigationBack from "../../../../../layout/hoc/HeaderNavigationBack";
+import HeaderNavigationBack from "../../../layout/hoc/HeaderNavigationBack";
 import {EnvironmentOutlined} from "@ant-design/icons";
 import {Col} from "antd";
 

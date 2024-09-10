@@ -1,12 +1,12 @@
 import { Bookmark, CircleArrowOutUpRight } from "lucide-react";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { listedJobs } from "../../../JobListings.constants.tsx";
-import { bookmarkedStateProps } from "../FilterSearch.interface.ts";
+import { listedJobs } from "../JobListings.constants.tsx";
 import { useNavigate, useLocation } from "react-router-dom";
-import { DESCRIPTION_ROUTE_PATH } from "../../../JobListingsRoutes.constants.ts";
 import { useEffect, useState } from "react";
+import { DESCRIPTION_ROUTE_PATH } from "../JobListingsRoutes.constants.ts";
+import {bookmarkedStateProps} from "../JobListings.tsx";
 
-const MediumFilterListedJob = (props: bookmarkedStateProps) => {
+const LargeFilterListedJob = (props: bookmarkedStateProps) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [selectedJobKey, setSelectedJobKey] = useState<string | null>(null);
@@ -21,15 +21,14 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
 
     return (
         <>
-            <div className="items-center w-full space-y-8">
+            <div className="grid grid-cols-2 gap-8">
                 {/* Listed Jobs */}
                 {listedJobs.map((job) => (
                     <div
                         key={job.key}
-                        className={`p-4 rounded-lg bg-white space-y-8 cursor-pointer ${
+                        className={`p-4 rounded-lg bg-white space-y-8 ${
                             selectedJobKey === job.key ? "border-2 border-neutral-400" : ""
                         }`}
-
                     >
                         <div className="flex items-center justify-between">
                             <p className="flex items-center space-x-2">
@@ -63,8 +62,9 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                                 <li>1 day ago</li>
                             </div>
                         </div>
-                        <div className="w-full space-x-1 flex py-3 items-center justify-center bottom-0 bg-kjcBtn-200 shadow-lg rounded-lg hover:bg-kjcBtn-300 cursor-pointer ease-in-out"
-                             onClick={() => navigate(`${DESCRIPTION_ROUTE_PATH}/${job.key}`)}
+                        <div
+                            className="w-full space-x-1 flex py-3 items-center justify-center bottom-0 bg-kjcBtn-200 shadow-lg rounded-lg hover:bg-kjcBtn-300 cursor-pointer ease-in-out"
+                            onClick={() => navigate(`${DESCRIPTION_ROUTE_PATH}/${job.key}`)}
                         >
                             <CircleArrowOutUpRight size={18} />
                             <span className="items-center font-semibold text-xl">Apply</span>
@@ -76,4 +76,4 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
     );
 };
 
-export default MediumFilterListedJob;
+export default LargeFilterListedJob;
