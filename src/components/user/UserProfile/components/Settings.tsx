@@ -71,7 +71,7 @@ const Settings = () => {
     return (
         <>
             <div>
-                <h1 className="text-xl font-semibold py-2 px-4 md:px-0">Settings</h1>
+                <h1 className="text-xl font-semibold px-4 md:px-0">Settings</h1>
             </div>
 
             <div className="w-full flex flex-col md:flex-row items-start justify-between ">
