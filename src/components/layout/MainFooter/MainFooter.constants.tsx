@@ -1,6 +1,10 @@
-import pinterest from '/assets/images/social/pinterest.png';
-import whatsapp from '/assets/images/social/whatsapp.png';
-import linkedIn from '/assets/images/social/linkedIn.png';
+import {
+    LinkedinOutlined,
+    MediumOutlined,
+    PinterestOutlined,
+    TwitterOutlined,
+    WhatsAppOutlined
+} from "@ant-design/icons";
 
 export interface footerItemsProps {
     key?: string;
@@ -181,8 +185,9 @@ export const SOCIAL_MEDIA_ICONS={
 export interface socialMediaIconsProps {
     style?: React.CSSProperties;
     onClick?: () => void;
-    icon?: string;
+    icon?: React.ReactNode;
     key?: string;
+    link?: string;
 }
 
 //whatsApp
@@ -210,29 +215,34 @@ const handleLinkedIn = () => {
 
 export const getSocialIcons= (): socialMediaIconsProps[] => [
     {
-        icon: "",
+        icon: <MediumOutlined style={{fontSize: 24}}/>,
         onClick: handleMeduim,
-        key: SOCIAL_MEDIA_ICONS.MEDUIM
+        key: SOCIAL_MEDIA_ICONS.MEDUIM,
+        link: ""
     },
     {
-        icon: whatsapp,
+        icon: <WhatsAppOutlined style={{fontSize: 24}}/>,
         onClick: handleWhatsApp,
-        key: SOCIAL_MEDIA_ICONS.WHATSAPP
+        key: SOCIAL_MEDIA_ICONS.WHATSAPP,
+        link: ""
     },
     {
-        icon: linkedIn,
+        icon: <LinkedinOutlined style={{fontSize: 24}}/>,
         onClick: handleLinkedIn,
-        key:SOCIAL_MEDIA_ICONS.LINKEDIN
+        key:SOCIAL_MEDIA_ICONS.LINKEDIN,
+        link: ""
     },
     {
-        icon: "",
+        icon: <TwitterOutlined style={{fontSize: 24}}/>,
         onClick: handleTwitter,
-        key: SOCIAL_MEDIA_ICONS.TWITTER
+        key: SOCIAL_MEDIA_ICONS.TWITTER,
+        link: ""
     },
     {
-        icon: pinterest,
+        icon: <PinterestOutlined style={{fontSize: 24}}/>,
         onClick: () => {},
         key: SOCIAL_MEDIA_ICONS.PINTEREST,
+        link: ""
     }
 
 ]

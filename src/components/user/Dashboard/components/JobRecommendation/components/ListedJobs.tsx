@@ -92,7 +92,7 @@ const ListedJobs = () => {
                             >
                                 <div className="px-4">
                                     <div className="space-y-2 py-2 md:py-8 md:space-y-4">
-                                        <p className="text-lg md:text-xl font-normal capitalize">
+                                        <p className="text-lg md:text-xl font-semibold capitalize">
                                             {jobs.jobTitle}
                                         </p>
                                         <p className="text-md md:text-lg font-normal capitalize">
@@ -107,12 +107,12 @@ const ListedJobs = () => {
                                 <div className="px-4 flex justify-between items-center">
                                     <KjcButton
                                         onClick={ () =>navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}?jobKey=${jobs.key}`)}
-                                        className="w-full py-6 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300 "
+                                        className="w-full py-4 md:py-5 rounded-lg border-2 border-kjcBtn-300 text-md md:text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300 "
                                     >
                                         Apply Now
                                     </KjcButton>
                                 </div>
-                                <div className="absolute top-4 right-4 cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300"
+                                <div className="absolute top-1 md:top-4 right-1 md:right-4 cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300"
                                      onClick={() => toggleBookmark(jobs.key as string)}
                                 >
                                     {bookmarkedJob[jobs.key as string] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
@@ -122,7 +122,7 @@ const ListedJobs = () => {
                     )}
                 </div>
                 <Link to={`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}`}>
-                    <p className="flex text-md text-semibold text-md text-white items-center float-start md:float-end cursor-pointer hover:underline hover:text-kjc-300">
+                    <p className="flex text-md font-semibold text-white items-center float-start md:float-end cursor-pointer hover:underline hover:text-kjc-300">
                         <span className="m-2">Find more jobs</span> <ArrowRight />
                     </p>
                 </Link>

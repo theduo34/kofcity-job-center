@@ -64,7 +64,7 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
                                         </p>
                                     </div>
                                     <div className="items-center">
-                                        <h1 className="text-2xl text-balance font-semibold leading-normal">
+                                        <h1 className="text-xl text-balance font-semibold leading-normal">
                                             {job.jobTitle}
                                         </h1>
                                         <h3 className="text-lg text-balance items-center leading-normal">
@@ -95,7 +95,7 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
                                         <p className="flex items-center justify-center w-14 h-14 bg-kjcBtn-900">
                                             <span className="text-white">B</span>
                                         </p>
-                                        <h1 className="text-2xl text-balance font-semibold leading-normal">
+                                        <h1 className="text-xl text-balance font-semibold leading-normal">
                                             {job.jobTitle}
                                         </h1>
                                     </div>

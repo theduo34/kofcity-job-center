@@ -9,8 +9,8 @@ import {USER_ROUTE_PATH, USER_ROUTE_PATH_JOB_LISTINGS} from "../../../UserRoutes
 //eslint-disable-next-line
 const JobDetail = ({ label, value }: { label: string; value: any }) => (
     <p className="items-center">
-        <span className="text-lg md:text-2xl font-mono capitalize">{label}: </span>
-        <span className="items-center text-lg md:text-xl font-normal">{value}</span>
+        <span className="text-md md:text-xl capitalize">{label}: </span>
+        <span className="items-center text-md md:text-lg font-normal">{value}</span>
     </p>
 );
 
@@ -29,7 +29,7 @@ const FeaturedJobs = () => {
 
     return (
         <div className="items-center">
-            <h2 className="leading-tight font-mono text-xl md:text-3xl pb-8 text-kjc-950">Featured Jobs</h2>
+            <div className="leading-tight font-mono text-md md:text-2xl pb-8 text-kjc-950">Featured Jobs</div>
             <div className="relative py-4 border-2 border-neutral-200 rounded-lg">
                 <KjcCarousel
                     arrows
@@ -43,7 +43,7 @@ const FeaturedJobs = () => {
                     {featuredJobs.map(({ jobTitle, companyName, jobSkills, jobType, jobLocation, education, key }) => (
                         <div className="relative items-center px-8 lg:px-16 pb-14" key={key}>
                             <div className="space-y-2 py-2 md:py-8 md:space-y-4">
-                                <h3 className="text-xl md:text-3xl font-mono capitalize">{jobTitle}</h3>
+                                <h3 className="text-md md:text-2xl font-semibold capitalize">{jobTitle}</h3>
                                 <JobDetail label="Company Name" value={companyName} />
                                 <JobDetail label="Skills" value={jobSkills} />
                                 <JobDetail label="Job Type" value={jobType} />
@@ -52,7 +52,7 @@ const FeaturedJobs = () => {
                             </div>
                             <div className="w-full pt-8 flex xl:w-2/5 justify-between">
                                 <KjcButton
-                                    className="py-6 px-12 rounded-lg border-2 border-kjcBtn-300 text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300"
+                                    className="py-4 md:py-5 px-12 rounded-lg border-2 border-kjcBtn-300 text-md md:text-lg hover:cursor-pointer hover:-translate-y-1 hover:scale-110 duration-300"
                                     onClick={ () =>navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_JOB_LISTINGS}?jobKey=${key}`)}
                                 >
                                     Apply Now
@@ -60,7 +60,7 @@ const FeaturedJobs = () => {
                             </div>
 
                             {/* Bookmark button */}
-                            <div className="absolute top-4 right-6 z-10 cursor-pointer" onClick={() => toggleBookmark(key as string)}>
+                            <div className="absolute top-2 md:top-4 right-2 md:right-4 z-10 cursor-pointer" onClick={() => toggleBookmark(key as string)}>
                                 {bookmarkedJob[key as string] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
                             </div>
                         </div>
