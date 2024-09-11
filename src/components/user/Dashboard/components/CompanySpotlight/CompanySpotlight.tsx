@@ -29,7 +29,7 @@ const CompanySpotlight = () => {
     return (
         <div className="p-6 bg-white shadow-md rounded-lg">
             <div>
-                <h1 className="items-center leading-tight  text-xl md:text-3xl pb-8 typewriter-container">
+                <h1 className="items-center leading-tight  text-md md:text-2xl pb-8 typewriter-container">
                     {/*{displayText}*/} {text}
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

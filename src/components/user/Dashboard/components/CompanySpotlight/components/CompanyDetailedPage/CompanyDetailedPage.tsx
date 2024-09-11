@@ -6,7 +6,7 @@ const CompanyDetailedPage = () => {
         <>
            <WithContentLayout>
                {
-                   <div className={"items-center leading-normal text-2xl"}>
+                   <div className={"items-center leading-normal text-md md:text-xl"}>
                        Company Detailed Page Content Goes Here
                    </div>
                }

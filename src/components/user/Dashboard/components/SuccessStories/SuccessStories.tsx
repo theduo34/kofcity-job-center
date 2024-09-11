@@ -37,18 +37,18 @@ const SuccessStories = () => {
     return (
         <>
             <div className="items-center justify-center w-full">
-                <div className="px-4 text-balance relative text-center text-xl md:text-2xl py-10 font-mono text-kjc-950 bg-amber-50 bg-opacity-80">
+                <div className="px-4 text-balance relative text-center text-md  md:text-2xl py-10 font-mono text-kjc-950 bg-amber-50 bg-opacity-80">
                     Real Stories, Real Success!!! Achieve Your Dreams with Us
                 </div>
                 <div className="absolute top-1 right-4"></div>
                 <div className="items-center bg-white">
                     <WithContentLayout className="items-center">
                         {/*job titles*/}
-                        <div className={"flex flex-wrap items-center justify-start md:justify-center gap-4 pb-4"}>
+                        <div className={"flex flex-wrap items-center justify-start md:justify-center gap-y-2 gap-x-1 md:gap-2 pb-4"}>
                             {
                                 stories.map((profession) => (
                                     <p
-                                        className={`flex text-center items-center justify-between rounded-2xl px-4 py-1 shadow-lg cursor-pointer transition delay-100 hover:-translate-y-1 hover:scale-110 duration-300 ease-in-out ${selectedItems.includes(profession.key || "") ? "bg-red-500 hover:bg-red-400" : "bg-neutral-100 hover:bg-neutral-200"}`}
+                                        className={`flex text-center items-center justify-between rounded-2xl px-0 md:px-4 py-0 md:py-1 shadow-lg cursor-pointer transition delay-100 hover:-translate-y-1 hover:scale-110 duration-300 ease-in-out ${selectedItems.includes(profession.key || "") ? "bg-red-500 hover:bg-red-400" : "bg-neutral-100 hover:bg-neutral-200"}`}
                                         onClick={() => handleItemClick(profession.key || "")}
                                         key={profession.key}
                                     >
@@ -63,10 +63,10 @@ const SuccessStories = () => {
                             {currentStories.map((story, index) => (
                                 <div
                                     key={index}
-                                    className="relative bg-kjcBtn-950 opacity-80 flex items-center justify-center h-[300px] w-[300px] xl:w-[400px] xl:h-[400px] shadow-lg"
+                                    className="relative bg-kjcBtn-950 opacity-80 flex items-center justify-center h-[280px] w-[280px] xl:w-[400px] xl:h-[400px] shadow-lg"
                                 >
                                     <div
-                                        className="p-8 absolute border-r-2 border-r-kjcBtn-950 -bottom-10 left-10 flex items-center justify-center h-[300px] w-[300px] xl:w-[400px] xl:h-[400px] bg-white">
+                                        className="p-8 absolute border-r-2 border-r-kjcBtn-950 -bottom-10 left-10 flex items-center justify-center h-[280px] w-[280px] xl:w-[400px] xl:h-[400px] bg-white">
                                         <h1 className="absolute text-4xl text-balance top-10 left-8 items-center justify-start font-semibold">"</h1>
                                         <p>{story.quote}</p>
                                         <h1 className="absolute text-4xl bottom-10 right-8 items-center justify-start font-semibold">"</h1>

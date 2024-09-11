@@ -5,6 +5,7 @@ export interface TopContentInterface{
     description?: string;
     image?: string;
     onClick?: () => void;
+    className?: string;
 }
 
 export interface JobTypesInterface{

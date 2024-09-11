@@ -16,7 +16,7 @@ const PopularSearch = () => {
             <div className="items-center py-4">
                 <div className="space-y-8 md:space-y-12">
                     <div className="space-y-2">
-                        <div className="font-mono  text-center text-pretty text-3xl md:text-4xl capitalize">
+                        <div className="font-mono  text-center text-pretty text-lg md:text-xl lg:text-2xl capitalize">
                             Discover jobs in Koforidua
                         </div>
                         <div className="items-center justify-center text-red-600 text-base flex mx-auto space-x-2">
@@ -24,7 +24,7 @@ const PopularSearch = () => {
                                 jobs.map((job, index) => (
                                     <div
                                         key={job.key}
-                                        className="items-center leading-normal"
+                                        className="text-xs md:text-md font-semibold items-center leading-normal"
                                         onClick={job.onClick}
                                     >
                                         {job.label}
@@ -38,7 +38,7 @@ const PopularSearch = () => {
                         </div>
                     </div>
                     <div className="w-full item-center justify-center shadow-lg bg-white py-4 px-0 overflow-x-hidden">
-                        <div className="w-full  flex text-sm items-center justify-around">
+                        <div className="w-full flex text-sm items-center justify-around">
                             {
                                 jobCategories.map((category) => (
                                   <Select
@@ -53,14 +53,14 @@ const PopularSearch = () => {
                     </div>
                     <div className="flex flex-row items-center justify-center py-4">
                         <div>
-                            <div className={"flex items-center justify-center font-light text-4xl pb-4"}>popular searches</div>
-                            <div className={"flex items-center flex-wrap flex-row gap-1 space-x-1 md:space-x-3 space-y-2"}>
+                            <div className={"flex items-center justify-center font-light text-2xl md:text-3xl pb-4"}>popular searches</div>
+                            <div className={"flex items-center flex-wrap flex-row gap-3"}>
                                 {
                                     popularSearch.map((profession, ) => (
                                         <div
-                                            className={"flex shadow-lg py-2 px-2 md:px-6 font-semibold text-kjc-950 cursor-pointer rounded-full transition delay-100 hover:-translate-y-1 hover:scale-110 duration-300"}>
+                                            className={"flex shadow-lg px-0 py-1 md:py-2 md:px-6 font-semibold cursor-pointer rounded-full transition delay-100 hover:-translate-y-1 hover:scale-110 duration-300"}>
                                             {profession.label}
-                                            <span className={"items-center px-3"}><SearchOutlined/></span>
+                                            <span className={"items-center ms-1 md:ms-3"}><SearchOutlined/></span>
                                         </div>
                                     ))
                                 }

@@ -48,7 +48,7 @@ const JobListings = () => {
     return(
         <>
             <div>
-                <div className="items-center py-4 md:py-8 px-0 md:px-8 lg:px-12 text-lg md:text-xl lg:text-3xl shadow-md font-semibold text-black bg-kjcBtn-300">
+                <div className="items-center py-3 md:py-6 px-0 md:px-8 lg:px-12 text-md md:text-2xl shadow-md font-semibold text-black bg-kjcBtn-300">
                     <h1 className="px-4 md:px-12 mx-0 md:ms-4 lg:ms-6 xl:ms-8">
                         Search results for
                         <span className="text-white mx-3">Most popular jobs in Koforidua</span>
