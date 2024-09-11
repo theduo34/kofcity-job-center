@@ -2,6 +2,7 @@ import { Form, FormProps } from "antd";
 import KjcInput from "../../../../../../builders/KjcInput";
 import KjcPhoneNumber from "../../../../../../builders/KjcPhoneNumber/KjcPhoneNumber.tsx";
 import { useState } from "react";
+//eslint-disable-next-line
 // @ts-ignore
 import { CountryCode } from "libphonenumber-js/types";
 import { parsePhoneNumberWithError } from "libphonenumber-js";
@@ -14,6 +15,7 @@ type FieldType = {
 }
 
 interface ContactInformationProps {
+    //eslint-disable-next-line
     formRef: any;
 }
 

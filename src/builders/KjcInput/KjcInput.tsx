@@ -59,10 +59,10 @@ const KjcInput: React.FC<KjcInputProps> = (props) => {
             className={props.className}
             rules={[...(props.rules || [])]}
         >
-            <Dropdown
-                overlay={menu}
-                visible={filteredSuggestions.length > 0}
-            >
+            {/*<Dropdown*/}
+            {/*    overlay={menu}*/}
+            {/*    visible={filteredSuggestions.length > 0}*/}
+            {/*>*/}
                 <Input
                     placeholder={props.placeholder}
                     style={props.style}
@@ -71,7 +71,7 @@ const KjcInput: React.FC<KjcInputProps> = (props) => {
                     value={value}
                     onChange={(e) => handleInputChange(e.target.value)}
                 />
-            </Dropdown>
+            {/*</Dropdown>*/}
         </Form.Item>
     );
 };

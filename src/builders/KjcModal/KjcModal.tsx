@@ -23,7 +23,8 @@ export interface JybekModalProps extends Partial<ModalProps> {
   className?: string,
   children?: React.ReactNode,
   style?: React.CSSProperties,
-  key?: string
+  key?: string,
+  loading?: boolean
 }
 const KjcModal = (props: JybekModalProps) => {
   return (
@@ -49,6 +50,7 @@ const KjcModal = (props: JybekModalProps) => {
         transitionName={props.transitionName}
         width={props.width}
         zIndex={props.zIndex}
+        loading={props.loading}
       >
         {props.children}
       </Modal>

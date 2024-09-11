@@ -74,7 +74,7 @@ const Settings = () => {
                 <h1 className="text-xl font-semibold py-2 px-4 md:px-0">Settings</h1>
             </div>
 
-            <div className="w-full flex flex-col md:flex-row items-start justify-between mb-12">
+            <div className="w-full flex flex-col md:flex-row items-start justify-between ">
                 <div className="w-full md:w-[28%] p-2 space-y-4">
                     <div className="flex items-start shadow-md px-4 py-8 rounded-lg">
                         <p className="w-16 h-16 flex items-center justify-center bg-gray-400 rounded-lg">AB</p>
