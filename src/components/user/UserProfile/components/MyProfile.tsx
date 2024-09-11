@@ -48,13 +48,13 @@ const MyProfile = () => {
     return (
         <>
             <div>
-                <h1 className="text-xl font-semibold py-2 px-4 lg:px-0">My Profile</h1>
+                <h1 className="text-xl font-semibold px-4 lg:px-0">My Profile</h1>
             </div>
             <div className="w-full flex flex-col md:flex-row items-start justify-between">
 
                 {/* First div col */}
                 <div className="w-full md:w-[28%] p-2 space-y-4">
-                    <div className="flex items-start shadow-lg px-4 py-8 rounded-lg">
+                    <div className="flex items-start shadow-lg px-4 py-8 rounded-lg bg-white">
                         <p className="w-16 h-16 flex items-center justify-center bg-gray-400 rounded-lg">
                             AB
                         </p>
@@ -85,7 +85,7 @@ const MyProfile = () => {
                 </div>
 
                 {/* Second div col */}
-                <div className="w-full md:w-[70%] p-4 md:p-8 shadow-lg">
+                <div className="w-full md:w-[70%] p-4 md:p-8 shadow-lg bg-white">
                     <div className="flex flex-col space-y-8">
                         <div
                             className="w-full flex flex-col md:flex-row items-start justify-between space-y-4 md:space-y-0">

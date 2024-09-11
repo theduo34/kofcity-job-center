@@ -177,7 +177,7 @@ const UserProfile = () => {
                     xs={{ span: 24 }}
                     sm={{ span: 24 }}
                     lg={{ span: 20, offset: 2 }}
-                    className={"py-12 px-4 lg:px-0"}
+                    className={"py-8 px-4 lg:px-0"}
                 >
                     <div className="items-center leading-normal">
                         {userProfileTab.map((item) => (
