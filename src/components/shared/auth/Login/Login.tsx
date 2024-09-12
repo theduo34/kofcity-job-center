@@ -6,12 +6,12 @@ import KjcInput from "../../../../builders/KjcInput";
 import KjcPasswordInput from "../../../../builders/KjcPasswordInput";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout";
 import {ACCOUNT_REGISTRATION_ROUTE_PATH, REGISTRATION_ROUTE_PATH,} from "../../registration/RegistrationRoutes.constants";
-import { doSignInWithEmailAndPassword, doSignInWithGoogle,} from "../../../../utils/firebase/auth";
+import { doSignInWithEmailAndPassword, doSignInWithGoogle,} from "../../../../firebase/auth";
 import { useState } from "react";
-import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
-import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
 import KjcImage from "../../../../builders/KjcImage/KjcImage.tsx";
 import Google from '/assets/images/third-party/Google.png'
+import {USER_ROUTE_PATH} from "../../../users/JobSeeker/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../../users/JobSeeker/JobSeekerDashboard/DashboardRoutes.constants.ts";
 
 type FieldType = {
     email: string;

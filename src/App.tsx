@@ -7,8 +7,8 @@ import Home from "./components/Home";
 import {
     ACCOUNT_REGISTRATION_ROUTE_PATH,
 } from "./components/shared/registration/RegistrationRoutes.constants.ts";
-import UserRoutes from "./components/user/UserRoutes.tsx";
-import {USER_ROUTE_PATH} from "./components/user/UserRoutes.constants.ts";
+import {USER_ROUTE_PATH} from "./components/users/JobSeeker/UserRoutes.constants.ts";
+import UserRoutes from "./components/users/JobSeeker/UserRoutes.tsx";
 
 function App() {
   

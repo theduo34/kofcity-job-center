@@ -2,12 +2,12 @@ import {TopContentInterface} from "../../Home.interface.ts";
 import findAJob from '/assets/images/bgImages/findAJob.jpg'
 import industryTrend from '/assets/images/bgImages/industryTrend.jpg'
 import postJobs from '/assets/images/bgImages/postJobs.jpg'
-
 import {
     USER_ROUTE_PATH,
     USER_ROUTE_PATH_JOB_LISTINGS, USER_ROUTE_PATH_POST_JOBS,
     USER_ROUTE_PATH_TRENDS
-} from "../../../user/UserRoutes.constants.ts";
+} from "../../../users/JobSeeker/UserRoutes.constants.ts";
+
 
 const TOP_CONTENT_MENU_ITEMS = {
     JOBS : "Find Jobs",

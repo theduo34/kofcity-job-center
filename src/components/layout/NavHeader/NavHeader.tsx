@@ -5,9 +5,11 @@ import { getNavFooterMenuItems } from "../NavFooter/NavFooter.constants";
 import LeftHeaderIcons from "./components/LeftHeaderIcons.tsx";
 import NavHeaderAuthBtn from "./components/NavHeaderAuthBtn.tsx";
 import KofJobs from '/assets/images/logo/IMG.png';
-import {useAuth} from "../../../utils/context/AuthContext/AuthContext.tsx";
-import {USER_ROUTE_PATH} from "../../user/UserRoutes.constants.ts";
-import {DASHBOARD_ROUTES_PATH} from "../../user/Dashboard/DashboardRoutes.constants.ts";
+//eslint-disable-next-line
+// @ts-ignore
+import {useAuth} from "../../shared/authContext/AuthContext.tsx";
+import {USER_ROUTE_PATH} from "../../users/JobSeeker/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../users/JobSeeker/JobSeekerDashboard/DashboardRoutes.constants.ts";
 
 /**
  * Renders the nav header component.
@@ -72,7 +74,7 @@ const NavHeader = () => {
 
                     <div className="flex items-center justify-end">
                         {
-                            userLoggedIn ? <NavHeaderAuthBtn/> :<LeftHeaderIcons/>
+                            userLoggedIn ? <LeftHeaderIcons/> : <NavHeaderAuthBtn/>
 
                         }
                     </div>

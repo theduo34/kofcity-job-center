@@ -7,7 +7,7 @@ import { Rule } from "postcss";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
 import {Link, useNavigate} from "react-router-dom";
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../auth/AuthRoutes.constants.ts";
-import {doCreateUserWithEmailAndPassword, doSignInWithGoogle} from "../../../../utils/firebase/auth.ts";
+import {doCreateUserWithEmailAndPassword, doSignInWithGoogle} from "../../../../firebase/auth.ts";
 import {useState} from "react";
 import Google from '/assets/images/third-party/Google.png'
 import KjcImage from "../../../../builders/KjcImage";
@@ -21,6 +21,7 @@ type FieldType = {
 const UserRegistration = () => {
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
     const [form] = Form.useForm();
+
 
     const navigate = useNavigate();
 

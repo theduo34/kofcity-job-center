@@ -6,8 +6,8 @@ import {
     UserOutlined
 } from "@ant-design/icons";
 import { LogOut } from 'lucide-react';
-import { USER_PROFILE_PATH, USER_ROUTE_PATH } from "../../../user/UserRoutes.constants.ts";
 import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../../shared/auth/AuthRoutes.constants.ts";
+import {USER_PROFILE_PATH, USER_ROUTE_PATH} from "../../../users/JobSeeker/UserRoutes.constants.ts";
 
 const LeftHeaderIcons = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);

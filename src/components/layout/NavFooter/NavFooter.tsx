@@ -7,8 +7,9 @@ import {
     USER_ROUTE_PATH,
     USER_ROUTE_PATH_JOB_LISTINGS, USER_ROUTE_PATH_POST_JOBS,
     USER_ROUTE_PATH_TRENDS
-} from "../../user/UserRoutes.constants.ts";
-import {DASHBOARD_ROUTES_PATH} from "../../user/Dashboard/DashboardRoutes.constants.ts";
+} from "../../users/JobSeeker/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../users/JobSeeker/JobSeekerDashboard/DashboardRoutes.constants.ts";
+
 
 
 const NavFooter = () => {
@@ -52,7 +53,7 @@ const NavFooter = () => {
                                 key={item.key}
                                 onClick={() => handleMenuClick(item)}
                             >
-                                <div className="flex flex-col items-center gap-1">
+                                <div className="flex flex-col text-xs items-center gap-1">
                                     {item.icon}
                                     {item.label}
                                 </div>
