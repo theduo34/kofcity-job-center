@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormInstance, Input, Dropdown, Menu } from "antd";
+import { Form, FormInstance, Input, Menu } from "antd";
 
 type KjcInputProps = {
     className?: string;

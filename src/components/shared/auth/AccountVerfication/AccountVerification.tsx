@@ -3,16 +3,16 @@ import { Col, Row } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import KjcCard from "../../../../builders/KjcCard";
 import {useNavigate} from "react-router-dom";
-import {USER_ROUTE_PATH} from "../../../user/UserRoutes.constants.ts";
-import {DASHBOARD_ROUTES_PATH} from "../../../user/Dashboard/DashboardRoutes.constants.ts";
 import KjcButton from "../../../../builders/KjcButton";
 import {
     ACCOUNT_REGISTRATION_ROUTE_PATH,
     REGISTRATION_ROUTE_PATH
 } from "../../registration/RegistrationRoutes.constants.ts";
+import {USER_ROUTE_PATH} from "../../../users/JobSeeker/UserRoutes.constants.ts";
+import {DASHBOARD_ROUTES_PATH} from "../../../users/JobSeeker/JobSeekerDashboard/DashboardRoutes.constants.ts";
 
 const AccountVerification = () => {
-    const [isVerified, setIsVerified] = useState<boolean>(true);
+    const [isVerified,] = useState<boolean>(true);
     const navigate = useNavigate();
 
     // useEffect(() => {

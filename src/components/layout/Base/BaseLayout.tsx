@@ -7,13 +7,14 @@ import { Layout } from "antd";
 import NavHeader from "../NavHeader";
 import MainFooter from "../MainFooter";
 import {useLocation} from "react-router-dom";
-import {USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS} from "../../user/UserRoutes.constants.ts";
-import {SET_UP_ACCOUNT_ROUTE_PATH} from "../../user/PostJobs/PostJobsRoutes.constants.ts";
+
 import {
     ACCOUNT_REGISTRATION_ROUTE_PATH,
     REGISTRATION_ROUTE_PATH
 } from "../../shared/registration/RegistrationRoutes.constants.ts";
 import {AUTH_ROUTE_PATH, FORGOT_PASSWORD_PATH, LOGIN_PATH} from "../../shared/auth/AuthRoutes.constants.ts";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS} from "../../users/JobSeeker/UserRoutes.constants.ts";
+import {SET_UP_ACCOUNT_ROUTE_PATH} from "../../users/JobSeeker/PostJobs/PostJobsRoutes.constants.ts";
 
 export interface BaseLayoutProps {
     children: React.ReactNode
