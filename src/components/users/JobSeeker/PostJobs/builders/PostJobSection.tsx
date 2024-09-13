@@ -25,13 +25,13 @@ const PostJobSection: React.FC<PostJobSectionProps> = ({className, children}) =>
     }
     return(
         <>
-            <div className="w-full flex flex-row min-h-screen p-4 md:p-0">
+            <div className="w-full flex flex-row min-h-screen p-4 lg:p-0">
 
                 {/*side bar*/}
                 <div className={`bg-kjcBtn-950 text-white hidden lg:flex lg:w-[30%] xl:w-[15%]`}>
 
                 </div>
-                <div className={"w-full lg:w-[70] xl:w-[85%] p-0 md:p-6"}>
+                <div className={"w-full lg:w-[70] xl:w-[85%] p-0 md:px-6"}>
                     {/*mobile view drawer*/}
                     <p
                         className={"flex lg:hidden"}
@@ -51,7 +51,7 @@ const PostJobSection: React.FC<PostJobSectionProps> = ({className, children}) =>
                     </Drawer>
 
                     {/*div to contain content */}
-                    <div className={`w-full flex items-center justify-between py-4 md:p-8 ${className}`}>
+                    <div className={`w-full flex items-center justify-between ${className}`}>
                         {children}
                     </div>
                 </div>

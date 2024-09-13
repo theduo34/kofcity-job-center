@@ -11,7 +11,7 @@ const PostJobs = () => {
     return(
         <>
             <PostJobSection>
-                <div className={"w-full md:w-[75%] lg:w-[80%] xl:w-[70%] 2xl:w-[50%]  space-y-8"}>
+                <div className={"w-full md:w-[75%] lg:w-[80%] xl:w-[70%] 2xl:w-[50%]  space-y-8 pt-4 md:pt-10"}>
                     <h1 className={"items-center justify-center font-semibold text-lg md:text-2xl capitalize"}>
                         Let's find your company
                     </h1>
