@@ -15,6 +15,7 @@ type KjcInputProps = {
     onChange?: (value: string) => void;
     //eslint-disable-next-line
     suggestions?: any[] | undefined;
+    disabled?: boolean;
 };
 
 const KjcInput: React.FC<KjcInputProps> = (props) => {
@@ -68,6 +69,7 @@ const KjcInput: React.FC<KjcInputProps> = (props) => {
                     style={props.style}
                     className={props.className}
                     allowClear
+                    disabled={props.disabled}
                     value={value}
                     onChange={(e) => handleInputChange(e.target.value)}
                 />
