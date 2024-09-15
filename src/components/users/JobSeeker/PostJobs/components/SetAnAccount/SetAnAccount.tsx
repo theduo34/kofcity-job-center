@@ -9,6 +9,8 @@ import AdditionalInformation from "./components/AdditionalInformation.tsx";
 import SpinnerOverlay from "./builders/SpinnerOverlay.tsx";
 import NextStageModal from "./builders/NextStageModal.tsx";
 import {withBaseLayout} from "../../../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
+import {useNavigate} from "react-router-dom";
+import {USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS} from "../../../UserRoutes.constants.ts";
 
 const { Step } = Steps;
 
@@ -46,9 +48,12 @@ const SetAnAccount = () => {
     const [step, setStep] = useState<number>(0);
     const [showBackBtn, setShowBackBtn] = useState<boolean>(false);
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+    //eslint-disable-next-line
     const [formData, setFormData] = useState<Record<string, any>>({});
     const [spinning, setSpinning] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
     const handleOk = () => {
         setShowModal(false);
@@ -163,11 +168,16 @@ const SetAnAccount = () => {
 
                 <div className="flex items-center justify-between cursor-pointer mb-16">
                     <p className={`items-center justify-center py-2 md:py-2 px-8 font-semibold rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:shadow-lg ${
-                            showBackBtn ? "visible" : "invisible"
+                            showBackBtn ? "flex" : "hidden"
                         }`}
                         onClick={handleBack}
                     >
                         Back
+                    </p>
+                    <p
+                        onClick={() => navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}`)}
+                        className={`flex items-center justify-center py-2 md:py-2 px-8 font-semibold text-white shadow-md rounded-lg bg-blue-600 hover:bg-blue-700 hover:shadow-lg ${step == 0 ? "flex" : "hidden"}`}>
+                         Back to post job
                     </p>
                     <p
                         className="flex items-center justify-center py-2 md:py-2 px-8 font-semibold shadow-md rounded-lg bg-kjcBtn-200 hover:bg-kjcBtn-300 hover:shadow-lg"
