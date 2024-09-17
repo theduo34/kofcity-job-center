@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
-import { CheckCircleOutlined, RightOutlined } from "@ant-design/icons";
-import { getJobDetails } from "../JobDetails.constant.tsx";
-import { Form, FormProps, message } from "antd";
-import KjcInput from "../../../../../../../builders/KjcInput";
+import {Form, Input, Select} from 'antd';
+import {
+    getSearchInputSelects
+} from "../../../../JobSeekerDashboard/components/JobRecommendation/JobRecommendation.constants.tsx";
 
 export type FieldType = {
     job_title: string;
@@ -14,127 +13,136 @@ export type FieldType = {
     skills: string;
     experience_level: string;
     benefits: string;
+    industry_type: string;
+    application_preference: string;
 };
 
 interface ApplicationInfoProps {
     onSubmit: (data: FieldType) => void;
     formData: FieldType;
+    //eslint-disable-next-line
+    form: any
 }
-const ApplicationInfo = ({ onSubmit, formData }: ApplicationInfoProps) => {
-    const [openItemKey, setOpenItemKey] = useState<string | null>(null);
-    const [savedFields, setSavedFields] = useState<{ [key: string]: string }>({});
-    const [form] = Form.useForm();
 
-    useEffect(() => {
-        form.setFieldsValue(formData);
-    }, [formData]);
-
-    const onFinished: FormProps<FieldType>["onFinish"] = async (formData) => {
-        try {
-            onSubmit(formData);
-            message.success("Job Details Saved!!!");
-        } catch (error) {
-            console.error("Validation failed:", error);
-        }
-    };
-    const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = () => {
-        //
+const ApplicationInfo = ({ onSubmit, formData, form }: ApplicationInfoProps) => {
+    const onFinished = (formData: FieldType) => {
+        onSubmit(formData);
     };
 
-    const handleItemClick = (key: string) => {
-        if (openItemKey === key) {
-            setOpenItemKey(null);
-        } else {
-            setOpenItemKey(key);
-        }
-    };
+    const searchOptions = getSearchInputSelects();
 
-    const handleSave = (key: string) => {
-        const value = form.getFieldValue(key);
-        setSavedFields((prevState) => ({
-            ...prevState,
-            [key]: value,
-        }));
-        setOpenItemKey(null);
-        console.log(value)
-    };
+    // options for job type and industry type
+    const jobTypeOptions = searchOptions.find(option => option.key === 'jobType')?.options || [];
+    const industryOptions = searchOptions.find(option => option.key === 'industry')?.options || [];
 
-    const jobDetails = getJobDetails();
 
-    // const areAllFieldsFilled = () => {
-    //     return jobDetails.every(item => savedFields[item.key as string]);
-    // };
 
     return (
-        <>
-            <div className="items-center p-0 md:p-4 space-y-2 shadow-lg">
-                <p className="p-2 shadow-lg bg-white">
-                    Thank you for choosing our platform to find the best candidates for your team. We’re here to help
-                    you create an eye-catching and detailed job listing that will attract the right talent. Please take
-                    a few moments to fill in the job details below. Remember, a well-crafted job posting can make all
-                    the difference in finding your ideal candidate.
-                </p>
-                <h2 className="font-semibold text-lg capitalize p-2 shadow-lg bg-white">Fill in your Job Details</h2>
-            </div>
-            {/* Job Details Fields */}
-            <div className="w-full items-center pt-4">
-                <Form
-                    form={form}
-                    onFinish={onFinished}
-                    onFinishFailed={onFinishFailed}
-                    initialValues={savedFields}
-                >
-                    <div className="w-full items-center p-0 md:p-4 space-y-4 shadow-lg">
-                        {jobDetails.map(item => (
-                            <div key={item.key} className="w-full">
-                                <div
-                                    className="flex items-center justify-between w-full px-2 py-4 shadow-lg bg-white rounded-3xl font-semibold cursor-pointer"
-                                    onClick={() => handleItemClick(item.key as string)}
-                                >
-                                    <p className="flex items-center">
-                                    <span className="me-2">
-                                        {savedFields[item.key as string] ? (
-                                            <CheckCircleOutlined style={{fontSize: "18px", color: "green"}}/>
-                                        ) : (
-                                            <CheckCircleOutlined style={{fontSize: "18px", color: "gray"}}/>
-                                        )}
-                                    </span>
-                                        {item.label}
-                                    </p>
-                                    <span className="items-center"><RightOutlined/></span>
-                                </div>
+        <Form
+            form={form}
+            layout="vertical"
+            initialValues={formData}
+            onFinish={onFinished}
+        >
+            {/* Job Title */}
+            <Form.Item
+                label="Job Title"
+                name="job_title"
+                rules={[{ required: true, message: 'Please input the job title' }]}
+            >
+                <Input placeholder="Enter job title" className={"py-2"} />
+            </Form.Item>
 
-                                {/* Show the input field and save button if the item is open */}
-                                {openItemKey === item.key && (
-                                    <div className="flex flex-col mt-2 bg-white p-4">
-                                        <KjcInput
-                                            name = {item.key}
-                                            className="py-3"
-                                            rules={[{ required: true, message: ""}]}
-                                        />
-                                        <button
-                                            className="px-4 py-2 bg-blue-500 text-white rounded"
-                                            onClick={() => handleSave(item.key as string)}
-                                        >
-                                            Save
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    {/*<div className="flex justify-end pt-4">*/}
-                    {/*    <KjcButton*/}
-                    {/*        htmlType="submit"*/}
-                    {/*        className="py-6 px-8 bg-kjcBtn-200 font-semibold rounded-lg shadow-lg"*/}
-                    {/*        disabled={!areAllFieldsFilled()}*/}
-                    {/*    >*/}
-                    {/*        Save and Continue <ArrowRight/>*/}
-                    {/*    </KjcButton>*/}
-                    {/*</div>*/}
-                </Form>
-            </div>
-        </>
+            {/* Job Description */}
+            <Form.Item
+                label="Job Description"
+                name="job_description"
+                rules={[{ required: true, message: 'Please input the job description' }]}
+            >
+                <Input.TextArea placeholder="Enter job description" rows={4}  />
+            </Form.Item>
+
+            {/* Job Location */}
+            <Form.Item
+                label="Job Location"
+                name="job_location"
+                rules={[{ required: true, message: 'Please input the job location' }]}
+            >
+                <Input placeholder="Enter job location" className={"py-2"} />
+            </Form.Item>
+
+            {/* Job Type */}
+            <Form.Item
+                label="Job Type"
+                name="job_type"
+                rules={[{ required: true, message: 'Please select the job type' }]}
+            >
+                <Select placeholder="Select job type (e.g., Full-time, Part-time)" className={"h-10"} options={jobTypeOptions} />
+            </Form.Item>
+
+            {/*industry type*/}
+            <Form.Item
+                label="Industry type"
+                name="industry_type"
+                rules={[{ required: true, message: 'Please select industry type' }]}
+            >
+                <Select placeholder="Select industry" className={"h-10"} options={industryOptions} />
+            </Form.Item>
+
+            {/* Salary */}
+            <Form.Item
+                label="Salary"
+                name="salary"
+                rules={[{ required: true, message: 'Please input the salary range' }]}
+            >
+                <Input placeholder="Enter salary range (e.g., $40,000 - $50,000)" className={"py-2"} />
+            </Form.Item>
+
+            {/* Educational Qualification */}
+            <Form.Item
+                label="Educational Qualification"
+                name="educational_qualification"
+                rules={[{ required: true, message: 'Please input the educational qualification' }]}
+            >
+                <Input placeholder="Enter educational qualification required" className={"py-2"} />
+            </Form.Item>
+
+            {/* Skills */}
+            <Form.Item
+                label="Skills"
+                name="skills"
+                rules={[{ required: true, message: 'Please input the required skills' }]}
+            >
+                <Input.TextArea placeholder="Enter required skills" rows={3} className={"py-2"}/>
+            </Form.Item>
+
+            {/* Experience Level */}
+            <Form.Item
+                label="Experience Level"
+                name="experience_level"
+                rules={[{ required: true, message: 'Please input the required experience level' }]}
+            >
+                <Input placeholder="Enter experience level (e.g., Entry-level, Senior)" className={"py-2"} />
+            </Form.Item>
+
+            {/* Benefits */}
+            <Form.Item
+                label="Benefits"
+                name="benefits"
+                rules={[{ required: true, message: 'Please input the benefits' }]}
+            >
+                <Input.TextArea placeholder="Enter job benefits (e.g., health insurance, remote work)" rows={3} />
+            </Form.Item>
+
+            <Form.Item
+                label="Application Preference(Link or Email)"
+                name="application_preference"
+                rules={[{ required: true, message: 'Please input a link or email for applicant to apply' }]}
+            >
+                <Input placeholder={"Link or email for applicant to apply"} className={"py-2"} />
+            </Form.Item>
+
+        </Form>
     );
 };
 
