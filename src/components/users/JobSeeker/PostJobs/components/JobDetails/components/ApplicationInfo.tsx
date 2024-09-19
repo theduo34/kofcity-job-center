@@ -35,6 +35,11 @@ const ApplicationInfo = ({ onSubmit, formData, form }: ApplicationInfoProps) => 
     const jobTypeOptions = searchOptions.find(option => option.key === 'jobType')?.options || [];
     const industryOptions = searchOptions.find(option => option.key === 'industry')?.options || [];
 
+    const experinceLevelOptions: {label?: string, value?: string}[] = [
+        { value: "zeroToTwoYears", label: "0-2 years" },
+        { value: "twoToFiveYears", label: "2-5 years" },
+        { value: "fiveYearsPlus", label: "5+ years"}
+    ]
 
 
     return (
@@ -122,7 +127,7 @@ const ApplicationInfo = ({ onSubmit, formData, form }: ApplicationInfoProps) => 
                 name="experience_level"
                 rules={[{ required: true, message: 'Please input the required experience level' }]}
             >
-                <Input placeholder="Enter experience level (e.g., Entry-level, Senior)" className={"py-2"} />
+                <Select placeholder="Select experience level (e.g., Entry-level, Senior)" className={"h-10"} options={ experinceLevelOptions}/>
             </Form.Item>
 
             {/* Benefits */}
