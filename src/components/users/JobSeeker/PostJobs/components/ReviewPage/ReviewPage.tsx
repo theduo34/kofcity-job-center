@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import {Button, Form, Input, Row, Col, Select, message, Spin} from 'antd';
 import { CheckCircleOutlined, EditOutlined, SendOutlined } from '@ant-design/icons';
 import {useLocation, useNavigate} from 'react-router-dom';
@@ -8,6 +9,25 @@ import {
     getSearchInputSelects
 } from "../../../JobSeekerDashboard/components/JobRecommendation/JobRecommendation.constants.tsx";
 
+interface Values {
+    job_title: string;
+    job_description: string;
+    job_location: string;
+    job_type: string;
+    salary: string;
+    educational_qualification: string;
+    skills: string;
+    experience_level: string;
+    benefits: string;
+    industry_type: string;
+    application_preference: string;
+}
+
+// Example of the expected response structure from the server
+interface JobResponse {
+    id: string;
+    status: string;
+}
 const ReviewPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -44,20 +64,39 @@ const ReviewPage = () => {
 
     const handleSubmit = () => {
         setLoading(true);
+
         form
             .validateFields()
-            .then(values => {
+            .then((values: Values) => {
                 console.log("Job details submitted:", values);
-                setTimeout(() => {
-                    setLoading(false);
-                    navigate('/user/post-jobs/existing-user', { state: { formData: values } });
-                    message.success("Successfully posted a job!!!.");
-                }, 2000)
+
+                const url = "http://localhost:4500/job-listings/posted/";
+                const config: AxiosRequestConfig<Values> = {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+
+                // Making a POST request with generic types
+                axios.post<JobResponse, AxiosResponse<JobResponse>, Values>(url, values, config)
+                    .then((response: AxiosResponse<JobResponse>) => {
+                        console.log("Success:", response.data);
+                        setLoading(false);
+                        message.success("Successfully posted a job!!!.");
+                        navigate('/user/post-jobs/existing-user', { state: { formData: values } });
+                    })
+                    .catch((error) => {
+                        console.error("Error submitting job details:", error);
+                        setLoading(false);
+                        message.error("Failed to post job.");
+                    });
             })
             .catch(errorInfo => {
                 console.log("Form validation failed:", errorInfo);
+                setLoading(false);
             });
     };
+
 
     if (!formData) {
         return <p>No data available to display. Please go back and fill in the job details.</p>;

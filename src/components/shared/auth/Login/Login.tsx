@@ -29,7 +29,8 @@ const Login = () => {
         if (!isSigningIn) {
             setIsSigningIn(true);
             try {
-                await doSignInWithEmailAndPassword(formData.email, formData.password);
+                const user = await doSignInWithEmailAndPassword(formData.email, formData.password);
+                console.log(user.providerId, user);
                 navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
                 message.success("Successfully logged in!");
             } catch (error) {

@@ -1,20 +1,22 @@
-import React, {createContext, useEffect, useState, ReactNode, useContext} from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import {  auth } from '../../../firebase/firebaseConfig.ts';
+import React, { createContext, useEffect, useState, ReactNode, useContext } from 'react';
+import { onAuthStateChanged, User, signOut } from 'firebase/auth'; // Add signOut
+import { auth } from '../../../firebase/firebaseConfig.ts';
 
 interface AuthContextType {
     currentUser: User | null;
     userLoggedIn: boolean;
     loading: boolean;
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
     currentUser: null,
     userLoggedIn: false,
     loading: true,
+    logout: async () => {}
 });
 
-//custom useAuth hook
+// Custom useAuth hook
 export const useAuth = () => useContext(AuthContext);
 
 interface AuthContextProviderProps {
@@ -26,6 +28,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
+    // Auth state listener
     useEffect(() => {
         const initializeUser = (user: User | null) => {
             if (user) {
@@ -42,8 +45,16 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
         return () => unsubscribe();
     }, []);
 
+    // function to sign out the user
+    const logout = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.error("Error during sign out:", error);
+        }
+    };
 
-    const value = { currentUser, userLoggedIn, loading };
+    const value = { currentUser, userLoggedIn, loading, logout };
 
     return (
         <AuthContext.Provider value={value}>
