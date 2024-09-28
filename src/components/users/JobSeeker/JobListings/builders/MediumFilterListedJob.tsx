@@ -1,23 +1,34 @@
 import { Bookmark, CircleArrowOutUpRight } from "lucide-react";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { listedJobs } from "../JobListings.constants.tsx";
-import { useNavigate, useLocation } from "react-router-dom";
-import { DESCRIPTION_ROUTE_PATH } from "../JobListingsRoutes.constants.ts";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {bookmarkedStateProps} from "../JobListings.tsx";
+import JobDescription, {jobDetails} from "./JobDescription.tsx";
 
 const MediumFilterListedJob = (props: bookmarkedStateProps) => {
-    const navigate = useNavigate();
     const location = useLocation();
-    const [selectedJobKey, setSelectedJobKey] = useState<string | null>(null);
+    const [selectedJobKey, setSelectedJobKey] = useState<jobDetails | null>(null);
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const jobKey = queryParams.get('jobKey');
         if (jobKey) {
+            //eslint-disable-next-line
+            // @ts-ignore
             setSelectedJobKey(jobKey);
         }
     }, [location.search]);
+
+    if(selectedJobKey) {
+        return(
+            <JobDescription
+                jobDescription={selectedJobKey}
+                bookmark = {props}
+                handleBackBtnClick = { () => setSelectedJobKey(null) }
+            />
+        )
+    }
 
     return (
         <>
@@ -64,7 +75,7 @@ const MediumFilterListedJob = (props: bookmarkedStateProps) => {
                             </div>
                         </div>
                         <div className="w-full space-x-1 flex py-2 items-center justify-center bottom-0 bg-kjcBtn-200 shadow-lg rounded-lg hover:bg-kjcBtn-300 cursor-pointer ease-in-out"
-                             onClick={() => navigate(`${DESCRIPTION_ROUTE_PATH}/${job.key}`)}
+                             onClick={() => setSelectedJobKey(job)}
                         >
                             <CircleArrowOutUpRight size={18} />
                             <span className="items-center font-semibold ">Apply</span>

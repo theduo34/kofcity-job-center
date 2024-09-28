@@ -2,12 +2,20 @@ import { Bookmark, CircleArrowOutUpRight } from "lucide-react";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { listedJobs } from "../JobListings.constants.tsx";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { bookmarkedStateProps, FilterCriteriaProps } from "../JobListings.tsx";
+import {useAuth} from "../../../../shared/authContext/AuthContext.tsx";
+import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../../../shared/auth/AuthRoutes.constants.ts";
+import {message} from "antd";
 
 const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteria: FilterCriteriaProps }) => {
     const [selectedJobKey, setSelectedJobKey] = useState<string | null>(null);
     const location = useLocation();
+
+    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const { currentUser } = useAuth();
+
+    const navigate = useNavigate();
 
     const filteredJobs = listedJobs.filter(job => {
         const matchesRemote = props.filterCriteria.remote_only ? job.isRemote : true;
@@ -30,9 +38,41 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
         setSelectedJobKey(key);
     };
 
+    useEffect(() => {
+        const checkUser = async () => {
+            if (currentUser) {
+                try {
+                    const token = await currentUser.getIdToken();
+                    if (token) {
+                        setAuthenticated(true);
+                    } else {
+                        setAuthenticated(false);
+                    }
+                } catch (error) {
+                    console.error("Error fetching token", error);
+                    setAuthenticated(false);
+                }
+            } else {
+                setAuthenticated(false);
+            }
+        };
+
+        checkUser();
+    }, [currentUser]);
+
+    const handleApplyClick = () => {
+        if(!authenticated) {
+            const currentPath = window.location.pathname;
+
+            localStorage.setItem("redirectUrl", currentPath);
+            navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`)
+            message.info("Login Required", 2 )
+        }
+    }
+
     return (
         <>
-            <div className="flex flex-col xl:grid xl:grid-cols-2 2xl:flex-row items-center justify-between space-x-4">
+            <div className="flex flex-col xl:grid xl:grid-cols-2 2xl:flex-row items-start justify-between space-x-4">
                 <div className="w-full xl:w-full 2xl:basis-1/6 h-[1300px] overflow-y-auto">
                     {/* Listed jobs section */}
                     <div className="space-y-4">
@@ -86,7 +126,7 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
                 </div>
 
                 {/* Job description tab */}
-                <div className="w-full 2xl:basis-4/6 rounded-lg bg-white h-[1300px] overflow-y-auto">
+                <div className="w-full 2xl:basis-4/6 rounded-lg bg-white overflow-y-auto">
                     {filteredJobs.map((job) => (
                         selectedJobKey === job.key && (
                             <div key={job.key}>
@@ -102,13 +142,14 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
                                     <div className="flex items-center justify-between space-x-4">
                                         <div className="flex list-disc capitalize space-x-2">
                                             <li>{job.jobType}</li>
-                                            <p><EnvironmentOutlined style={{ fontSize: "14px" }} /> {job.jobLocation}</p>
+                                            <p><EnvironmentOutlined style={{fontSize: "14px"}}/> {job.jobLocation}</p>
                                             <li>1 day ago</li>
                                         </div>
                                         <div
                                             className="space-x-1 flex py-2 px-16 items-center bg-kjcBtn-200 shadow-lg rounded-lg hover:bg-kjcBtn-300 cursor-pointer ease-in-out"
+                                            onClick={handleApplyClick}
                                         >
-                                            <CircleArrowOutUpRight size={14} />
+                                            <CircleArrowOutUpRight size={14}/>
                                             <span className="items-center font-semibold">Apply</span>
                                         </div>
                                     </div>
@@ -119,14 +160,61 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
                                             props.toggleBookmark(job.key as string);
                                         }}
                                     >
-                                        {props.bookmarkedJob[job.key] ? <Bookmark style={{ fill: "black" }} /> : <Bookmark />}
+                                        {props.bookmarkedJob[job.key] ? <Bookmark style={{fill: "black"}}/> :
+                                            <Bookmark/>}
                                     </p>
                                 </div>
                                 <div className="p-4 space-y-8 text-lg">
-                                    <p>Skills: {job.jobSkills}</p>
-                                    <p>Education: {job.education}</p>
-                                    <p>Salary: {job.jobSalary}</p>
+                                    <p className={"uppercase leading-normal font-semibold text-xl "}>
+                                        {job.companyName}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Industry:</span>
+                                        {job.industry}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Job Title:</span>
+                                        {job.jobTitle}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Job Description:</span>
+                                        {job.jobDescription}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Job Responsibilities:</span>
+                                        {job.jobResponsibility}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Skills:</span>
+                                        {job.jobSkills}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Education:</span>
+                                        {job.education}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Salary:</span>
+                                        {job.jobSalary}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Job Type:</span>
+                                        {job.jobType}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Location:</span>
+                                        {job.jobLocation}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Remote Option:</span>
+                                        {job.isRemote ? "Yes" : "No"}
+                                    </p>
+                                    <p>
+                                        <span className="font-semibold pe-1">Role Level:</span>
+                                        {job.roleLevel}
+                                    </p>
                                 </div>
+
+
                             </div>
                         )
                     ))}
