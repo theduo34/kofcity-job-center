@@ -13,8 +13,8 @@ export interface LocationInputModalProps {
 }
 
 type FieldType = {
-   city?: string;
-   country_name?: string;
+   city: string;
+   country_name: string;
 };
 
 const  LocationInputModal = (props: LocationInputModalProps) => {

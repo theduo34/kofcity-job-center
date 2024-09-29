@@ -10,9 +10,9 @@ import KjcInput from "../../../../../builders/KjcInput";
 import KjcPhoneNumber from "../../../../../builders/KjcPhoneNumber/KjcPhoneNumber.tsx";
 
 type FieldType = {
-    full_name?: string;
-    email?: string;
-    phone_number?: string;
+    full_name: string;
+    email: string;
+    phone_number: string;
 };
 
 export interface ContactInputModalProps {
