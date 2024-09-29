@@ -64,16 +64,20 @@ const JobDescription: React.FC<JobDescriptionProps> = ({ jobDescription, bookmar
             localStorage.setItem("redirectUrl", currentPath);
             navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`);
             message.info("Login Required", 2);
+        } else {
+            ("")  //link to apply goes here
         }
     };
 
     return (
         <Row>
             <Col>
-                <div className={"flex items-center justify-center p-1 border border-gray-300 rounded-lg cursor-pointer bg-amber-50 px-2 mb-1"}>
+                <div
+                    className={"flex items-center justify-center p-1 border border-gray-300 rounded-lg cursor-pointer bg-amber-50 px-2 mb-1"}
+                    onClick={handleBackBtnClick}
+                >
                     <ArrowLeftOutlined
                         className="cursor-pointer "
-                        onClick={handleBackBtnClick}
                     />
                     <span className={"ml-1 capitalize font-semibold"}>listings page</span>
                 </div>

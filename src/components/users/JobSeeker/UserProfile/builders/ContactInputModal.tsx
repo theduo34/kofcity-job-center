@@ -1,5 +1,5 @@
 import {Form, FormProps, message, Spin} from "antd";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 //eslint-disable-next-line
 // @ts-ignore
 import {CountryCode} from 'libphonenumber-js/types';
@@ -9,18 +9,20 @@ import KjcModal from "../../../../../builders/KjcModal";
 import KjcInput from "../../../../../builders/KjcInput";
 import KjcPhoneNumber from "../../../../../builders/KjcPhoneNumber/KjcPhoneNumber.tsx";
 
-export interface ContactInputModalProps {
-    open?: boolean;
-    onOk?: () => void;
-    onCancel?: () => void;
-    loading?: boolean;
-}
-
 type FieldType = {
     full_name?: string;
     email?: string;
     phone_number?: string;
 };
+
+export interface ContactInputModalProps {
+    open?: boolean;
+    onOk?: (updatedContactInfo: FieldType) => void;
+    onCancel?: () => void;
+    initialValues?: FieldType;
+    loading?: boolean;
+}
+
 
 const  ContactInputModal = (props: ContactInputModalProps) => {
     const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -28,6 +30,10 @@ const  ContactInputModal = (props: ContactInputModalProps) => {
     const [isSaving, setIsSaving] = useState(false);
 
     const [form] = Form.useForm();
+
+    useEffect(() => {
+        form.setFieldsValue(props.initialValues);
+    }, [props.initialValues, form]);
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (formData) => {
         const parsedCompanyPhoneNumber = parsePhoneNumberWithError(phoneNumber, phoneNumberCountry);
@@ -42,7 +48,7 @@ const  ContactInputModal = (props: ContactInputModalProps) => {
             setTimeout(() => {
                 setIsSaving(false);
                 if (props.onOk) {
-                    props.onOk();
+                    props.onOk(formData);
                 }
                 message.success("Contact Info Updated!");
             }, 2000);

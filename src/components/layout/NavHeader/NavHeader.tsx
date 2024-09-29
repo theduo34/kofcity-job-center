@@ -8,7 +8,7 @@ import KofJobs from '/assets/images/logo/IMG.png';
 //eslint-disable-next-line
 // @ts-ignore
 import { useAuth } from "../../shared/authContext/AuthContext.tsx";
-import { USER_ROUTE_PATH } from "../../users/JobSeeker/UserRoutes.constants.ts";
+import {USER_ROUTE_PATH} from "../../users/JobSeeker/UserRoutes.constants.ts";
 import { DASHBOARD_ROUTES_PATH } from "../../users/JobSeeker/JobSeekerDashboard/DashboardRoutes.constants.ts";
 
 const NavHeader = () => {

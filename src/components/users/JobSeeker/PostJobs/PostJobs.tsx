@@ -4,16 +4,62 @@ import { useNavigate } from "react-router-dom";
 import { USER_ROUTE_PATH, USER_ROUTE_PATH_POST_JOBS } from "../UserRoutes.constants.ts";
 import {EXISTING_USERS_ROUTE_PATH, SET_UP_ACCOUNT_ROUTE_PATH} from "./PostJobsRoutes.constants.ts";
 import { withBaseLayout } from "../../../layout/hoc/WithBaseLayout/withBaseLayout.tsx";
+import {useEffect, useState} from "react";
+import {useAuth} from "../../../shared/authContext/AuthContext.tsx";
+import {AUTH_ROUTE_PATH, LOGIN_PATH} from "../../../shared/auth/AuthRoutes.constants.ts";
+import {message} from "antd";
 
 const PostJobs = () => {
+    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const { currentUser } = useAuth();
+
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const checkUser = async () => {
+            if (currentUser) {
+                try {
+                    const token = await currentUser.getIdToken();
+                    if (token) {
+                        setAuthenticated(true);
+                    } else {
+                        setAuthenticated(false);
+                    }
+                } catch (error) {
+                    console.error("Error fetching token", error);
+                    setAuthenticated(false);
+                }
+            } else {
+                setAuthenticated(false);
+            }
+        };
+
+        checkUser();
+    }, [currentUser]);
+
     const handleFirstTimeUser = () => {
-        navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${SET_UP_ACCOUNT_ROUTE_PATH}`);
+        if(!authenticated) {
+            const currentPath = window.location.pathname;
+
+            localStorage.setItem("redirectUrl", currentPath);
+            navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`);
+            message.info("Login Required", 2 )
+        } else {
+            navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${SET_UP_ACCOUNT_ROUTE_PATH}`);
+        }
     };
 
     const handleExistingUser = () => {
-        navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${EXISTING_USERS_ROUTE_PATH}`);
+        if(!authenticated) {
+            const currentPath = window.location.pathname;
+
+            localStorage.setItem("redirectUrl", currentPath);
+            navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`);
+            message.info("Login Required", 2 )
+        } else {
+            navigate(`${USER_ROUTE_PATH}${USER_ROUTE_PATH_POST_JOBS}${EXISTING_USERS_ROUTE_PATH}`);
+
+        }
     };
 
     return (

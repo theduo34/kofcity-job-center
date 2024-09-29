@@ -67,6 +67,8 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
             localStorage.setItem("redirectUrl", currentPath);
             navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`)
             message.info("Login Required", 2 )
+        } else {
+            ("") //link to apply for a job goes here
         }
     }
 

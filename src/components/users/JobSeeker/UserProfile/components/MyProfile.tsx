@@ -1,9 +1,10 @@
 import {Pencil} from "lucide-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import UsernameInputModal from "../builders/UsernameInputModal.tsx";
 import ContactInputModal from "../builders/ContactInputModal.tsx";
 import LocationInputModal from "../builders/LocationInputModal.tsx";
 import ProfessionalSummaryTextAreaModal from "../builders/ProfessionalSummaryTextAreaModal.tsx";
+import {useAuth} from "../../../../shared/authContext/AuthContext.tsx";
 
 const MyProfile = () => {
     const [showUsernameInputModal, setShowUsernameInputModal] = useState(false);
@@ -12,14 +13,39 @@ const MyProfile = () => {
     const [showProfessionSummaryTextAreaModal, setShowProfessionSummaryTextAreaModal] = useState(false);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const handleShowUsernameInput = () => {
-        setShowUsernameInputModal(true);
-        setLoading(true)
+    const {currentUser} = useAuth();
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000)
-    }
+    const [contactInfo, setContactInfo] = useState({
+        full_name: "Not set yet",
+        phone_number: "Not set yet",
+        email: `${currentUser?.email}`,
+    });
+
+    const [locationInfo, setLocationInfo] = useState({
+        country_name: "Not set yet",
+        city: "Not set yet",
+    })
+
+    const [professionSummary , setProfessionalSummary] = useState({
+        professional_summary: "Not set yet",
+    })
+
+    useEffect(() => {
+        const savedContactInfo = localStorage.getItem("contactInfo");
+        const savedLocationInfo = localStorage.getItem("locationInfo");
+        const professionSummaryInfo = localStorage.getItem("professionalSummary");
+
+        if (savedContactInfo) {
+            setContactInfo(JSON.parse(savedContactInfo));
+        }
+        if(savedLocationInfo) {
+            setLocationInfo(JSON.parse(savedLocationInfo));
+        }
+        if(professionSummaryInfo) {
+            setProfessionalSummary(JSON.parse(professionSummaryInfo));
+        }
+
+    }, []);
 
     const handleShowContactInput = () => {
         setShowContactInputModal(true);
@@ -56,15 +82,11 @@ const MyProfile = () => {
                 <div className="w-full md:w-[28%] p-2 space-y-4">
                     <div className="flex items-start shadow-lg px-4 py-8 rounded-lg bg-white">
                         <p className="w-16 h-16 flex items-center justify-center bg-gray-400 rounded-lg">
-                            AB
+                            {currentUser?.email?.charAt(0).toUpperCase()}
                         </p>
                         <div className="w-full ms-4 flex flex-col">
                             <h2 className="flex items-center justify-between font-semibold text-lg">
-                                Hi Emmanuel
-                                <span className={"cursor-pointer"}
-                                onClick={handleShowUsernameInput}>
-                                <Pencil/>
-                                </span>
+                                Hi {currentUser?.email}
                             </h2>
                             <p>Remote Opportunities</p>
                             <p>Accra</p>
@@ -98,9 +120,9 @@ const MyProfile = () => {
                                         >
                                             <Pencil/></span>
                                     </h2>
-                                    <p className={"items-center uppercase"}>emmanuel Somuah</p>
-                                    <p className={"items-center uppercase"}>emmsom506@gmail.com</p>
-                                    <p className={"items-center uppercase"}>+233 55 928 6073</p>
+                                    <p className={"items-center uppercase"}>{contactInfo.full_name}</p>
+                                    <p className={"items-center uppercase"}>{contactInfo.email}</p>
+                                    <p className={"items-center uppercase"}>{contactInfo.phone_number}</p>
                                 </div>
                             </div>
                             <div className="w-full md:w-[49%] h-[180px] border-2 border-neutral-200 px-4 py-8">
@@ -113,8 +135,8 @@ const MyProfile = () => {
                                             <Pencil/>
                                         </span>
                                     </h2>
-                                    <p className={"items-center uppercase"}>Accra, +233</p>
-                                    <p className={"items-center uppercase"}>Ghana</p>
+                                    <p className={"items-center uppercase"}>{locationInfo.city}, +233</p>
+                                    <p className={"items-center uppercase"}>{locationInfo.country_name}</p>
 
                                 </div>
                             </div>
@@ -122,15 +144,16 @@ const MyProfile = () => {
                         <div className="relative w-full mb-8">
                             <h2 className="relative font-semibold text-lg pb-2">Professional Summary</h2>
                             <div className="border-2 border-neutral-200 px-4 py-8">
-                                Highly skilled and accomplished Network Engineer with 3years
-                                of experience in designing, implementing, and managing complex
-                                network infrastructures. Proven track record of ensuring high availability,
-                                scalability, and security of network systems. Expertise in routing, switching,
-                                network protocols, and cloud-based solutions. Strong problem-solving skills,
-                                with ability to analyze and resolve complex network issues.
-                                Proficient in network architecture, configuration, and optimization. Excellent
-                                communication and collaboration skills, with experience working with cross-functional
-                                teams to deliver high-quality network solutions.
+                                {/*Highly skilled and accomplished Network Engineer with 3years*/}
+                                {/*of experience in designing, implementing, and managing complex*/}
+                                {/*network infrastructures. Proven track record of ensuring high availability,*/}
+                                {/*scalability, and security of network systems. Expertise in routing, switching,*/}
+                                {/*network protocols, and cloud-based solutions. Strong problem-solving skills,*/}
+                                {/*with ability to analyze and resolve complex network issues.*/}
+                                {/*Proficient in network architecture, configuration, and optimization. Excellent*/}
+                                {/*communication and collaboration skills, with experience working with cross-functional*/}
+                                {/*teams to deliver high-quality network solutions.*/}
+                                {professionSummary.professional_summary}
                             </div>
                             <p className="absolute top-12 right-4"
                                onClick={handleProfessionalSummaryTextArea}
@@ -155,7 +178,15 @@ const MyProfile = () => {
                 showContactInputModal && (
                     <ContactInputModal
                         open={showContactInputModal}
-                        onOk={() => setShowContactInputModal(false)}
+                        onOk={(updatedContactInfo: {
+                            full_name: string,
+                            phone_number: string,
+                            email: string
+                        }) => {
+                            localStorage.setItem("contactInfo", JSON.stringify(updatedContactInfo));
+                            setContactInfo(updatedContactInfo)
+                            setShowContactInputModal(false)
+                        }}
                         onCancel={() => setShowContactInputModal(false)}
                         loading={loading}
 
@@ -166,7 +197,14 @@ const MyProfile = () => {
                 showLocationInputModal && (
                     <LocationInputModal
                     open={showLocationInputModal}
-                    onOk = { () => setShowLocationInputModal(false) }
+                    onOk = {(updatedLocationInfo: {
+                        country_name: string,
+                        city: string,
+                    }) => {
+                        localStorage.setItem("locationInfo", JSON.stringify(updatedLocationInfo));
+                        setLocationInfo(updatedLocationInfo)
+                        setShowLocationInputModal(false)
+                    }}
                     onCancel = { () => setShowLocationInputModal(false) }
                     loading= {loading}
                     />
@@ -176,7 +214,13 @@ const MyProfile = () => {
                 showProfessionSummaryTextAreaModal && (
                     <ProfessionalSummaryTextAreaModal
                         open={showProfessionSummaryTextAreaModal}
-                        onOk = { () => setShowProfessionSummaryTextAreaModal(false)}
+                        onOk = { (updatedProfessionSummary: {
+                            professional_summary: string
+                        }) => {
+                           localStorage.setItem("professionalSummaryInfo", JSON.stringify(updatedProfessionSummary))
+                            setProfessionalSummary(updatedProfessionSummary)
+                            setShowProfessionSummaryTextAreaModal(false)
+                        }}
                         onCancel = { () => setShowProfessionSummaryTextAreaModal(false)}
                         loading={loading}
                     />
