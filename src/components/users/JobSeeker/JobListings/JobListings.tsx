@@ -85,13 +85,22 @@ const JobListings = () => {
                             <div className="items-center">
                                 <div>
                                     <div className="block xl:hidden">
-                                        <MediumFilterListedJob bookmarkedJob={bookmarkedJob} toggleBookmark={toggleBookmark}/>
+                                        <MediumFilterListedJob
+                                            bookmarkedJob={bookmarkedJob}
+                                            toggleBookmark={toggleBookmark}
+                                        />
                                     </div>
                                     <div className="hidden xl:block 2xl:hidden">
-                                        <LargeFilterListedJob bookmarkedJob={bookmarkedJob} toggleBookmark={toggleBookmark}/>
+                                        <LargeFilterListedJob
+                                            bookmarkedJob={bookmarkedJob}
+                                            toggleBookmark={toggleBookmark}
+                                        />
                                     </div>
                                     <div className="hidden 2xl:block">
-                                        <ExtraLargeFilterListedJob bookmarkedJob={bookmarkedJob} toggleBookmark={toggleBookmark} filterCriteria={filterCriteria}/>
+                                        <ExtraLargeFilterListedJob
+                                            bookmarkedJob={bookmarkedJob}
+                                            toggleBookmark={toggleBookmark}
+                                            filterCriteria={filterCriteria}/>
                                     </div>
                                 </div>
                             </div>

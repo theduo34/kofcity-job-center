@@ -1,24 +1,29 @@
 import {Form, FormProps, message, Spin} from "antd";
 import {countries} from "./countries.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import KjcModal from "../../../../../builders/KjcModal";
 import KjcInput from "../../../../../builders/KjcInput";
 
 export interface LocationInputModalProps {
     open?: boolean;
-    onOk?: () => void;
     onCancel?: () => void;
+    onOk?: (updatedLocationInfo: FieldType) => void;
     loading?: boolean;
+    initialValues?: FieldType;
 }
 
 type FieldType = {
-   city?: string;
-   country_name?: string;
+   city: string;
+   country_name: string;
 };
 
 const  LocationInputModal = (props: LocationInputModalProps) => {
     const [form] = Form.useForm();
     const [isSaving, setIsSaving] = useState(false);
+
+    useEffect(() => {
+        form.setFieldsValue(props.initialValues);
+    }, [props.initialValues, form]);
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
         setIsSaving(true);
@@ -28,7 +33,7 @@ const  LocationInputModal = (props: LocationInputModalProps) => {
             setTimeout(() => {
                 setIsSaving(false);
                 if (props.onOk) {
-                    props.onOk();
+                    props.onOk(formData);
                 }
                 message.success("Location Info updated!");
             }, 2000);

@@ -29,9 +29,21 @@ const Login = () => {
         if (!isSigningIn) {
             setIsSigningIn(true);
             try {
-                await doSignInWithEmailAndPassword(formData.email, formData.password);
-                navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
-                message.success("Successfully logged in!");
+                const user = await doSignInWithEmailAndPassword(formData.email, formData.password);
+                console.log(user.providerId, user)
+
+                const redirectUrl = localStorage.getItem("redirectUrl");
+
+                if(redirectUrl){
+                    navigate(`${redirectUrl}`);
+                    message.success("Successfully logged in!");
+                }
+                else {
+                    navigate(`${USER_ROUTE_PATH}${DASHBOARD_ROUTES_PATH}`, {replace: true});
+                    message.success("Successfully logged in!");
+                }
+                localStorage.removeItem("redirectUrl");
+
             } catch (error) {
                 message.error("Login failed. Please check your credentials and try again.");
             } finally {

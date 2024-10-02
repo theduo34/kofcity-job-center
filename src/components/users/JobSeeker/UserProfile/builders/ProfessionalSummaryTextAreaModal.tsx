@@ -1,13 +1,14 @@
 import {Form, FormProps, message, Spin} from "antd";
 import TextArea from "antd/es/input/TextArea";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import KjcModal from "../../../../../builders/KjcModal";
 
 export interface ContactInputModalProps {
     open?: boolean;
-    onOk?: () => void;
+    onOk?: (updatedProfessionalSummaryInfo: FieldType) => void;
     onCancel?: () => void;
     loading?: boolean;
+    initialValues?: FieldType
 }
 
 type FieldType = {
@@ -18,6 +19,10 @@ const  ProfessionalSummaryTextAreaModal = (props: ContactInputModalProps) => {
     const [form] = Form.useForm();
     const [isSaving, setIsSaving] = useState(false);
 
+    useEffect(() => {
+        form.setFieldsValue(props.initialValues);
+    }, [props.initialValues, form]);
+
     const onFinish: FormProps<FieldType>["onFinish"] = async (formData) => {
         setIsSaving(true);
         try {
@@ -26,7 +31,7 @@ const  ProfessionalSummaryTextAreaModal = (props: ContactInputModalProps) => {
             setTimeout(() => {
                 setIsSaving(false);
                 if (props.onOk) {
-                    props.onOk();
+                    props.onOk(formData);
                 }
                 message.success("Professional summary updated!");
             }, 2000);

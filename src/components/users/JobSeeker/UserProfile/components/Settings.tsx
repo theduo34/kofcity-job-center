@@ -9,8 +9,10 @@ import {
 import { jobTitles, regions } from "../builders/settingsPreference.ts";
 import KjcInput from "../../../../../builders/KjcInput";
 import KjcButton from "../../../../../builders/KjcButton";
+import {useAuth} from "../../../../shared/authContext/AuthContext.tsx";
 
 const Settings = () => {
+    const {currentUser} = useAuth();
     const [formState, setFormState] = useState({
         titles: [] as string[],
         locations: [] as string[],
@@ -77,10 +79,12 @@ const Settings = () => {
             <div className="w-full flex flex-col md:flex-row items-start justify-between ">
                 <div className="w-full md:w-[28%] p-2 space-y-4">
                     <div className="flex items-start shadow-md px-4 py-8 rounded-lg">
-                        <p className="w-16 h-16 flex items-center justify-center bg-gray-400 rounded-lg">AB</p>
+                        <p className="w-16 h-16 flex items-center justify-center bg-gray-400 rounded-lg">
+                            {currentUser?.email?.charAt(0).toUpperCase()}
+                        </p>
                         <div className="w-full ms-4 flex flex-col">
-                            <h2 className="flex items-center justify-between font-semibold text-lg">
-                                Hi Emmanuel
+                            <h2 className="flex items-center justify-between font-semibold text-lg uppercase">
+                                {currentUser?.email}
                             </h2>
                             <p>Remote Opportunities</p>
                             <p>Accra</p>
