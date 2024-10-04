@@ -65,7 +65,7 @@ const JobDescription: React.FC<JobDescriptionProps> = ({ jobDescription, bookmar
             navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`);
             message.info("Login Required", 2);
         } else {
-            ("")  //link to apply goes here
+            window.location.href = "mailto:koficyjobcenter2024@gmail.com";
         }
     };
 

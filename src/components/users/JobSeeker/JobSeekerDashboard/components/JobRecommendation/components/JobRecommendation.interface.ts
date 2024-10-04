@@ -12,6 +12,9 @@ export interface JobsRecommendationProps  {
     onClick?: () => void,
     key?: string
     responsibility?: string,
+    isRemote?: boolean,
+    roleLevel?: string,
+    industry?: string,
 
 }
 

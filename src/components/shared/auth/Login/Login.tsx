@@ -69,7 +69,9 @@ const Login = () => {
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
-        message.error("Error occurred! Field required");
+        message.error("Error occurred! Field required").then(error => {
+            console.log(error);
+        });
     };
 
     return (

@@ -68,7 +68,7 @@ const ExtraLargeFilterListedJob = (props: bookmarkedStateProps & { filterCriteri
             navigate(`${AUTH_ROUTE_PATH}${LOGIN_PATH}`)
             message.info("Login Required", 2 )
         } else {
-            ("") //link to apply for a job goes here
+            window.location.href = "mailto:koficyjobcenter2024@gmail.com";
         }
     }
 

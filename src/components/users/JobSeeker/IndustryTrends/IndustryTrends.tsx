@@ -18,7 +18,8 @@ interface Article {
     urlToImage: string;
     publishedAt: string;
     source: sourceInterface;
-    totalResults: number
+    totalResults: number;
+    author: string;
 }
 
 const IndustryTrends: React.FunctionComponent = () => {
@@ -30,8 +31,8 @@ const IndustryTrends: React.FunctionComponent = () => {
     const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
     const today = new Date().toISOString().split('T')[0];
-    const url = 'https://newsapi.org/v2/everything?' +
-        'domains=bbc.co.uk,techcrunch.com,engadget.com' +
+    const url = 'https://newsapi.org/v2/top-headlines?' +
+        'category=technology&' +
         `from=${today}` +
         'sortBy=popularity&' +
         `apiKey=${API_KEY}`;
@@ -90,20 +91,20 @@ const IndustryTrends: React.FunctionComponent = () => {
                                 <a key={article.id} href={article.url} target="_blank" rel="noopener noreferrer">
                                     <div
                                         className={"border border-gray-200 rounded-lg p-2 md:p-4 lg:p-6 shadow-lg flex flex-col justify-between"}
-                                        style={{ height: '420px' }}
+                                        style={{ height: '450px' }}
                                     >
                                         <div className={"space-y-4"}>
                                             <p>{article.source.name}</p>
                                             <h2 className={"text-lg font-semibold line-clamp-2"}>{article.description}</h2>
-                                            <p className={"flex max-w-max items-center py-1 px-6 border border-neutral-200"}>#Web</p>
+                                            <p className={"flex max-w-max items-center py-1 px-6 border border-neutral-200"}>{`#${article.author}`}</p>
                                             <p>{article.publishedAt}</p>
                                         </div>
                                         {article.urlToImage && (
-                                            <div className={"w-full"}>
+                                            <div className={"w-full h-auto"}>
                                                 <KjcImage
                                                     alt={article.title}
                                                     src={article.urlToImage}
-                                                    className={"w-full h-auto object-cover object-center rounded-md"}
+                                                    className={"w-full h-20 object-cover object-center rounded-md"}
                                                 />
                                             </div>
                                         )}
